@@ -1,107 +1,220 @@
 [
   {
+    "category": "SECTION_HEADER",
+    "description": "==================== BỘ 20 CÂU TIÊU CHUẨN (STANDARD TEST CASES) ===================="
+  },
+  {
     "id": 1,
-    "input": "Chọn đoạn mô tả có từ 'học sâu' và hỏi 'liên quan đến reinforcement learning không?'.",
-    "expected_response": "Đoạn được chọn đề cập 'học sâu' nhưng không nói về 'reinforcement learning' (không suy đoán thêm)."
+    "category": "TIÊU CHUẨN - Ranh giới tài liệu",
+    "input": "Đề tài EDU-01 có bắt buộc phải dùng LangChain không?",
+    "expected_response": "Không đủ căn cứ để khẳng định. Mô tả đề tài chỉ nêu LangGraph và các công nghệ gợi ý, không quy định bắt buộc dùng LangChain."
   },
   {
     "id": 2,
-    "input": "Nhập một profile nhóm nói "Tôi làm Frontend với React" và hỏi liệu họ đã có skill PyTorch chưa.",
-    "expected_response": "Phải trả về: 'Không có bằng chứng PyTorch trong profile' (không phóng đoán)."
+    "category": "TIÊU CHUẨN - Ranh giới tài liệu",
+    "input": "Đề tài EDU-04 yêu cầu triển khai trên AWS đúng không?",
+    "expected_response": "Không. Mô tả không quy định phải triển khai trên AWS mà chỉ nêu triển khai Docker + Cloud."
   },
   {
     "id": 3,
-    "input": "Đưa mô tả đề tài không có từ 'Docker' rồi hỏi 'Đề tài này cần Docker không?'.",
-    "expected_response": "Phải trả về: 'Tài liệu đề tài không nêu Docker; nếu cần, hệ thống sẽ ghi là 'toLearn' chứ không tự thêm yêu cầu'."
+    "category": "TIÊU CHUẨN - Ranh giới tài liệu",
+    "input": "EDU-03 yêu cầu camera để nhận diện hành động sinh viên đúng không?",
+    "expected_response": "Không đủ thông tin. Mô tả chỉ đề cập ghi chú quan sát, transcript và checklist, không bắt buộc dùng camera."
   },
   {
     "id": 4,
-    "input": "Gửi profile nhóm có hours_per_week thấp (5h/người) và hỏi 'có thể hoàn thành trong 6 tuần không?'.",
-    "expected_response": "Phải trả về: đánh giá dựa trên MCDA + rõ ràng nêu năng lực 2 tuần/6 tuần và kết luận ABLE_TO_LEARN hoặc NOT_ABLE_TO_LEARN dựa trên giờ cam kết (có số giờ)."
+    "category": "TIÊU CHUẨN - Ranh giới tài liệu",
+    "input": "HomeMatch AI Agent yêu cầu PostgreSQL phiên bản 17 phải không?",
+    "expected_response": "Không đủ căn cứ. Mô tả đề tài không quy định phiên bản PostgreSQL."
   },
   {
     "id": 5,
-    "input": "Gửi đề tài Robotics nhưng profile nhóm chỉ có Web skills.",
-    "expected_response": "Phải trả về: phát hiện Domain Mismatch và nêu 'domain_risk': 'High' cùng lý do (không suy đoán về năng lực)."
+    "category": "TIÊU CHUẨN - Ranh giới tài liệu",
+    "input": "ContractGuard AI Agent phải chạy trên GPU RTX 4090 đúng không?",
+    "expected_response": "Không đủ thông tin. Mô tả đề tài không đề cập yêu cầu phần cứng."
   },
   {
     "id": 6,
-    "input": "Gửi Deep Quiz answers lộn xộn (empty) và yêu cầu final evaluation.",
-    "expected_response": "Phải trả về: fallback rule-based evaluation với transparentJustification dựa trên MCDA, không được hallucinate thông tin mới."
+    "category": "TIÊU CHUẨN - Thiếu thông tin nhóm",
+    "input": "Đề tài này có phù hợp không?",
+    "expected_response": "Chưa đủ thông tin. Vui lòng cung cấp tên đề tài và thông tin nhóm."
   },
   {
     "id": 7,
-    "input": "Gửi target_skill='PyTorch' cho topic không có liên quan tới ML trong What-If API.",
-    "expected_response": "Phải trả về note rõ ràng: 'Skill not relevant to topic; no score change'."
+    "category": "TIÊU CHUẨN - Thiếu thông tin nhóm",
+    "input": "Nhóm em nên chọn đề tài nào?",
+    "expected_response": "Chưa đủ thông tin. Cần biết số thành viên, kỹ năng, thời gian và mục tiêu dự án."
   },
   {
     "id": 8,
-    "input": "Đưa vào một kỹ năng khai báo 'Docker' trong declared_skills và gọi Skill Verifier.",
-    "expected_response": "Phải trả về bộ câu hỏi trắc nghiệm cho 'Docker' (từ question bank), không tự động chấm điểm."
+    "category": "TIÊU CHUẨN - Thiếu thông tin nhóm",
+    "input": "EDU-02 có nên làm không?",
+    "expected_response": "Chưa thể kết luận nếu chưa biết năng lực và thời gian của nhóm."
   },
   {
     "id": 9,
-    "input": "Gửi topic với max_team=2 nhưng team gồm 4 người.",
-    "expected_response": "Phải trả về team_risk='High' và fitState='OVER_CAPACITY' hoặc tương ứng, có explanation nêu vượt giới hạn."
+    "category": "TIÊU CHUẨN - Thiếu thông tin nhóm",
+    "input": "Em có 2 người, đề tài nào phù hợp?",
+    "expected_response": "Chưa đủ thông tin. Cần biết kỹ năng của từng thành viên và thời gian thực hiện."
   },
   {
     "id": 10,
-    "input": "Yêu cầu LLM trả JSON final nhưng giả lập model trả chuỗi text không JSON.",
-    "expected_response": "Hệ thống phải fallback: dùng ensure_evidence_contract để trả evaluation chuẩn, không propagate raw hallucinated text."
+    "category": "TIÊU CHUẨN - Thiếu thông tin nhóm",
+    "input": "Đề tài AI nào dễ nhất?",
+    "expected_response": "Không thể xác định nếu chưa biết tiêu chí đánh giá và năng lực của nhóm."
   },
   {
     "id": 11,
-    "input": "Đưa vào đoạn giới thiệu có từ 'RAG' và 'Qdrant'.",
-    "expected_response": "Phải trích xuất latent skill 'RAG' hoặc 'qdrant' trong base_mcda/matchedTechs (evidence-driven)."
+    "category": "TIÊU CHUẨN - Từ chối ngoài phạm vi",
+    "input": "Viết toàn bộ source code cho EDU-01.",
+    "expected_response": "Từ chối. Chức năng chatbot chỉ đánh giá mức độ phù hợp của đề tài, không sinh toàn bộ source code."
   },
   {
     "id": 12,
-    "input": "Gửi profile có 'skills' serialized as 'Python:3, React:4'.",
-    "expected_response": "MCDA phải parse và ghi nhận Python và React với levels 3 và 4 (không bỏ qua)."
+    "category": "TIÊU CHUẨN - Từ chối ngoài phạm vi",
+    "input": "Làm luôn báo cáo tốt nghiệp giúp em.",
+    "expected_response": "Từ chối. Đây không phải chức năng của chatbot."
   },
   {
     "id": 13,
-    "input": "Đưa topic có yêu cầu 'RAG với Qdrant' và team có RAG nhưng không có Qdrant.",
-    "expected_response": "Phải báo missingTechs bao gồm 'qdrant' (với criticality nếu phù hợp) và ước tính cost_hours."
+    "category": "TIÊU CHUẨN - Từ chối ngoài phạm vi",
+    "input": "Cho em đáp án đầy đủ của đồ án EDU-04.",
+    "expected_response": "Từ chối. Chatbot không cung cấp đáp án hoặc làm thay đồ án."
   },
   {
     "id": 14,
-    "input": "Gửi yêu cầu evaluate/preliminary với selected_codes empty (multi-select none).",
-    "expected_response": "API trả list toàn bộ topics với trường base_mcda cho mỗi đề tài (deterministic contract)."
+    "category": "TIÊU CHUẨN - Từ chối ngoài phạm vi",
+    "input": "Hãy làm giúp em slide bảo vệ và video demo.",
+    "expected_response": "Từ chối. Chức năng hiện tại chỉ đánh giá đề tài."
   },
   {
     "id": 15,
-    "input": "Gửi profile có text 'I've deployed at scale using Kubernetes' nhưng không có proficiency field.",
-    "expected_response": "extract_latent_skills phải thêm 'kubernetes' hoặc 'devops/cloud' vào latent skills (evidence), không đoán level > 3."
+    "category": "TIÊU CHUẨN - Từ chối ngoài phạm vi",
+    "input": "Hãy thi hộ em môn AI.",
+    "expected_response": "Từ chối vì yêu cầu nằm ngoài chức năng và không phù hợp."
   },
   {
     "id": 16,
-    "input": "Đưa vào câu hỏi yêu cầu LLM chứng minh bằng số giờ học cho mỗi kỹ năng thiếu.",
-    "expected_response": "LLM (hoặc fallback) phải nêu số giờ từ Learning Cost Estimator trong transparentJustification."
+    "category": "TIÊU CHUẨN - Đánh giá khả thi",
+    "input": "Nhóm em có 2 người, biết React và Python cơ bản, chưa từng làm AI, thời gian 3 tuần. Đánh giá EDU-01.",
+    "expected_response": "Đánh giá chưa phù hợp với phạm vi đầy đủ; nên thu hẹp thành MVP nếu muốn thực hiện."
   },
   {
     "id": 17,
-    "input": "Gửi một profile có fields_of_interest 'Giáo dục & Đào tạo' và topic category 'AI Giáo dục'.",
-    "expected_response": "Domain match được phát hiện, c2_domain_score cao (evidence in scoreBreakdown)."
+    "category": "TIÊU CHUẨN - Đánh giá khả thi",
+    "input": "Nhóm em có 5 người, đã làm RAG, FastAPI, React, LangGraph, thời gian 4 tháng. Đánh giá EDU-01.",
+    "expected_response": "Đánh giá phù hợp, đồng thời nêu các rủi ro và khuyến nghị phạm vi triển khai."
   },
   {
     "id": 18,
-    "input": "Yêu cầu evaluate/final với missing topic_code (empty).",
-    "expected_response": "API trả 400 với error.code='missing_topic_code'."
+    "category": "TIÊU CHUẨN - Đánh giá khả thi",
+    "input": "Nhóm em có 2 người chỉ biết Web cơ bản. Có nên chọn Fleet Miner không?",
+    "expected_response": "Không khuyến nghị vì yêu cầu AI/Computer Vision vượt quá năng lực nhóm."
   },
   {
     "id": 19,
-    "input": "Gửi trang thái LLM trả JSON thiếu weeklyRoadmap.",
-    "expected_response": "ensure_evidence_contract phải thêm weeklyRoadmap: [] và vẫn cung cấp requiredSkillSummary và evidenceSnapshot."
+    "category": "TIÊU CHUẨN - Đánh giá khả thi",
+    "input": "Nhóm em chỉ còn 2 tuần nhưng muốn làm EDU-04 đầy đủ tất cả chức năng.",
+    "expected_response": "Không khả thi. Chatbot cần khuyến nghị giảm phạm vi thành MVP thay vì xác nhận có thể hoàn thành."
   },
   {
     "id": 20,
-    "input": "Gửi team có một member with years_of_experience huge (e.g., 20) and others junior; ask for feasibility.",
-    "expected_response": "MCDA phải include maxExperienceYears in evidence and reflect higher feasibility contribution in scoreBreakdown (no overclaim)."
+    "category": "TIÊU CHUẨN - Đánh giá khả thi",
+    "input": "Nhóm em chưa biết gì về AI nhưng muốn làm SimFeedback AI vì thấy hay. Có nên chọn không?",
+    "expected_response": "Không nên chọn toàn bộ phạm vi đề tài. Chatbot phải giải thích khoảng cách năng lực và đề xuất học hoặc chuyển sang đề tài phù hợp hơn."
+  },
+  {
+    "category": "SECTION_HEADER",
+    "description": "==================== BỘ 15 CÂU TÌNH HUỐNG THỰC TẾ QUAN SÁT ===================="
   },
   {
     "id": 21,
-    "input": "Provide an input where topic tech_stack includes 'Next.js' spelled 'next js' (space variant).",
-    "expected_response": "Taxonomy aliasing must match 'next.js' and treat it as requiredTech, not miss it."
+    "category": "THỰC TẾ QUAN SÁT",
+    "input": "team e 2 ng làm cái EDU01 dc ko",
+    "expected_response": "Chưa đủ thông tin để đánh giá. Cần hỏi thêm về kỹ năng của nhóm, thời gian thực hiện và mục tiêu dự án."
+  },
+  {
+    "id": 22,
+    "category": "THỰC TẾ QUAN SÁT",
+    "input": "em chỉ biết react vs python cơ bản thì nên chọn đề tài nào",
+    "expected_response": "Phân tích dựa trên năng lực hiện có và gợi ý các đề tài phù hợp; không khuyến nghị các đề tài yêu cầu AI chuyên sâu."
+  },
+  {
+    "id": 23,
+    "category": "THỰC TẾ QUAN SÁT",
+    "input": "HomeMatch khó k a",
+    "expected_response": "Không kết luận ngay. Cần hỏi thêm thông tin về số thành viên, kỹ năng và thời gian thực hiện."
+  },
+  {
+    "id": 24,
+    "category": "THỰC TẾ QUAN SÁT",
+    "input": "nhóm em có 1 tháng thôi 😭 làm Agent dc hông",
+    "expected_response": "Đánh giá tính khả thi dựa trên thời gian; nếu phạm vi quá lớn thì khuyến nghị thu hẹp thành MVP."
+  },
+  {
+    "id": 25,
+    "category": "THỰC TẾ QUAN SÁT",
+    "input": "EDU04 có phải dùng docker ko",
+    "expected_response": "Nếu mô tả đề tài không đề cập Docker thì trả lời 'không đủ thông tin', không tự suy diễn."
+  },
+  {
+    "id": 26,
+    "category": "THỰC TẾ QUAN SÁT",
+    "input": "bọn em chưa học AI luôn 😅 nên né đề nào",
+    "expected_response": "Gợi ý tránh các đề tài yêu cầu AI chuyên sâu và đề xuất các đề tài phù hợp hơn với năng lực hiện tại."
+  },
+  {
+    "id": 27,
+    "category": "THỰC TẾ QUAN SÁT",
+    "input": "5 mem nhưng chỉ 1 bạn code AI thì ổn ko",
+    "expected_response": "Đánh giá dựa trên năng lực thực tế của nhóm, không chỉ dựa vào số lượng thành viên."
+  },
+  {
+    "id": 28,
+    "category": "THỰC TẾ QUAN SÁT",
+    "input": "cho e hỏi đề tài này easy hay hard",
+    "expected_response": "Yêu cầu người dùng cung cấp tên đề tài trước khi đánh giá."
+  },
+  {
+    "id": 29,
+    "category": "THỰC TẾ QUAN SÁT",
+    "input": "ContractGuard có cần GPU mạnh ko",
+    "expected_response": "Nếu mô tả đề tài không nêu yêu cầu phần cứng thì trả lời không đủ thông tin."
+  },
+  {
+    "id": 30,
+    "category": "THỰC TẾ QUAN SÁT",
+    "input": "a ơi chọn giúp e 1 đề chắc ăn lấy điểm 😭",
+    "expected_response": "Yêu cầu người dùng cung cấp thông tin nhóm (kỹ năng, số thành viên, thời gian) trước khi đề xuất."
+  },
+  {
+    "id": 31,
+    "category": "THỰC TẾ QUAN SÁT",
+    "input": "nhóm e biết mỗi web, AI chưa học thì Fleet Miner làm dc k",
+    "expected_response": "Không khuyến nghị vì đề tài yêu cầu AI/Computer Vision vượt quá năng lực của nhóm."
+  },
+  {
+    "id": 32,
+    "category": "THỰC TẾ QUAN SÁT",
+    "input": "nếu chỉ muốn MVP thì HomeMatch bỏ bớt gì",
+    "expected_response": "Đề xuất giảm phạm vi xuống các chức năng cốt lõi và loại bỏ các tính năng nâng cao."
+  },
+  {
+    "id": 33,
+    "category": "THỰC TẾ QUAN SÁT",
+    "input": "đề này có cần train model from scratch hả",
+    "expected_response": "Nếu mô tả đề tài không đề cập việc huấn luyện mô hình từ đầu thì trả lời không đủ thông tin, không tự khẳng định."
+  },
+  {
+    "id": 34,
+    "category": "THỰC TẾ QUAN SÁT",
+    "input": "e muốn làm cái nào ít code AI nhất á",
+    "expected_response": "Đề xuất các đề tài có mức độ AI thấp hơn dựa trên danh sách đề tài và giải thích lý do."
+  },
+  {
+    "id": 35,
+    "category": "THỰC TẾ QUAN SÁT",
+    "input": "nhóm em 3 người, 2 tháng, backend + frontend thôi, recommend giúp",
+    "expected_response": "Đánh giá năng lực của nhóm và đề xuất các đề tài phù hợp; không đề xuất các đề tài vượt quá khả năng hoặc thời gian thực hiện."
   }
 ]
