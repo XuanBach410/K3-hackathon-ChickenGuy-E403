@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Key, X, Check } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { Card } from './ui/card';
-
 export default function ApiKeyModal({ isOpen, onClose, currentKey, onSave }) {
   const [provider, setProvider] = useState(localStorage.getItem('matchskill_provider') || 'gemini');
   const [apiKey, setApiKey] = useState(currentKey || '');
@@ -12,7 +10,7 @@ export default function ApiKeyModal({ isOpen, onClose, currentKey, onSave }) {
 
   return (
     <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md p-6 bg-white shadow-2xl animate-in fade-in zoom-in duration-200">
+      <div className="w-full max-w-md p-6 bg-white rounded-xl shadow-2xl animate-in fade-in zoom-in duration-200">
         <div className="flex justify-between items-center mb-6">
           <h3 className="flex items-center gap-2 text-lg font-bold text-slate-800">
             <Key size={18} className="text-blue-600" /> Cấu Hình LLM API Provider
@@ -65,7 +63,7 @@ export default function ApiKeyModal({ isOpen, onClose, currentKey, onSave }) {
             <Check size={16} /> OK / Lưu Key
           </Button>
         </div>
-      </Card>
+      </div>
     </div>
   );
 }

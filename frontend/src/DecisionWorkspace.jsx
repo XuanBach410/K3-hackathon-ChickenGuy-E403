@@ -556,7 +556,13 @@ export default function DecisionWorkspace() {
       <ApiKeyModal
         isOpen={isApiKeyOpen}
         onClose={() => setIsApiKeyOpen(false)}
-        onSave={(p, k) => { setProvider(p); setApiKey(k); }}
+        onSave={(p, k) => { 
+          setProvider(p); 
+          setApiKey(k); 
+          localStorage.setItem('matchskill_provider', p);
+          localStorage.setItem('matchskill_api_key', k);
+          setIsApiKeyOpen(false); 
+        }}
         currentKey={apiKey}
       />
     </div>
