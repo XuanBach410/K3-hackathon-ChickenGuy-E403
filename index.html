@@ -444,6 +444,7 @@
     let matchedResults = [];
     let currentStep = 1;
     let deepEvalAnswers = {};
+    let mockProfiles = [];
 
     const MOCK_TEAMS = {
       "team-fullstack": [
@@ -472,13 +473,42 @@
       ]
     };
 
-    const COMMON_TECHS = ["python","react","pytorch","docker","sql","rag","fastapi","nlp","computer vision","node","flutter","java","spark","pandas","redis","postgresql","mongodb","typescript","tailwind","vue","firebase","tensorflow","keras","scikit-learn","langchain","streamlit","html/css","javascript","c++","ros","matlab","opencv","yolo","bert","gpt","llm","api","aws","gcp","azure","linux","git"];
+    const COMMON_TECHS = ["python","react","pytorch","docker","sql","rag","fastapi","nlp","computer vision","node","flutter","java","spark","pandas","redis","postgresql","mongodb","typescript","tailwind","vue","firebase","tensorflow","keras","scikit-learn","langchain","streamlit","html/css","javascript","c++","ros","matlab","opencv","yolo","bert","gpt","llm","api","aws","gcp","azure","linux","git","frontend","backend","mobile","devops/cloud","data analysis","machine learning","product management","project management","ui/ux design","data engineering","deep learning","nlp/llm","computer vision/image processing"];
 
     // === INIT ===
     window.addEventListener('DOMContentLoaded', async () => {
       lucide.createIcons();
       await fetchData();
+      await fetchMockProfiles();
     });
+
+    async function fetchMockProfiles() {
+      try {
+        const res = await fetch('mork_data/mock_profiles.json');
+        mockProfiles = await res.json();
+        populateMockProfilesSelect();
+      } catch (e) {
+        console.log('No mock_profiles.json found or failed to load');
+      }
+    }
+
+    function populateMockProfilesSelect() {
+      if (!mockProfiles.length) return;
+      const sel = document.getElementById('preset-select');
+      const grp = document.createElement('optgroup');
+      grp.label = "📥 Dữ liệu từ mork_data/mock_profiles.json (" + mockProfiles.length + " Học viên)";
+
+      // Create a few generated teams from mock_profiles
+      for (let i = 0; i < Math.min(5, Math.floor(mockProfiles.length / 4)); i++) {
+        const teamChunk = mockProfiles.slice(i * 4, (i + 1) * 4);
+        const opt = document.createElement('option');
+        opt.value = 'mock-team-' + i;
+        opt.textContent = `🎯 Nhóm ${i + 1} (${teamChunk.map(p => p.name).join(', ')})`;
+        grp.appendChild(opt);
+      }
+      sel.appendChild(grp);
+    }
+
 
     async function fetchData() {
       try {
@@ -523,7 +553,21 @@
     // === TEAM ===
     function loadPreset(key) {
       if (!key) return;
-      currentTeam = JSON.parse(JSON.stringify(MOCK_TEAMS[key]));
+
+      if (key.startsWith('mock-team-')) {
+        const idx = parseInt(key.replace('mock-team-', ''));
+        const teamChunk = mockProfiles.slice(idx * 4, (idx + 1) * 4);
+        currentTeam = teamChunk.map(p => {
+          const profSkills = p.proficiency ? Object.entries(p.proficiency).map(([sk, lvl]) => `${sk}:${lvl}`).join(', ') : 'Python:3';
+          return {
+            name: `${p.name} (${p.desired_roles ? p.desired_roles[0] || 'Dev' : 'Member'})`,
+            skills: profSkills
+          };
+        });
+      } else {
+        currentTeam = JSON.parse(JSON.stringify(MOCK_TEAMS[key]));
+      }
+
       renderMembers();
     }
 
