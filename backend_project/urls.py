@@ -10,6 +10,7 @@ urlpatterns = [
     path('api/agent/tools/', views.get_registered_agent_tools),
     path('api/evaluate/preliminary/', views.evaluate_preliminary),
     path('api/evaluate/deep-quiz/', views.generate_deep_quiz),
+    path('api/evaluate/verify-skills/', views.verify_declared_skills),
     path('api/evaluate/final/', views.evaluate_final),
     path('api/evaluate/what-if/', views.evaluate_what_if),
 ]

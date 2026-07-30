@@ -115,6 +115,28 @@ def generate_deep_quiz(request):
         return JsonResponse({"error": str(e)}, status=500)
 
 @csrf_exempt
+def verify_declared_skills(request):
+    """Generate practical verification questions for the skills a team declared."""
+    if request.method != "POST":
+        return JsonResponse({"error": "Only POST allowed"}, status=405)
+
+    try:
+        body = json.loads(request.body.decode("utf-8"))
+        declared_skills = body.get("declared_skills", [])
+        if not isinstance(declared_skills, list) or not all(isinstance(skill, str) for skill in declared_skills):
+            return JsonResponse({"error": "declared_skills must be an array of strings"}, status=400)
+
+        tool_res = AgentToolRegistry.execute("verify_declared_skills", {
+            "declared_skills": declared_skills
+        })
+        if tool_res.get("error"):
+            return JsonResponse(tool_res, status=500)
+        return JsonResponse(tool_res)
+
+    except (json.JSONDecodeError, UnicodeDecodeError):
+        return JsonResponse({"error": "Invalid JSON payload"}, status=400)
+
+@csrf_exempt
 def evaluate_final(request):
     """
     Step 3: Final Agent Evaluation Module combining Deep Quiz answers, Team Capacity & LLM API.

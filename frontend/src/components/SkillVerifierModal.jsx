@@ -23,25 +23,14 @@ export default function SkillVerifierModal({ isOpen, onClose, teamMembers, apiBa
     });
 
     try {
-      const res = await fetch(`${apiBase}/agent/tools/`);
+      const res = await fetch(`${apiBase}/evaluate/verify-skills/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ declared_skills: Array.from(allSkills) })
+      });
       const data = await res.json();
-      
-      // Simulate calling verify_declared_skills tool directly
-      const skillList = Array.from(allSkills);
-      const mockQuestions = skillList.map((sk, idx) => ({
-        skill: sk,
-        question: `Xác minh kỹ năng [${sk}]: Mức độ kinh nghiệm thực chiến của bạn?`,
-        options: [
-          'Level 1: Mới học lý thuyết / tutorial',
-          'Level 2: Đã làm bài tập nhỏ',
-          'Level 3: Đã áp dụng dự án môn học (Có Git/Demo)',
-          'Level 4: Làm dự án thực tế / công ty'
-        ]
-      }));
-
-      setQuizzes(mockQuestions.length > 0 ? mockQuestions : [
-        { skill: 'Python', question: 'Xác minh kỹ năng Python: Bạn đã làm dự án thực tế nào chưa?', options: ['Chỉ mới học', 'Bài tập trên lớp', 'Viết REST API hoàn chỉnh', 'Tối ưu hiệu năng / Production'] }
-      ]);
+      if (!res.ok) throw new Error(data.error || 'Unable to generate verification questions');
+      setQuizzes(data.verification_quizzes || []);
     } catch (err) {
       console.error('Error fetching skill verifier tool:', err);
     } finally {
