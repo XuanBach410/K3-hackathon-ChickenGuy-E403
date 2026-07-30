@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MatchSkill AI — Hệ thống Matching Đề tài theo Năng lực Nhóm</title>
+  <meta name="description" content="AI Chatbot hỗ trợ lựa chọn đề tài theo năng lực nhóm — Mini Hackathon AI Batch 03">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --signal-red: #D82C2C;
+      --signal-red-hover: #B91C1C;
+      --black: #1A1A1A;
+      --white: #FFFFFF;
+      --cool-grey: #A9B2B1;
+      --deep-blue: #0033A0;
+      --light-grey: #F2F2F2;
+      --border-color: #D4D4D4;
+      --border-subtle: #E5E5E5;
+      --text-primary: var(--black);
+      --text-secondary: var(--cool-grey);
+      --surface-primary: var(--white);
+      --surface-secondary: var(--light-grey);
+      --success: #1B7A3D;
+      --success-bg: #E8F5ED;
+      --warning: #92400E;
+      --warning-bg: #FEF3C7;
+      --danger: var(--signal-red);
+      --danger-bg: #FEE2E2;
+      --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --fs-hero: clamp(2.5rem, 5vw, 4rem);
+      --fs-h1: 2.25rem;
+      --fs-h2: 1.5rem;
+      --fs-body: 1rem;
+      --fs-small: 0.875rem;
+      --fs-caption: 0.75rem;
+      --lh-body: 1.6;
+      --fw-bold: 700;
+      --fw-medium: 500;
+      --fw-regular: 400;
+      --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 20px;
+      --sp-6: 24px; --sp-8: 32px; --sp-10: 40px; --sp-12: 48px; --sp-16: 64px;
+      --radius: 8px;
+      --radius-sm: 4px;
+      --shadow-card: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow-hover: 0 4px 16px rgba(0,0,0,0.08);
+      --max-width: 1280px;
+      --side-padding: 1.5rem;
+      --z-sticky: 100;
+      --z-overlay: 200;
+      --z-modal: 300;
+      --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+      --duration-fast: 200ms;
+      --duration-normal: 300ms;
+      --duration-entry: 420ms;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+      color: var(--text-primary);
+      background: var(--surface-secondary);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--surface-secondary); }
+    ::-webkit-scrollbar-thumb { background: var(--cool-grey); border-radius: 3px; }
+
+    h1 { font-size: var(--fs-h1); font-weight: var(--fw-bold); letter-spacing: -0.02em; line-height: 1.15; }
+    h2 { font-size: var(--fs-h2); font-weight: var(--fw-bold); letter-spacing: -0.01em; line-height: 1.25; }
+    h3 { font-size: 1.125rem; font-weight: var(--fw-bold); line-height: 1.35; }
+    .caption { font-size: var(--fs-caption); font-weight: var(--fw-medium); letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-secondary); }
+    .mono { font-family: var(--font-mono); }
+    .text-red { color: var(--signal-red); }
+    .text-blue { color: var(--deep-blue); }
+    .text-secondary { color: var(--text-secondary); }
+
+    .container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 var(--side-padding); }
+
+    /* === NAV === */
+    .nav { position: sticky; top: 0; z-index: var(--z-sticky); background: var(--surface-primary); border-bottom: 1px solid var(--border-color); height: 56px; }
+    .nav .container { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+    .nav-brand { display: flex; align-items: center; gap: var(--sp-3); }
+    .nav-logo { width: 32px; height: 32px; background: var(--signal-red); color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: var(--fw-bold); font-size: var(--fs-small); border-radius: var(--radius-sm); }
+    .nav-title { font-weight: var(--fw-bold); font-size: 1.125rem; letter-spacing: -0.01em; }
+    .nav-badge { font-size: var(--fs-caption); color: var(--text-secondary); border: 1px solid var(--border-color); padding: 2px 8px; border-radius: var(--radius-sm); margin-left: var(--sp-2); }
+    .nav-meta { display: flex; align-items: center; gap: var(--sp-6); font-size: var(--fs-small); color: var(--text-secondary); }
+    .nav-meta-item { display: flex; align-items: center; gap: var(--sp-1); }
+    .nav-meta-item .lucide { width: 16px; height: 16px; color: var(--deep-blue); }
+
+    /* === STEPPER === */
+    .stepper { display: flex; align-items: center; gap: var(--sp-2); padding: var(--sp-5) 0; }
+    .step-item { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-small); font-weight: var(--fw-medium); color: var(--text-secondary); cursor: pointer; transition: color var(--duration-fast); }
+    .step-item:hover { color: var(--text-primary); }
+    .step-item.active { color: var(--signal-red); font-weight: 600; }
+    .step-item.done { color: var(--success); }
+    .step-num { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-size: var(--fs-caption); font-weight: var(--fw-bold); transition: all var(--duration-fast); flex-shrink: 0; }
+    .step-item.active .step-num { border-color: var(--signal-red); background: var(--signal-red); color: var(--white); }
+    .step-item.done .step-num { border-color: var(--success); background: var(--success-bg); color: var(--success); }
+    .step-sep { width: 40px; height: 2px; background: var(--border-color); flex-shrink: 0; }
+    .step-sep.done { background: var(--success); }
+
+    /* === PANELS === */
+    .panel { display: none; animation: fadeInUp var(--duration-entry) var(--ease-out) both; }
+    .panel.active { display: block; }
+
+    /* === CARDS === */
+    .card { background: var(--surface-primary); border: 1px solid var(--border-subtle); border-radius: var(--radius); box-shadow: var(--shadow-card); padding: var(--sp-6); }
+    .card + .card { margin-top: var(--sp-5); }
+    .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-5); }
+    .card-header h3 { display: flex; align-items: center; gap: var(--sp-2); }
+    .card-header h3 .lucide { width: 18px; height: 18px; }
+    .badge { font-size: var(--fs-caption); font-weight: var(--fw-medium); color: var(--text-secondary); border: 1px solid var(--border-color); padding: 2px 8px; border-radius: var(--radius-sm); }
+
+    /* === FORMS === */
+    label.form-label { display: block; font-size: var(--fs-caption); font-weight: var(--fw-medium); letter-spacing: 0.03em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--sp-2); }
+    select, input[type="text"], input[type="number"], textarea {
+      font-family: var(--font-sans); width: 100%; background: var(--surface-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm);
+      padding: var(--sp-3) var(--sp-4); font-size: var(--fs-small); color: var(--text-primary); transition: border-color var(--duration-fast);
+    }
+    select:focus, input[type="text"]:focus, input[type="number"]:focus, textarea:focus { outline: none; border-color: var(--deep-blue); box-shadow: 0 0 0 2px rgba(0,51,160,0.15); }
+    .input-mono { font-family: var(--font-mono); font-size: var(--fs-caption); background: var(--surface-secondary); }
+    textarea { resize: vertical; min-height: 60px; }
+
+    /* === BUTTONS === */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2); font-family: var(--font-sans); font-weight: 600; font-size: var(--fs-small); border-radius: var(--radius-sm); padding: var(--sp-3) var(--sp-5); border: none; cursor: pointer; transition: all var(--duration-fast) var(--ease-out); }
+    .btn .lucide { width: 16px; height: 16px; }
+    .btn-primary { background: var(--signal-red); color: var(--white); }
+    .btn-primary:hover { background: var(--signal-red-hover); transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:disabled { background: var(--cool-grey); cursor: not-allowed; transform: none; }
+    .btn-secondary { background: var(--surface-primary); color: var(--text-primary); border: 1.5px solid var(--cool-grey); }
+    .btn-secondary:hover { background: var(--surface-secondary); border-color: var(--text-primary); }
+    .btn-blue { background: var(--deep-blue); color: var(--white); }
+    .btn-blue:hover { background: #002480; transform: translateY(-1px); }
+    .btn-block { width: 100%; padding: var(--sp-4) var(--sp-5); font-size: var(--fs-body); }
+    .btn-sm { padding: var(--sp-2) var(--sp-3); font-size: var(--fs-caption); }
+    .btn-text { background: none; border: none; color: var(--signal-red); font-weight: var(--fw-medium); font-size: var(--fs-caption); padding: var(--sp-1) 0; cursor: pointer; }
+    .btn-text:hover { text-decoration: underline; }
+    .btn-group { display: flex; gap: var(--sp-3); margin-top: var(--sp-5); }
+
+    /* === MEMBER ITEMS === */
+    .member-card { background: var(--surface-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius); padding: var(--sp-4) var(--sp-5); display: grid; grid-template-columns: 1fr auto; gap: var(--sp-3); align-items: start; }
+    .member-card + .member-card { margin-top: var(--sp-3); }
+    .member-name { font-weight: var(--fw-medium); font-size: var(--fs-body); margin-bottom: var(--sp-1); }
+    .member-skills { font-family: var(--font-mono); font-size: var(--fs-caption); color: var(--deep-blue); word-break: break-all; }
+    .member-delete { background: none; border: none; cursor: pointer; color: var(--cool-grey); padding: var(--sp-2); display: flex; transition: color var(--duration-fast); border-radius: var(--radius-sm); }
+    .member-delete:hover { color: var(--signal-red); background: var(--danger-bg); }
+    .member-delete .lucide { width: 16px; height: 16px; }
+
+    /* === TOPIC SELECTION === */
+    .search-bar { display: flex; gap: var(--sp-3); margin-bottom: var(--sp-5); }
+    .search-bar input { flex: 1; }
+    .search-bar select { width: 200px; flex-shrink: 0; }
+
+    .topic-list { max-height: 480px; overflow-y: auto; border: 1px solid var(--border-subtle); border-radius: var(--radius); }
+    .topic-row { display: grid; grid-template-columns: 40px 90px 1fr 160px; align-items: center; gap: var(--sp-3); padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--border-subtle); font-size: var(--fs-small); transition: background var(--duration-fast); cursor: pointer; }
+    .topic-row:last-child { border-bottom: none; }
+    .topic-row:hover { background: var(--surface-secondary); }
+    .topic-row.selected { background: #EBF5FF; border-left: 3px solid var(--deep-blue); }
+    .topic-row-header { background: var(--surface-secondary); font-weight: var(--fw-bold); font-size: var(--fs-caption); text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-secondary); cursor: default; position: sticky; top: 0; z-index: 1; }
+    .topic-row-header:hover { background: var(--surface-secondary); }
+    .topic-check { width: 18px; height: 18px; accent-color: var(--deep-blue); cursor: pointer; }
+    .topic-code-cell { font-family: var(--font-mono); font-size: var(--fs-caption); font-weight: var(--fw-medium); color: var(--signal-red); }
+    .topic-title-cell { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .topic-cat-cell { font-size: var(--fs-caption); color: var(--text-secondary); text-align: right; }
+
+    .selected-summary { display: flex; align-items: center; justify-content: space-between; padding: var(--sp-4) var(--sp-5); background: var(--surface-primary); border: 1px solid var(--border-subtle); border-radius: var(--radius); margin-top: var(--sp-4); box-shadow: var(--shadow-card); }
+    .selected-count { font-weight: var(--fw-bold); font-size: var(--fs-body); }
+    .selected-count span { color: var(--deep-blue); font-family: var(--font-mono); }
+    .selected-chips { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-3); }
+    .chip { display: inline-flex; align-items: center; gap: var(--sp-1); font-size: var(--fs-caption); font-weight: var(--fw-medium); background: var(--surface-secondary); border: 1px solid var(--border-color); padding: 3px 10px; border-radius: 100px; }
+    .chip-remove { background: none; border: none; cursor: pointer; color: var(--cool-grey); display: flex; padding: 0; }
+    .chip-remove:hover { color: var(--signal-red); }
+    .chip-remove .lucide { width: 14px; height: 14px; }
+
+    /* === RESULTS === */
+    .result-card { background: var(--surface-primary); border: 1px solid var(--border-subtle); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); }
+    .result-card + .result-card { margin-top: var(--sp-5); }
+    .result-header { display: grid; grid-template-columns: 1fr auto; gap: var(--sp-5); padding: var(--sp-5) var(--sp-6); align-items: start; }
+    .result-meta { display: flex; align-items: center; gap: var(--sp-2); margin-bottom: var(--sp-2); flex-wrap: wrap; }
+    .result-code { font-family: var(--font-mono); font-size: var(--fs-caption); font-weight: var(--fw-medium); color: var(--signal-red); background: var(--danger-bg); padding: 2px 8px; border-radius: var(--radius-sm); }
+    .result-cat { font-size: var(--fs-caption); color: var(--text-secondary); }
+    .result-title { font-size: 1.0625rem; font-weight: var(--fw-bold); line-height: 1.35; margin-bottom: var(--sp-2); }
+    .result-desc { font-size: var(--fs-small); color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+    .score-badge { text-align: center; padding: var(--sp-3) var(--sp-5); border: 1px solid; border-radius: var(--radius); min-width: 88px; }
+    .score-value { font-family: var(--font-mono); font-size: var(--fs-h2); font-weight: var(--fw-bold); line-height: 1; }
+    .score-label { font-size: 10px; font-weight: var(--fw-medium); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+    .score--high { color: var(--success); border-color: #BBF0C8; background: var(--success-bg); }
+    .score--mid { color: var(--warning); border-color: #FDE68A; background: var(--warning-bg); }
+    .score--low { color: var(--signal-red); border-color: #FCA5A5; background: var(--danger-bg); }
+
+    .result-breakdown { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--border-subtle); }
+    .breakdown-cell { padding: var(--sp-4) var(--sp-5); border-right: 1px solid var(--border-subtle); }
+    .breakdown-cell:last-child { border-right: none; }
+    .breakdown-label { font-size: var(--fs-caption); color: var(--text-secondary); font-weight: var(--fw-medium); text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: var(--sp-2); }
+    .breakdown-value { font-family: var(--font-mono); font-size: 1.25rem; font-weight: var(--fw-bold); }
+    .progress-bar { width: 100%; height: 4px; background: var(--border-color); border-radius: 2px; margin-top: var(--sp-2); overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 2px; transition: width var(--duration-normal) var(--ease-out); }
+    .fill-green { background: var(--success); }
+    .fill-blue { background: var(--deep-blue); }
+    .fill-red { background: var(--signal-red); }
+
+    .result-tags { display: flex; flex-wrap: wrap; gap: var(--sp-1); padding: var(--sp-3) var(--sp-6); border-top: 1px solid var(--border-subtle); background: var(--surface-secondary); }
+    .tag { font-size: 11px; font-weight: var(--fw-medium); padding: 2px 8px; border-radius: var(--radius-sm); border: 1px solid; }
+    .tag--match { color: var(--success); background: var(--success-bg); border-color: #BBF0C8; }
+    .tag--gap { color: var(--signal-red); background: var(--danger-bg); border-color: #FCA5A5; }
+    .tag--warn { color: var(--warning); background: var(--warning-bg); border-color: #FDE68A; }
+
+    .result-explain { padding: var(--sp-5) var(--sp-6); border-top: 1px solid var(--border-subtle); font-size: var(--fs-small); color: var(--text-primary); line-height: var(--lh-body); }
+    .result-explain h4 { font-size: var(--fs-small); font-weight: var(--fw-bold); margin-bottom: var(--sp-2); display: flex; align-items: center; gap: var(--sp-2); }
+    .result-explain h4 .lucide { width: 16px; height: 16px; }
+    .result-explain ul { padding-left: 1.2em; margin-top: var(--sp-2); }
+    .result-explain li { margin-bottom: var(--sp-1); }
+
+    .result-actions { display: flex; gap: var(--sp-3); padding: var(--sp-4) var(--sp-6); border-top: 1px solid var(--border-subtle); background: var(--surface-secondary); }
+
+    /* === DEEP EVAL PANEL === */
+    .deep-eval { background: var(--surface-primary); border: 1px solid var(--border-subtle); border-radius: var(--radius); box-shadow: var(--shadow-card); margin-top: var(--sp-5); animation: fadeInUp var(--duration-entry) var(--ease-out) both; }
+    .deep-eval-header { padding: var(--sp-5) var(--sp-6); border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; }
+    .deep-eval-header h3 { display: flex; align-items: center; gap: var(--sp-2); }
+    .deep-eval-header h3 .lucide { width: 18px; height: 18px; color: var(--deep-blue); }
+    .deep-eval-body { padding: var(--sp-6); }
+
+    .eval-question { margin-bottom: var(--sp-6); }
+    .eval-question:last-child { margin-bottom: 0; }
+    .eval-q-label { font-weight: var(--fw-bold); font-size: var(--fs-small); margin-bottom: var(--sp-3); display: flex; align-items: flex-start; gap: var(--sp-2); }
+    .eval-q-label .q-num { flex-shrink: 0; width: 24px; height: 24px; background: var(--deep-blue); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: var(--fs-caption); font-weight: var(--fw-bold); }
+    .eval-scale { display: flex; gap: var(--sp-2); }
+    .eval-scale-btn { width: 44px; height: 44px; border: 1.5px solid var(--border-color); border-radius: var(--radius-sm); background: var(--surface-primary); font-family: var(--font-mono); font-weight: var(--fw-bold); font-size: var(--fs-small); cursor: pointer; transition: all var(--duration-fast); display: flex; align-items: center; justify-content: center; }
+    .eval-scale-btn:hover { border-color: var(--deep-blue); background: #EBF5FF; }
+    .eval-scale-btn.selected { border-color: var(--deep-blue); background: var(--deep-blue); color: var(--white); }
+    .eval-scale-labels { display: flex; justify-content: space-between; font-size: var(--fs-caption); color: var(--text-secondary); margin-top: var(--sp-1); }
+
+    /* === ROADMAP === */
+    .roadmap { margin-top: var(--sp-6); }
+    .roadmap-header { font-weight: var(--fw-bold); font-size: 1.125rem; margin-bottom: var(--sp-5); display: flex; align-items: center; gap: var(--sp-2); }
+    .roadmap-header .lucide { width: 20px; height: 20px; color: var(--deep-blue); }
+    .roadmap-week { display: grid; grid-template-columns: 80px 1fr; gap: var(--sp-4); margin-bottom: var(--sp-4); }
+    .roadmap-week-label { font-family: var(--font-mono); font-size: var(--fs-caption); font-weight: var(--fw-bold); color: var(--deep-blue); padding-top: var(--sp-1); }
+    .roadmap-week-content { background: var(--surface-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius); padding: var(--sp-4); font-size: var(--fs-small); }
+    .roadmap-week-content strong { display: block; margin-bottom: var(--sp-1); }
+    .roadmap-week-content ul { padding-left: 1.2em; margin-top: var(--sp-2); color: var(--text-secondary); }
+    .roadmap-week-content li { margin-bottom: var(--sp-1); }
+
+    /* === ALERT === */
+    .alert { display: flex; align-items: flex-start; gap: var(--sp-3); padding: var(--sp-4); border-radius: var(--radius); border: 1px solid; font-size: var(--fs-small); margin-bottom: var(--sp-5); }
+    .alert .lucide { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; }
+    .alert strong { display: block; margin-bottom: 2px; }
+    .alert--danger { background: var(--danger-bg); border-color: #FCA5A5; color: #7F1D1D; }
+    .alert--success { background: var(--success-bg); border-color: #BBF0C8; color: #14532D; }
+    .alert--info { background: #EBF5FF; border-color: #93C5FD; color: #1E3A5F; }
+
+    /* === EMPTY STATE === */
+    .empty-state { text-align: center; padding: var(--sp-16) var(--sp-8); color: var(--text-secondary); }
+    .empty-state .lucide { width: 48px; height: 48px; margin: 0 auto var(--sp-4); opacity: 0.3; }
+    .empty-state p { max-width: 40ch; margin: 0 auto; }
+
+    /* === FOOTER === */
+    .footer { border-top: 1px solid var(--border-color); background: var(--surface-primary); padding: var(--sp-4) 0; text-align: center; font-size: var(--fs-caption); color: var(--text-secondary); margin-top: auto; }
+
+    /* === ANIMATION === */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .search-bar { flex-direction: column; }
+      .search-bar select { width: 100%; }
+      .topic-row { grid-template-columns: 36px 70px 1fr; }
+      .topic-cat-cell { display: none; }
+      .result-header { grid-template-columns: 1fr; }
+      .result-breakdown { grid-template-columns: 1fr; }
+      .breakdown-cell { border-right: none; border-bottom: 1px solid var(--border-subtle); }
+      .eval-scale { flex-wrap: wrap; }
+      .roadmap-week { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-brand">
+        <div class="nav-logo">M</div>
+        <span class="nav-title">MatchSkill AI</span>
+        <span class="nav-badge">Hackathon Batch 03</span>
+      </div>
+      <div class="nav-meta">
+        <span class="nav-meta-item"><i data-lucide="database"></i><span id="data-status">Loading...</span></span>
+        <button class="btn-text" onclick="resetAll()">Reset All</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="flex:1; padding-top: var(--sp-4); padding-bottom: var(--sp-16);">
+
+    <!-- STEPPER -->
+    <div class="stepper" id="stepper">
+      <div class="step-item active" id="step-1" onclick="goToStep(1)">
+        <div class="step-num">1</div>
+        <span>Team Profile</span>
+      </div>
+      <div class="step-sep" id="sep-1"></div>
+      <div class="step-item" id="step-2" onclick="goToStep(2)">
+        <div class="step-num">2</div>
+        <span>Topic Selection</span>
+      </div>
+      <div class="step-sep" id="sep-2"></div>
+      <div class="step-item" id="step-3">
+        <div class="step-num">3</div>
+        <span>Results &amp; Analysis</span>
+      </div>
+    </div>
+
+    <!-- ========== PANEL 1: TEAM PROFILE ========== -->
+    <div class="panel active" id="panel-1">
+      <div class="card">
+        <div class="card-header">
+          <h3><i data-lucide="users"></i> Team Members</h3>
+          <span class="badge" id="team-count-badge">0 members</span>
+        </div>
+
+        <label class="form-label">Quick Preset</label>
+        <select id="preset-select" onchange="loadPreset(this.value)">
+          <option value="">-- Select preset team --</option>
+          <option value="team-fullstack">Hardcore Fullstack (Data + Web + LLM)</option>
+          <option value="team-data-heavy">Data Science &amp; AI Heavy</option>
+          <option value="team-beginner">Junior / Non-tech Team</option>
+          <option value="team-web-dev">Frontend &amp; Mobile Dev</option>
+        </select>
+
+        <div style="margin-top: var(--sp-6); border-top: 1px solid var(--border-subtle); padding-top: var(--sp-5);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: var(--sp-4);">
+            <span class="caption">Members &amp; Skill Levels (1-5)</span>
+            <button class="btn btn-sm btn-secondary" onclick="showAddMemberForm()"><i data-lucide="plus" style="width:14px;height:14px;"></i> Add Member</button>
+          </div>
+
+          <!-- Add Member Form (hidden by default) -->
+          <div id="add-member-form" style="display:none; margin-bottom: var(--sp-4); background: var(--surface-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius); padding: var(--sp-4);">
+            <label class="form-label">Name</label>
+            <input type="text" id="new-member-name" placeholder="e.g. Nguyen Van A">
+            <label class="form-label" style="margin-top:var(--sp-3);">Skills (format: Skill:Level, ...)</label>
+            <input type="text" id="new-member-skills" class="input-mono" placeholder="e.g. Python:4, React:3, SQL:5">
+            <div class="btn-group">
+              <button class="btn btn-sm btn-primary" onclick="addMember()"><i data-lucide="check" style="width:14px;height:14px;"></i> Add</button>
+              <button class="btn btn-sm btn-secondary" onclick="hideAddMemberForm()">Cancel</button>
+            </div>
+          </div>
+
+          <div id="members-list"></div>
+        </div>
+      </div>
+
+      <div class="btn-group" style="justify-content: flex-end;">
+        <button class="btn btn-primary btn-block" onclick="goToStep(2)" id="btn-to-step2" disabled>
+          Next: Select Topics <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ========== PANEL 2: TOPIC SELECTION ========== -->
+    <div class="panel" id="panel-2">
+      <div class="card">
+        <div class="card-header">
+          <h3><i data-lucide="library"></i> Topic Library</h3>
+          <span class="badge" id="topic-total-badge">0 topics</span>
+        </div>
+
+        <!-- Search & Filter -->
+        <div class="search-bar">
+          <input type="text" id="topic-search" placeholder="Search by topic name or code (e.g. K3-045)..." oninput="filterTopics()">
+          <select id="topic-cat-filter" onchange="filterTopics()">
+            <option value="ALL">All Categories</option>
+          </select>
+        </div>
+
+        <!-- Topic List Table -->
+        <div class="topic-list" id="topic-list-container">
+          <div class="topic-row topic-row-header">
+            <div></div>
+            <div>Code</div>
+            <div>Topic Title</div>
+            <div style="text-align:right;">Category</div>
+          </div>
+        </div>
+
+        <!-- Selected Summary Bar -->
+        <div class="selected-summary" id="selected-summary" style="display:none;">
+          <div>
+            <div class="selected-count"><span id="selected-count-num">0</span> topics selected</div>
+            <div class="selected-chips" id="selected-chips"></div>
+          </div>
+          <div class="btn-group" style="margin-top:0; flex-shrink: 0;">
+            <button class="btn btn-sm btn-secondary" onclick="clearSelection()"><i data-lucide="x" style="width:14px;height:14px;"></i> Clear</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-group" style="justify-content: space-between;">
+        <button class="btn btn-secondary" onclick="goToStep(1)"><i data-lucide="arrow-left"></i> Back</button>
+        <button class="btn btn-primary" onclick="runMatching()" id="btn-run-match" disabled>
+          <i data-lucide="zap"></i> Run Matching Analysis
+        </button>
+      </div>
+    </div>
+
+    <!-- ========== PANEL 3: RESULTS ========== -->
+    <div class="panel" id="panel-3">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: var(--sp-5);">
+        <h2>Matching Results</h2>
+        <button class="btn btn-secondary" onclick="goToStep(2)"><i data-lucide="arrow-left"></i> Back to Topics</button>
+      </div>
+
+      <div id="results-container"></div>
+      <div id="deep-eval-container"></div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="container">MatchSkill AI &middot; MCDA Framework &middot; Mini Hackathon AI Batch 03</div>
+  </footer>
+
+  <!-- ========== APP LOGIC ========== -->
+  <script>
+    // === STATE ===
+    let allTopics = [];
+    let currentTeam = [];
+    let selectedTopicCodes = new Set();
+    let matchedResults = [];
+    let currentStep = 1;
+    let deepEvalAnswers = {};
+
+    const MOCK_TEAMS = {
+      "team-fullstack": [
+        { name: "Dinh Nam (Lead)", skills: "Python:4, React:4, FastAPI:4, Docker:3, RAG:3, SQL:4" },
+        { name: "Hoang Anh (Data)", skills: "Python:5, PyTorch:4, Pandas:5, Scikit-learn:4, SQL:3" },
+        { name: "Bao Ngoc (FE/UX)", skills: "React:5, Tailwind:5, TypeScript:4, Figma:5, HTML/CSS:5" },
+        { name: "Minh Duc (Backend)", skills: "Nodejs:4, Python:3, Docker:4, PostgreSQL:4, Redis:3" }
+      ],
+      "team-data-heavy": [
+        { name: "Van Hung (Lead)", skills: "Python:5, PyTorch:5, Computer Vision:4, NLP:4, Math:5" },
+        { name: "Thi Mai (Analyst)", skills: "SQL:5, PowerBI:5, Pandas:5, Python:4, Statistics:4" },
+        { name: "Tuan Kiet (MLOps)", skills: "Python:4, Docker:4, MLflow:3, GCP:3, Linux:4" },
+        { name: "Quang Huy (Data Eng)", skills: "Spark:3, Airflow:3, SQL:4, Python:4" }
+      ],
+      "team-beginner": [
+        { name: "Thanh Nam (Leader)", skills: "Python:2, HTML/CSS:3, SQL:2, Excel:4" },
+        { name: "Phuong Thao", skills: "Python:2, Canva:4, Presentation:4, Logic:3" },
+        { name: "Quoc Anh", skills: "Python:1, SQL:2, Research:3" },
+        { name: "Hai Yen", skills: "HTML/CSS:2, Python:2, UI/UX:3" }
+      ],
+      "team-web-dev": [
+        { name: "Anh Tuan (Dev Lead)", skills: "React:5, Vue:4, JavaScript:5, Nodejs:4, Tailwind:5" },
+        { name: "Khanh Linh (Mobile)", skills: "Flutter:4, React Native:4, Dart:4, Firebase:4" },
+        { name: "Duc Anh (Backend)", skills: "Java:4, SpringBoot:4, MySQL:4, REST API:5" },
+        { name: "Bao An (QA)", skills: "Selenium:3, Testing:4, Postman:4, Agile:4" }
+      ]
+    };
+
+    const COMMON_TECHS = ["python","react","pytorch","docker","sql","rag","fastapi","nlp","computer vision","node","flutter","java","spark","pandas","redis","postgresql","mongodb","typescript","tailwind","vue","firebase","tensorflow","keras","scikit-learn","langchain","streamlit","html/css","javascript","c++","ros","matlab","opencv","yolo","bert","gpt","llm","api","aws","gcp","azure","linux","git"];
+
+    // === INIT ===
+    window.addEventListener('DOMContentLoaded', async () => {
+      lucide.createIcons();
+      await fetchData();
+    });
+
+    async function fetchData() {
+      try {
+        const res = await fetch('topics_data.json');
+        allTopics = await res.json();
+        document.getElementById('data-status').textContent = allTopics.length + ' topics';
+        populateCategoryFilter();
+      } catch (e) {
+        document.getElementById('data-status').textContent = 'Error loading data';
+      }
+    }
+
+    function populateCategoryFilter() {
+      const cats = [...new Set(allTopics.map(t => t.category).filter(Boolean))].sort();
+      const sel = document.getElementById('topic-cat-filter');
+      cats.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; sel.appendChild(o); });
+      document.getElementById('topic-total-badge').textContent = allTopics.length + ' topics';
+    }
+
+    // === STEPPER ===
+    function goToStep(step) {
+      if (step === 2 && currentTeam.length === 0) return;
+      if (step > 3) return;
+      currentStep = step;
+
+      [1, 2, 3].forEach(s => {
+        document.getElementById('panel-' + s).classList.toggle('active', s === step);
+        const si = document.getElementById('step-' + s);
+        si.classList.remove('active', 'done');
+        if (s < step) si.classList.add('done');
+        if (s === step) si.classList.add('active');
+      });
+      [1, 2].forEach(s => {
+        const sep = document.getElementById('sep-' + s);
+        sep.classList.toggle('done', s < step);
+      });
+
+      if (step === 2) renderTopicList();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // === TEAM ===
+    function loadPreset(key) {
+      if (!key) return;
+      currentTeam = JSON.parse(JSON.stringify(MOCK_TEAMS[key]));
+      renderMembers();
+    }
+
+    function renderMembers() {
+      const c = document.getElementById('members-list');
+      document.getElementById('team-count-badge').textContent = currentTeam.length + ' members';
+      document.getElementById('btn-to-step2').disabled = currentTeam.length === 0;
+
+      c.innerHTML = currentTeam.map((m, i) => `
+        <div class="member-card">
+          <div>
+            <div class="member-name">${m.name}</div>
+            <div class="member-skills">${m.skills}</div>
+          </div>
+          <button class="member-delete" onclick="removeMember(${i})" title="Remove"><i data-lucide="x"></i></button>
+        </div>
+      `).join('');
+      if (!currentTeam.length) {
+        c.innerHTML = '<div class="empty-state" style="padding:var(--sp-10) var(--sp-4);"><i data-lucide="user-plus"></i><p>No members yet. Select a preset or add members manually.</p></div>';
+      }
+      lucide.createIcons();
+    }
+
+    function showAddMemberForm() { document.getElementById('add-member-form').style.display = 'block'; document.getElementById('new-member-name').focus(); }
+    function hideAddMemberForm() { document.getElementById('add-member-form').style.display = 'none'; }
+
+    function addMember() {
+      const name = document.getElementById('new-member-name').value.trim();
+      const skills = document.getElementById('new-member-skills').value.trim();
+      if (!name) return;
+      currentTeam.push({ name, skills: skills || 'Python:2' });
+      document.getElementById('new-member-name').value = '';
+      document.getElementById('new-member-skills').value = '';
+      hideAddMemberForm();
+      renderMembers();
+    }
+
+    function removeMember(i) { currentTeam.splice(i, 1); renderMembers(); }
+
+    // === TOPIC SELECTION ===
+    function renderTopicList() {
+      const search = (document.getElementById('topic-search').value || '').toLowerCase();
+      const catFilter = document.getElementById('topic-cat-filter').value;
+
+      let filtered = allTopics;
+      if (catFilter !== 'ALL') filtered = filtered.filter(t => t.category === catFilter);
+      if (search) filtered = filtered.filter(t => ((t.title || '') + ' ' + (t.code || '')).toLowerCase().includes(search));
+
+      const container = document.getElementById('topic-list-container');
+      const headerHTML = `<div class="topic-row topic-row-header"><div></div><div>Code</div><div>Topic Title</div><div style="text-align:right;">Category</div></div>`;
+
+      container.innerHTML = headerHTML + filtered.slice(0, 100).map(t => `
+        <div class="topic-row ${selectedTopicCodes.has(t.code) ? 'selected' : ''}" onclick="toggleTopic('${t.code}', this)">
+          <input type="checkbox" class="topic-check" ${selectedTopicCodes.has(t.code) ? 'checked' : ''} onclick="event.stopPropagation(); toggleTopic('${t.code}', this.closest('.topic-row'))">
+          <div class="topic-code-cell">${t.code || '--'}</div>
+          <div class="topic-title-cell" title="${(t.title || '').replace(/"/g, '&quot;')}">${t.title || 'Untitled'}</div>
+          <div class="topic-cat-cell">${t.category || ''}</div>
+        </div>
+      `).join('');
+
+      if (filtered.length > 100) {
+        container.innerHTML += `<div style="padding:var(--sp-3) var(--sp-4); font-size:var(--fs-caption); color:var(--text-secondary); text-align:center;">Showing 100 of ${filtered.length} results. Refine your search.</div>`;
+      }
+      if (!filtered.length) {
+        container.innerHTML = headerHTML + `<div style="padding:var(--sp-8); text-align:center; color:var(--text-secondary); font-size:var(--fs-small);">No topics found.</div>`;
+      }
+
+      updateSelectedSummary();
+    }
+
+    function filterTopics() { renderTopicList(); }
+
+    function toggleTopic(code, row) {
+      if (selectedTopicCodes.has(code)) {
+        selectedTopicCodes.delete(code);
+        if (row) row.classList.remove('selected');
+      } else {
+        selectedTopicCodes.add(code);
+        if (row) row.classList.add('selected');
+      }
+      const cb = row?.querySelector('.topic-check');
+      if (cb) cb.checked = selectedTopicCodes.has(code);
+      updateSelectedSummary();
+    }
+
+    function removeSelectedTopic(code) {
+      selectedTopicCodes.delete(code);
+      renderTopicList();
+    }
+
+    function clearSelection() {
+      selectedTopicCodes.clear();
+      renderTopicList();
+    }
+
+    function updateSelectedSummary() {
+      const summary = document.getElementById('selected-summary');
+      const count = selectedTopicCodes.size;
+      document.getElementById('btn-run-match').disabled = count === 0;
+
+      if (count === 0) { summary.style.display = 'none'; return; }
+      summary.style.display = 'flex';
+      document.getElementById('selected-count-num').textContent = count;
+
+      const chips = document.getElementById('selected-chips');
+      chips.innerHTML = [...selectedTopicCodes].map(code => {
+        const t = allTopics.find(x => x.code === code);
+        return `<span class="chip"><span class="mono" style="color:var(--signal-red);">${code}</span> ${(t?.title || '').substring(0, 30)}${(t?.title || '').length > 30 ? '...' : ''}<button class="chip-remove" onclick="removeSelectedTopic('${code}')"><i data-lucide="x"></i></button></span>`;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    // === MATCHING ALGORITHM ===
+    function runMatching() {
+      if (selectedTopicCodes.size === 0 || currentTeam.length === 0) return;
+
+      const teamSkills = {};
+      currentTeam.forEach(m => {
+        m.skills.split(',').forEach(p => {
+          const [sk, lvl] = p.split(':').map(s => s.trim());
+          if (sk) teamSkills[sk.toLowerCase()] = Math.max(teamSkills[sk.toLowerCase()] || 0, parseInt(lvl) || 2);
+        });
+      });
+
+      const selectedTopics = allTopics.filter(t => selectedTopicCodes.has(t.code));
+
+      matchedResults = selectedTopics.map(t => {
+        const reqText = ((t.tech_stack || '') + ' ' + (t.requirements || '') + ' ' + (t.description || '')).toLowerCase();
+        const matchedTechs = [], missingTechs = [];
+        let skillSum = 0, techCount = 0;
+
+        COMMON_TECHS.forEach(tech => {
+          if (reqText.includes(tech)) {
+            techCount++;
+            const ul = teamSkills[tech] || 0;
+            if (ul >= 3) { matchedTechs.push({ tech, level: ul }); skillSum += Math.min(ul / 5, 1.0); }
+            else if (ul > 0) { matchedTechs.push({ tech, level: ul }); skillSum += 0.35; }
+            else { missingTechs.push(tech); }
+          }
+        });
+
+        let skillScore = techCount > 0 ? (skillSum / techCount) * 100 : 60;
+        skillScore = Math.min(100, skillScore);
+        const maxTeam = parseInt(t.max_team) || 5;
+        const teamPenalty = currentTeam.length > maxTeam ? -15 : 0;
+        let feasibility = Math.max(100 - (missingTechs.length * 16), 15);
+        let domainMismatch = false;
+
+        // Domain mismatch detection
+        const teamDomains = Object.keys(teamSkills);
+        const hasNLP = teamDomains.some(s => ['nlp','bert','gpt','llm','langchain'].includes(s));
+        const hasCV = teamDomains.some(s => ['computer vision','opencv','yolo'].includes(s));
+        const hasWeb = teamDomains.some(s => ['react','vue','javascript','html/css','tailwind','nodejs','flutter'].includes(s));
+        const hasRobotics = teamDomains.some(s => ['ros','c++','matlab'].includes(s));
+
+        const topicNeedsCV = reqText.includes('computer vision') || reqText.includes('opencv') || reqText.includes('yolo') || reqText.includes('image');
+        const topicNeedsNLP = reqText.includes('nlp') || reqText.includes('bert') || reqText.includes('text') || reqText.includes('language');
+        const topicNeedsRobotics = reqText.includes('robot') || reqText.includes('ros') || reqText.includes('iot');
+        const topicNeedsWeb = reqText.includes('web') || reqText.includes('react') || reqText.includes('frontend');
+
+        if ((hasNLP && !hasCV && topicNeedsCV) || (hasCV && !hasNLP && topicNeedsNLP) || (hasWeb && !hasRobotics && topicNeedsRobotics)) {
+          domainMismatch = true;
+          feasibility -= 20;
+        }
+
+        let finalScore = Math.round((skillScore * 0.45) + (feasibility * 0.35) + teamPenalty + (Math.random() * 4));
+        finalScore = Math.max(10, Math.min(98, finalScore));
+
+        // Build explanation
+        let explanation = [];
+        if (matchedTechs.length) explanation.push(`Team covers ${matchedTechs.length} required skills: ${matchedTechs.map(m => m.tech + ' (Lvl ' + m.level + ')').join(', ')}.`);
+        if (missingTechs.length) explanation.push(`Missing ${missingTechs.length} skills: ${missingTechs.join(', ')}. Estimated ${missingTechs.length * 3}-${missingTechs.length * 5} days upskilling needed.`);
+        if (domainMismatch) explanation.push('Domain mismatch detected: team expertise is in a different field than what this topic requires. Significant adaptation needed.');
+        if (teamPenalty) explanation.push(`Team size (${currentTeam.length}) exceeds max allowed (${maxTeam}).`);
+        if (finalScore >= 80) explanation.push('Overall: Strong match. Team can confidently pursue this topic.');
+        else if (finalScore >= 60) explanation.push('Overall: Moderate match. Feasible with targeted upskilling.');
+        else explanation.push('Overall: Low match. Consider alternatives or prepare a detailed learning plan.');
+
+        return { ...t, finalScore, skillScore: Math.round(skillScore), feasibilityScore: Math.round(feasibility), matchedTechs, missingTechs, domainMismatch, teamPenalty, maxTeam, explanation };
+      });
+
+      matchedResults.sort((a, b) => b.finalScore - a.finalScore);
+      goToStep(3);
+      renderResults();
+    }
+
+    // === RENDER RESULTS ===
+    function renderResults() {
+      const c = document.getElementById('results-container');
+      document.getElementById('deep-eval-container').innerHTML = '';
+
+      c.innerHTML = matchedResults.map((r, idx) => {
+        const sc = r.finalScore >= 80 ? 'score--high' : r.finalScore >= 60 ? 'score--mid' : 'score--low';
+        const isLowMatch = r.finalScore < 65 || r.domainMismatch;
+
+        return `
+          <div class="result-card" id="result-${r.code}">
+            <div class="result-header">
+              <div>
+                <div class="result-meta">
+                  <span class="result-code">${r.code}</span>
+                  <span class="result-cat">${r.category || ''}</span>
+                  ${r.domainMismatch ? '<span class="tag tag--warn">Domain Mismatch</span>' : ''}
+                  ${r.teamPenalty ? '<span class="tag tag--warn">Exceeds Max Team (' + r.maxTeam + ')</span>' : ''}
+                </div>
+                <div class="result-title">${r.title}</div>
+                <div class="result-desc">${r.description || ''}</div>
+              </div>
+              <div class="score-badge ${sc}">
+                <div class="score-value">${r.finalScore}%</div>
+                <div class="score-label">Match</div>
+              </div>
+            </div>
+
+            <div class="result-breakdown">
+              <div class="breakdown-cell">
+                <div class="breakdown-label">Skill Compatibility (45%)</div>
+                <div class="breakdown-value" style="color:var(--success);">${r.skillScore}%</div>
+                <div class="progress-bar"><div class="progress-fill fill-green" style="width:${r.skillScore}%"></div></div>
+              </div>
+              <div class="breakdown-cell">
+                <div class="breakdown-label">Feasibility (35%)</div>
+                <div class="breakdown-value" style="color:var(--deep-blue);">${r.feasibilityScore}%</div>
+                <div class="progress-bar"><div class="progress-fill fill-blue" style="width:${r.feasibilityScore}%"></div></div>
+              </div>
+              <div class="breakdown-cell">
+                <div class="breakdown-label">Overall Score</div>
+                <div class="breakdown-value" style="color:var(--signal-red);">${r.finalScore}%</div>
+                <div class="progress-bar"><div class="progress-fill fill-red" style="width:${r.finalScore}%"></div></div>
+              </div>
+            </div>
+
+            <div class="result-tags">
+              ${r.matchedTechs.slice(0, 6).map(m => '<span class="tag tag--match">' + m.tech + ' Lvl ' + m.level + '</span>').join('')}
+              ${r.missingTechs.slice(0, 5).map(m => '<span class="tag tag--gap">Gap: ' + m + '</span>').join('')}
+            </div>
+
+            <div class="result-explain">
+              <h4><i data-lucide="message-square-text"></i> Analysis &amp; Explanation</h4>
+              <ul>${r.explanation.map(e => '<li>' + e + '</li>').join('')}</ul>
+            </div>
+
+            <div class="result-actions">
+              <button class="btn ${isLowMatch ? 'btn-primary' : 'btn-blue'}" onclick="openDeepEval('${r.code}')">
+                <i data-lucide="${isLowMatch ? 'shield-alert' : 'route'}"></i>
+                ${isLowMatch ? 'Deep Evaluation: Skill Gap & Feasibility Check' : 'Generate Roadmap & Skill Plan'}
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    // === DEEP EVALUATION ===
+    function openDeepEval(code) {
+      const r = matchedResults.find(x => x.code === code);
+      if (!r) return;
+
+      const isLowMatch = r.finalScore < 65 || r.domainMismatch;
+      deepEvalAnswers[code] = {};
+
+      const container = document.getElementById('deep-eval-container');
+      container.innerHTML = `
+        <div class="deep-eval" id="deep-eval-${code}">
+          <div class="deep-eval-header">
+            <h3>
+              <i data-lucide="${isLowMatch ? 'shield-alert' : 'route'}"></i>
+              ${isLowMatch ? 'Deep Evaluation: Skill Gap & Feasibility' : 'Roadmap & Skill Plan'} — ${code}
+            </h3>
+            <button class="btn btn-sm btn-secondary" onclick="document.getElementById('deep-eval-container').innerHTML=''"><i data-lucide="x" style="width:14px;height:14px;"></i> Close</button>
+          </div>
+          <div class="deep-eval-body">
+
+            ${isLowMatch ? `
+              <div class="alert alert--danger">
+                <i data-lucide="alert-octagon"></i>
+                <div>
+                  <strong>Low compatibility detected (${r.finalScore}%)</strong>
+                  ${r.domainMismatch ? 'Domain mismatch: Team expertise does not align with topic requirements. ' : ''}
+                  Missing skills: ${r.missingTechs.join(', ') || 'N/A'}. Please answer the evaluation below to assess feasibility within a 6-week timeline.
+                </div>
+              </div>
+            ` : `
+              <div class="alert alert--info">
+                <i data-lucide="info"></i>
+                <div>
+                  <strong>Good compatibility (${r.finalScore}%)</strong>
+                  Answer the questions below to generate a detailed 6-week implementation roadmap and identify remaining skill requirements.
+                </div>
+              </div>
+            `}
+
+            <!-- Missing Skills Display -->
+            ${r.missingTechs.length ? `
+              <div style="margin-bottom:var(--sp-6); background:var(--surface-secondary); border:1px solid var(--border-subtle); border-radius:var(--radius); padding:var(--sp-5);">
+                <h4 style="font-size:var(--fs-small); font-weight:var(--fw-bold); margin-bottom:var(--sp-3); display:flex; align-items:center; gap:var(--sp-2);">
+                  <i data-lucide="book-open" style="width:16px;height:16px;color:var(--signal-red);"></i> Skills Required but Missing
+                </h4>
+                <div style="display:flex; flex-wrap:wrap; gap:var(--sp-2);">
+                  ${r.missingTechs.map(tech => `
+                    <div style="background:var(--danger-bg); border:1px solid #FCA5A5; border-radius:var(--radius); padding:var(--sp-3) var(--sp-4); font-size:var(--fs-small);">
+                      <strong style="color:var(--signal-red);">${tech}</strong>
+                      <div style="font-size:var(--fs-caption); color:var(--text-secondary); margin-top:2px;">Est. 3-5 days to learn basics</div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+
+            <!-- Evaluation Questions -->
+            <div class="eval-question">
+              <div class="eval-q-label">
+                <span class="q-num">1</span>
+                <span>How well does your team understand the problem domain of this topic? (What the topic asks you to build)</span>
+              </div>
+              <div class="eval-scale" id="eq-domain-${code}">
+                ${[1,2,3,4,5].map(v => `<button class="eval-scale-btn" onclick="setEvalAnswer('${code}','domain',${v},this)">${v}</button>`).join('')}
+              </div>
+              <div class="eval-scale-labels"><span>1 = No idea</span><span>5 = Very clear vision</span></div>
+            </div>
+
+            <div class="eval-question">
+              <div class="eval-q-label">
+                <span class="q-num">2</span>
+                <span>Can the missing skills (${r.missingTechs.join(', ') || 'none'}) be realistically learned within 6 weeks alongside implementation?</span>
+              </div>
+              <div class="eval-scale" id="eq-learn-${code}">
+                ${[1,2,3,4,5].map(v => `<button class="eval-scale-btn" onclick="setEvalAnswer('${code}','learnability',${v},this)">${v}</button>`).join('')}
+              </div>
+              <div class="eval-scale-labels"><span>1 = Impossible</span><span>5 = Easily learnable</span></div>
+            </div>
+
+            <div class="eval-question">
+              <div class="eval-q-label">
+                <span class="q-num">3</span>
+                <span>How many hours per day (on average) can each team member commit to this project?</span>
+              </div>
+              <div style="display:flex; gap:var(--sp-3); align-items:center;">
+                <input type="number" id="eq-hours-${code}" min="1" max="12" value="3" style="width:80px;" onchange="deepEvalAnswers['${code}'].hours=parseInt(this.value)">
+                <span style="font-size:var(--fs-small); color:var(--text-secondary);">hours / day per member</span>
+              </div>
+            </div>
+
+            <div class="eval-question">
+              <div class="eval-q-label">
+                <span class="q-num">4</span>
+                <span>How motivated is the team to pursue this specific topic despite the challenges?</span>
+              </div>
+              <div class="eval-scale" id="eq-motivation-${code}">
+                ${[1,2,3,4,5].map(v => `<button class="eval-scale-btn" onclick="setEvalAnswer('${code}','motivation',${v},this)">${v}</button>`).join('')}
+              </div>
+              <div class="eval-scale-labels"><span>1 = Not interested</span><span>5 = Highly motivated</span></div>
+            </div>
+
+            <div class="eval-question">
+              <div class="eval-q-label">
+                <span class="q-num">5</span>
+                <span>Does the team have access to necessary resources (datasets, hardware, APIs, mentors)?</span>
+              </div>
+              <div class="eval-scale" id="eq-resources-${code}">
+                ${[1,2,3,4,5].map(v => `<button class="eval-scale-btn" onclick="setEvalAnswer('${code}','resources',${v},this)">${v}</button>`).join('')}
+              </div>
+              <div class="eval-scale-labels"><span>1 = Nothing available</span><span>5 = Everything ready</span></div>
+            </div>
+
+            <button class="btn btn-blue btn-block" style="margin-top:var(--sp-6);" onclick="generateRoadmap('${code}')">
+              <i data-lucide="sparkles"></i> Generate Feasibility Assessment &amp; 6-Week Roadmap
+            </button>
+
+            <div id="roadmap-output-${code}"></div>
+          </div>
+        </div>
+      `;
+
+      deepEvalAnswers[code] = { domain: 0, learnability: 0, hours: 3, motivation: 0, resources: 0 };
+      lucide.createIcons();
+
+      document.getElementById('deep-eval-' + code).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function setEvalAnswer(code, key, value, btn) {
+      deepEvalAnswers[code][key] = value;
+      btn.parentElement.querySelectorAll('.eval-scale-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+
+    // === GENERATE ROADMAP ===
+    function generateRoadmap(code) {
+      const r = matchedResults.find(x => x.code === code);
+      const a = deepEvalAnswers[code] || {};
+      if (!r) return;
+
+      const hours = a.hours || 3;
+      const totalHoursPerWeek = hours * currentTeam.length * 5; // 5 working days
+      const feasibilityIndex = ((a.domain || 3) + (a.learnability || 3) + (a.motivation || 3) + (a.resources || 3)) / 4;
+
+      let feasibilityLabel, feasibilityColor;
+      if (feasibilityIndex >= 3.5) { feasibilityLabel = 'FEASIBLE'; feasibilityColor = 'var(--success)'; }
+      else if (feasibilityIndex >= 2.5) { feasibilityLabel = 'CONDITIONALLY FEASIBLE'; feasibilityColor = 'var(--warning)'; }
+      else { feasibilityLabel = 'HIGH RISK'; feasibilityColor = 'var(--signal-red)'; }
+
+      const missingCount = r.missingTechs.length;
+      const learningWeeks = Math.min(Math.ceil(missingCount * 0.8), 3);
+
+      const output = document.getElementById('roadmap-output-' + code);
+      output.innerHTML = `
+        <div style="margin-top:var(--sp-8); border-top:1px solid var(--border-subtle); padding-top:var(--sp-6);">
+
+          <!-- Feasibility Summary -->
+          <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:var(--sp-4); margin-bottom:var(--sp-6);">
+            <div style="background:var(--surface-secondary); border:1px solid var(--border-subtle); border-radius:var(--radius); padding:var(--sp-4); text-align:center;">
+              <div class="caption" style="margin-bottom:var(--sp-2);">Feasibility Index</div>
+              <div class="mono" style="font-size:var(--fs-h2); font-weight:var(--fw-bold); color:${feasibilityColor};">${feasibilityIndex.toFixed(1)}/5</div>
+              <div style="font-size:var(--fs-caption); font-weight:var(--fw-bold); color:${feasibilityColor}; margin-top:var(--sp-1);">${feasibilityLabel}</div>
+            </div>
+            <div style="background:var(--surface-secondary); border:1px solid var(--border-subtle); border-radius:var(--radius); padding:var(--sp-4); text-align:center;">
+              <div class="caption" style="margin-bottom:var(--sp-2);">Team Capacity</div>
+              <div class="mono" style="font-size:var(--fs-h2); font-weight:var(--fw-bold); color:var(--deep-blue);">${totalHoursPerWeek}h</div>
+              <div style="font-size:var(--fs-caption); color:var(--text-secondary); margin-top:var(--sp-1);">per week (${currentTeam.length} members x ${hours}h x 5d)</div>
+            </div>
+            <div style="background:var(--surface-secondary); border:1px solid var(--border-subtle); border-radius:var(--radius); padding:var(--sp-4); text-align:center;">
+              <div class="caption" style="margin-bottom:var(--sp-2);">Learning Overhead</div>
+              <div class="mono" style="font-size:var(--fs-h2); font-weight:var(--fw-bold); color:${missingCount > 2 ? 'var(--signal-red)' : 'var(--success)'};">${learningWeeks}w</div>
+              <div style="font-size:var(--fs-caption); color:var(--text-secondary); margin-top:var(--sp-1);">${missingCount} skills to learn</div>
+            </div>
+          </div>
+
+          ${feasibilityIndex < 2.5 ? `
+            <div class="alert alert--danger">
+              <i data-lucide="alert-octagon"></i>
+              <div>
+                <strong>Not Recommended</strong>
+                Based on your answers, this topic carries high risk of failure within 6 weeks. The team lacks domain understanding, critical skills, and/or resources. Consider choosing a topic with higher compatibility score, or significantly increase daily time commitment.
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- 6-Week Roadmap -->
+          <div class="roadmap">
+            <div class="roadmap-header"><i data-lucide="route"></i> 6-Week Implementation Roadmap</div>
+
+            <div class="roadmap-week">
+              <div class="roadmap-week-label">Week 1</div>
+              <div class="roadmap-week-content">
+                <strong>Foundation &amp; Environment Setup</strong>
+                <ul>
+                  <li>Set up development environment and project structure</li>
+                  <li>Deep-dive into topic requirements and research existing solutions</li>
+                  ${missingCount > 0 ? '<li><strong style="color:var(--signal-red);">Begin learning: ' + r.missingTechs.slice(0, 2).join(', ') + '</strong> (tutorials, documentation, small exercises)</li>' : '<li>Review and practice core tech stack</li>'}
+                  <li>Divide responsibilities among ${currentTeam.length} members</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="roadmap-week">
+              <div class="roadmap-week-label">Week 2</div>
+              <div class="roadmap-week-content">
+                <strong>${missingCount > 2 ? 'Continued Learning + Initial Prototype' : 'Core Feature Development'}</strong>
+                <ul>
+                  ${missingCount > 2 ? '<li><strong style="color:var(--signal-red);">Continue learning: ' + r.missingTechs.slice(2).join(', ') + '</strong></li>' : ''}
+                  <li>Build minimal viable prototype (MVP) with core functionality</li>
+                  <li>Implement data pipeline / model architecture basics</li>
+                  <li>First integration test</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="roadmap-week">
+              <div class="roadmap-week-label">Week 3</div>
+              <div class="roadmap-week-content">
+                <strong>Feature Completion &amp; Integration</strong>
+                <ul>
+                  <li>Complete all core features as defined in requirements</li>
+                  <li>Integrate frontend + backend + AI model components</li>
+                  <li>Internal demo and gather feedback from team</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="roadmap-week">
+              <div class="roadmap-week-label">Week 4</div>
+              <div class="roadmap-week-content">
+                <strong>Testing &amp; Optimization</strong>
+                <ul>
+                  <li>Write and run test cases (unit + integration)</li>
+                  <li>Performance optimization and edge case handling</li>
+                  <li>User acceptance testing with 3+ external testers</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="roadmap-week">
+              <div class="roadmap-week-label">Week 5</div>
+              <div class="roadmap-week-content">
+                <strong>Advanced Features &amp; Documentation</strong>
+                <ul>
+                  <li>Implement advanced/bonus requirements if time permits</li>
+                  <li>Write project documentation and user guide</li>
+                  <li>Prepare evaluation metrics and results table</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="roadmap-week">
+              <div class="roadmap-week-label">Week 6</div>
+              <div class="roadmap-week-content">
+                <strong>Final Polish &amp; Presentation</strong>
+                <ul>
+                  <li>Bug fixes and final quality assurance</li>
+                  <li>Prepare demo slides and presentation script</li>
+                  <li>Rehearse presentation (dry run)</li>
+                  <li>Submit final deliverables</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Required Skills Summary -->
+          <div style="margin-top:var(--sp-6); background:var(--surface-secondary); border:1px solid var(--border-subtle); border-radius:var(--radius); padding:var(--sp-5);">
+            <h4 style="font-size:var(--fs-small); font-weight:var(--fw-bold); margin-bottom:var(--sp-4); display:flex; align-items:center; gap:var(--sp-2);">
+              <i data-lucide="list-checks" style="width:16px;height:16px;color:var(--deep-blue);"></i> Complete Skill Requirements for This Topic
+            </h4>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-3);">
+              <div>
+                <div class="caption" style="margin-bottom:var(--sp-2);">Covered by Team</div>
+                ${r.matchedTechs.length ? r.matchedTechs.map(m => '<div style="font-size:var(--fs-small); padding:var(--sp-1) 0; color:var(--success);"><strong>' + m.tech + '</strong> (Lvl ' + m.level + '/5)</div>').join('') : '<div style="font-size:var(--fs-small); color:var(--text-secondary);">No matching skills</div>'}
+              </div>
+              <div>
+                <div class="caption" style="margin-bottom:var(--sp-2);">Needs Learning</div>
+                ${r.missingTechs.length ? r.missingTechs.map(m => '<div style="font-size:var(--fs-small); padding:var(--sp-1) 0; color:var(--signal-red);"><strong>' + m + '</strong> (~3-5 days)</div>').join('') : '<div style="font-size:var(--fs-small); color:var(--success);">All skills covered</div>'}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      `;
+      lucide.createIcons();
+      output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function resetAll() {
+      currentTeam = [];
+      selectedTopicCodes.clear();
+      matchedResults = [];
+      deepEvalAnswers = {};
+      document.getElementById('preset-select').value = '';
+      renderMembers();
+      goToStep(1);
+    }
+  </script>
+</body>
+</html>
