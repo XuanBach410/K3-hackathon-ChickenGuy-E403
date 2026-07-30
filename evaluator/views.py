@@ -28,6 +28,16 @@ def serve_index(request):
             
     return HttpResponse("Frontend React build not found", status=404)
 
+from .agent_tools import AgentToolRegistry
+
+@csrf_exempt
+def get_registered_agent_tools(request):
+    """
+    DevTool Endpoint: Exposes all registered Agent Tools & Function Calling Schemas.
+    """
+    schemas = AgentToolRegistry.get_tool_schemas()
+    return JsonResponse({"registered_tools": schemas, "count": len(schemas)})
+
 @csrf_exempt
 def get_topics(request):
     topics = load_json(TOPICS_FILE)
