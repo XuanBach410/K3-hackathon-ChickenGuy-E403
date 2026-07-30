@@ -301,12 +301,41 @@
       </div>
       <div class="nav-meta">
         <span class="nav-meta-item"><i data-lucide="database"></i><span id="data-status">Loading...</span></span>
+        <button class="btn btn-sm btn-secondary" onclick="openApiKeyModal()" style="font-size:11px; padding:3px 8px;">
+          <i data-lucide="key" style="width:12px;height:12px;"></i> API Key Config
+        </button>
         <button class="btn-text" onclick="resetAll()">Reset All</button>
       </div>
     </div>
   </nav>
 
-  <div class="container" style="flex:1; padding-top: var(--sp-4); padding-bottom: var(--sp-16);">
+  <!-- API KEY MODAL -->
+  <div id="api-key-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:var(--surface-primary); border:1px solid var(--border-color); border-radius:var(--radius); width:90%; max-width:480px; padding:var(--sp-6); box-shadow:var(--shadow-hover);">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--sp-4);">
+        <h3 style="display:flex; align-items:center; gap:var(--sp-2); font-size:1.1rem;"><i data-lucide="key" style="color:var(--signal-red);"></i> Cấu Hình LLM API Provider</h3>
+        <button class="btn-text" onclick="closeApiKeyModal()"><i data-lucide="x"></i></button>
+      </div>
+
+      <label class="form-label">Chọn AI Provider / Model</label>
+      <select id="api-provider-select" style="margin-bottom:var(--sp-4);">
+        <option value="gemini">Google Gemini (gemini-3.6-flash / gemini-1.5-flash)</option>
+        <option value="openai">OpenAI GPT (gpt-4o / gpt-4o-mini)</option>
+      </select>
+
+      <label class="form-label">Nhập API Key</label>
+      <input type="text" id="api-key-input" class="input-mono" placeholder="AIzaSy... hoặc sk-..." style="margin-bottom:var(--sp-2);">
+      <p style="font-size:var(--fs-caption); color:var(--text-secondary); margin-bottom:var(--sp-5);">
+        * Key được lưu bảo mật trong LocalStorage trình duyệt. Nếu để rỗng, hệ thống sẽ sử dụng Rule-based Offline Fallback Engine.
+      </p>
+
+      <div class="btn-group" style="justify-content:flex-end;">
+        <button class="btn btn-secondary" onclick="closeApiKeyModal()">Hủy</button>
+        <button class="btn btn-primary" onclick="saveApiKeyConfig()"><i data-lucide="check"></i> OK / Lưu Key</button>
+      </div>
+    </div>
+  </div>
+
 
     <!-- STEPPER -->
     <div class="stepper" id="stepper">
@@ -474,6 +503,29 @@
     };
 
     const COMMON_TECHS = ["python","react","pytorch","docker","sql","rag","fastapi","nlp","computer vision","node","flutter","java","spark","pandas","redis","postgresql","mongodb","typescript","tailwind","vue","firebase","tensorflow","keras","scikit-learn","langchain","streamlit","html/css","javascript","c++","ros","matlab","opencv","yolo","bert","gpt","llm","api","aws","gcp","azure","linux","git","frontend","backend","mobile","devops/cloud","data analysis","machine learning","product management","project management","ui/ux design","data engineering","deep learning","nlp/llm","computer vision/image processing"];
+
+    // === API KEY CONFIG LOGIC ===
+    let currentApiKey = localStorage.getItem('matchskill_api_key') || '';
+    let currentProvider = localStorage.getItem('matchskill_provider') || 'gemini';
+
+    function openApiKeyModal() {
+      document.getElementById('api-key-input').value = currentApiKey;
+      document.getElementById('api-provider-select').value = currentProvider;
+      document.getElementById('api-key-modal').style.display = 'flex';
+    }
+
+    function closeApiKeyModal() {
+      document.getElementById('api-key-modal').style.display = 'none';
+    }
+
+    function saveApiKeyConfig() {
+      currentApiKey = document.getElementById('api-key-input').value.trim();
+      currentProvider = document.getElementById('api-provider-select').value;
+      localStorage.setItem('matchskill_api_key', currentApiKey);
+      localStorage.setItem('matchskill_provider', currentProvider);
+      closeApiKeyModal();
+      alert(currentApiKey ? `✅ Đã lưu API Key (${currentProvider.toUpperCase()}) thành công!` : `ℹ️ Đã chuyển về Offline Fallback Engine.`);
+    }
 
     // === INIT ===
     window.addEventListener('DOMContentLoaded', async () => {

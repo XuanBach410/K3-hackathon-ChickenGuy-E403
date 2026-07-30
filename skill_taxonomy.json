@@ -1,0 +1,10 @@
+{
+  "frontend": ["react", "vue", "angular", "html/css", "javascript", "typescript", "tailwind", "ui/ux design", "figma"],
+  "backend": ["python", "nodejs", "java", "fastapi", "express", "django", "springboot", "postgresql", "mysql", "mongodb", "redis", "rest api"],
+  "ai_ml_core": ["machine learning", "deep learning", "python", "pytorch", "tensorflow", "scikit-learn", "pandas", "statistics", "math"],
+  "nlp_llm": ["nlp", "prompt engineering", "rag", "langchain", "bert", "gpt", "llm", "text mining", "chatbot"],
+  "computer_vision": ["computer vision", "opencv", "yolo", "image processing", "cnn"],
+  "robotics_iot": ["ros", "c++", "matlab", "iot", "embedded", "hardware", "arduino", "raspberry pi"],
+  "devops_cloud": ["docker", "devops/cloud", "gcp", "aws", "azure", "linux", "git", "ci/cd", "kubernetes"],
+  "product_leadership": ["product management", "project management", "business analysis", "team leadership", "agile", "user/market research"]
+}
