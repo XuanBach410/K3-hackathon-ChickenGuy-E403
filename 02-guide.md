@@ -1,5 +1,13 @@
 # Guide xuyên suốt — 5 giai đoạn, bám 6 mốc
 
+> **Thông tin nhóm:**
+> - **Tên đội:** ChickenGuy (Phòng E403)
+> - **Leader:** Trần Xuân Bách - 2A202601093
+> - **Thành viên:** 
+>   1. Trần Xuân Bách - 2A202601093
+>   2. Trịnh Quốc Trọng - 2A202601779
+>   3. Đinh Hoài Nam - 2A202601889
+>   4. Phạm Thị Phương Linh - 2A202601181
 > **Cách dùng:** Một file duy nhất, đọc theo thứ tự giai đoạn. Mỗi giai đoạn mở đầu bằng **các câu hỏi nhóm phải tự suy luận và trả lời** — đó là phần quan trọng nhất; scaffold (khung output) chỉ là phần nhẹ để chốt lại. Worksheet và bảng mẫu chỉ dùng để chốt lại kết quả — phần quan trọng là nhóm tự trả lời được các câu hỏi.
 
 | Giai đoạn | Mốc tương ứng | Mục |
