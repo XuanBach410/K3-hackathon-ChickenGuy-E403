@@ -3,7 +3,7 @@
 **Học viên:** Trần Xuân Bách  
 **Mã HV:** 2A202601093  
 **Vai trò:** Leader  
-**Dự án:** AI Evaluator — Trợ lý AI Đánh giá & Định hướng Đề tài Hackathon  
+**Dự án:** AI Evaluator — Trợ lý AI Đánh giá & Định hướng Đề tài cho Chương Trình AI Thực Chiến
 
 ---
 
