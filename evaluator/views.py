@@ -146,6 +146,10 @@ def get_registered_agent_tools(request):
     schemas = AgentToolRegistry.get_tool_schemas()
     return JsonResponse({"registered_tools": schemas, "count": len(schemas)})
 
+
+def health(request):
+    return JsonResponse({"status": "ok", "components": {"api": "ok", "mcda": "ok"}})
+
 @csrf_exempt
 def get_topics(request):
     topics = load_json(TOPICS_FILE)

@@ -139,9 +139,14 @@ export default function App() {
         })
       });
       const data = await res.json();
-      setFinalEvaluation(data.evaluation);
+      if (data.evaluation) {
+        setFinalEvaluation(data.evaluation);
+      } else if (data.error) {
+        alert(`❌ Lỗi đánh giá từ server: ${data.error}`);
+      }
     } catch (err) {
       console.error('Error running final evaluation:', err);
+      alert('❌ Có lỗi xảy ra khi kết nối server đánh giá.');
     } finally {
       setEvalLoading(false);
     }

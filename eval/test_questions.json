@@ -6,7 +6,7 @@
   },
   {
     "id": 2,
-    "input": "Nhập một profile nhóm nói "Tôi làm Frontend với React" và hỏi liệu họ đã có skill PyTorch chưa.",
+    "input": "Nhập một profile nhóm nói 'Tôi làm Frontend với React' và hỏi liệu họ đã có skill PyTorch chưa.",
     "expected_response": "Phải trả về: 'Không có bằng chứng PyTorch trong profile' (không phóng đoán)."
   },
   {
