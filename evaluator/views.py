@@ -15,6 +15,13 @@ def load_json(filepath):
             return json.load(f)
     return []
 
+def serve_index(request):
+    index_path = os.path.join(BASE_DIR, "index.html")
+    if os.path.exists(index_path):
+        with open(index_path, "r", encoding="utf-8") as f:
+            return HttpResponse(f.read(), content_type="text/html")
+    return HttpResponse("index.html not found", status=404)
+
 @csrf_exempt
 def get_topics(request):
     topics = load_json(TOPICS_FILE)

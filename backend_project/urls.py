@@ -3,6 +3,7 @@ from django.urls import path
 from evaluator import views
 
 urlpatterns = [
+    path('', views.serve_index),
     path('admin/', admin.site.urls),
     path('api/topics/', views.get_topics),
     path('api/profiles/', views.get_mock_profiles),
