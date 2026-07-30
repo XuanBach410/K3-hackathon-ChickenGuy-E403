@@ -180,6 +180,38 @@ export default function App() {
         onSave={handleSaveApiKey}
       />
 
+      {/* HERO SAAS BANNER */}
+      <div style={{ background: 'var(--surface-primary)', borderBottom: '1px solid var(--border-color)', padding: '40px 0' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: '5fr 3fr', gap: '32px', alignItems: 'end' }}>
+          <div>
+            <div style={{ fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--signal-red)', marginBottom: '8px' }}>
+              SaaS AI Matchmaking Platform &middot; Mini Hackathon AI Batch 03
+            </div>
+            <h1 style={{ fontSize: '2.5rem', fontWeight: 700, lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '16px' }}>
+              Match <span style={{ color: 'var(--signal-red)' }}>Skill</span> to Topic.
+            </h1>
+            <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', maxWidth: '56ch', lineHeight: 1.6 }}>
+              Nền tảng SaaS phân tích đa tiêu chí (MCDA), đối soát kỹ năng ẩn từ hồ sơ nhóm với kho 360 đề tài thực tế. 
+              Ước tính rủi ro vỡ tiến độ, đánh giá khả thi trong 6 tuần và sinh lộ trình chi tiết bằng AI.
+            </p>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px' }}>
+              <span className="mono" style={{ fontSize: '2.2rem', fontWeight: 700, color: 'var(--signal-red)' }}>360</span>
+              <span style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>Kho Đề Tài Đồ Án Khoá Học</span>
+            </div>
+            <div style={{ display: 'flex', itemsAlign: 'baseline', gap: '12px' }}>
+              <span className="mono" style={{ fontSize: '2.2rem', fontWeight: 700, color: 'var(--deep-blue)' }}>100</span>
+              <span style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>Hồ Sơ Học Viên Sẵn Có (Mockdata)</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px' }}>
+              <span className="mono" style={{ fontSize: '2.2rem', fontWeight: 700, color: 'var(--success)' }}>MCDA</span>
+              <span style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>4 Tiêu Chí C1-C4 (criteria.md)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* MAIN CONTAINER */}
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '24px', flex: 1, width: '100%' }}>
         {/* STEPPER */}
