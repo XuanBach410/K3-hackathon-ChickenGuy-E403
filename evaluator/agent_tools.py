@@ -1,4 +1,5 @@
 import json
+import re
 from .mcda_engine import calculate_mcda_score, extract_latent_skills
 
 class AgentToolRegistry:
@@ -96,24 +97,30 @@ def evaluate_preliminary_fit_tool(team_members, topic):
             "topic_code": {"type": "string", "description": "Mã đề tài"},
             "topic_title": {"type": "string", "description": "Tên đề tài"},
             "missing_skills": {"type": "array", "description": "Danh sách kỹ năng thiếu"},
-            "domain_mismatch": {"type": "boolean", "description": "Có bị lệch domain không"}
+            "domain_mismatch": {"type": "boolean", "description": "Có bị lệch domain không"},
+            "outcomes": {"type": "array", "description": "Outcome đã trích từ dữ liệu đề tài"},
+            "kpis": {"type": "array", "description": "KPI đã trích từ dữ liệu đề tài"},
+            "constraints": {"type": "array", "description": "Ràng buộc đã trích từ dữ liệu đề tài"}
         },
         "required": ["topic_code"]
     }
 )
-def generate_topic_deep_quiz_tool(topic_code, topic_title="", missing_skills=None, domain_mismatch=False):
+def generate_topic_deep_quiz_tool(topic_code, topic_title="", missing_skills=None, domain_mismatch=False, outcomes=None, kpis=None, constraints=None):
     missing_str = ", ".join(missing_skills) if missing_skills else "công nghệ nâng cao"
+    primary_outcome = outcomes[0] if outcomes else f"prototype của {topic_code}"
+    primary_kpi = kpis[0] if kpis else "KPI thành công do nhóm xác định"
+    primary_constraint = constraints[0] if constraints else "ràng buộc vận hành của đề tài"
     
     questions = [
         {
             "id": 1,
-            "question": f"Nhóm bạn hình dung như thế nào về kết quả đầu ra thực tế của đề tài [{topic_code}] '{topic_title}'?",
+            "question": f"Nhóm hình dung artifact demo nào để chứng minh outcome: '{primary_outcome}'?",
             "type": "scale",
             "options": ["1. Chưa hình dung", "2. Mơ hồ", "3. Khá rõ", "4. Đã có kiến trúc", "5. Rất rõ ràng"]
         },
         {
             "id": 2,
-            "question": f"Đối với các kỹ năng chưa có ({missing_str}), nhóm có kế hoạch bù đắp thế nào trong 6 tuần?",
+            "question": f"Để đạt outcome của [{topic_code}], nhóm sẽ bù các kỹ năng còn thiếu ({missing_str}) như thế nào trong 6 tuần?",
             "type": "choice",
             "options": [
                 "Học qua tài liệu chính thức & bài tập ngắn (1-2 tuần đầu)",
@@ -130,7 +137,7 @@ def generate_topic_deep_quiz_tool(topic_code, topic_title="", missing_skills=Non
         },
         {
             "id": 4,
-            "question": f"[Tự Luận Chuyên Sâu] Mô tả ngắn gọn hướng tiếp cận kỹ thuật cốt lõi nhóm sẽ dùng để giải quyết bài toán [{topic_code}]?",
+            "question": f"[Thiết kế & Đo lường] Mô tả kiến trúc cốt lõi, cách đo '{primary_kpi}' và cách tuân thủ '{primary_constraint}'.",
             "type": "text",
             "placeholder": f"Nhập câu trả lời tự luận (ví dụ: Dùng RAG kết hợp Vector DB để xây dựng Agent cá nhân hóa cho {topic_code}...)"
         }
@@ -145,6 +152,57 @@ def generate_topic_deep_quiz_tool(topic_code, topic_title="", missing_skills=Non
         })
 
     return {"status": "success", "topic_code": topic_code, "questions": questions}
+
+
+@AgentToolRegistry.register(
+    name="analyze_topic_outcomes",
+    description="Phân tích outcome, KPI và ràng buộc của đề tài từ dữ liệu nguồn để làm căn cứ đặt câu hỏi đánh giá linh động.",
+    parameters={
+        "type": "object",
+        "properties": {
+            "topic": {"type": "object", "description": "Đề tài đầy đủ từ topics_data.json"}
+        },
+        "required": ["topic"]
+    }
+)
+def analyze_topic_outcomes_tool(topic):
+    requirements = str(topic.get("requirements", ""))
+    description = str(topic.get("description", ""))
+    tech_stack = str(topic.get("tech_stack", ""))
+
+    def extract_bullets(text):
+        normalized = re.sub(r"\s+", " ", text).strip()
+        fragments = re.split(r"\s*•\s*", normalized)
+        return [item.strip(" :-")[:260] for item in fragments if len(item.strip()) > 12]
+
+    requirement_items = extract_bullets(requirements)
+    description_items = extract_bullets(description)
+    tech_items = extract_bullets(tech_stack)
+
+    source_sentences = re.split(r"(?<=[.!?])\s+|\s*•\s*", re.sub(r"\s+", " ", f"{description} {requirements}"))
+    kpi_keywords = ("kpi", "metric", "độ chính xác", "tỷ lệ", "precision", "recall", "≥", "%")
+    kpis = [sentence.strip(" :-")[:260] for sentence in source_sentences if any(keyword in sentence.lower() for keyword in kpi_keywords)]
+
+    constraint_keywords = ("ràng buộc", "không", "bắt buộc", "phân quyền", "ẩn danh", "guardrail", "hitl", "chi phí", "độ trễ")
+    constraints = [
+        item for item in description_items + requirement_items
+        if any(keyword in item.lower() for keyword in constraint_keywords)
+    ]
+
+    basic_marker = requirements.lower().find("cơ bản")
+    advanced_marker = requirements.lower().find("nâng cao")
+    basic_text = requirements[basic_marker:advanced_marker] if basic_marker >= 0 and advanced_marker > basic_marker else requirements
+    outcomes = extract_bullets(basic_text)[:6]
+
+    return {
+        "status": "success",
+        "topic_code": topic.get("code"),
+        "outcomes": outcomes,
+        "kpis": list(dict.fromkeys(kpis))[:4],
+        "constraints": list(dict.fromkeys(constraints))[:5],
+        "suggested_tech": tech_items[:8],
+        "source": "topics_data.json"
+    }
 
 @AgentToolRegistry.register(
     name="verify_declared_skills",

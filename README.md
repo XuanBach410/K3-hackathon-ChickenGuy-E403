@@ -94,3 +94,54 @@ Dữ liệu trong `data/` là dữ liệu thật của khoá học (đã ẩn da
 6. Sau sự kiện, **xoá các bản sao data pack** khỏi máy cá nhân và các công cụ đã upload nếu ban tổ chức yêu cầu.
 
 Vi phạm được xử lý theo quy định của khoá và có thể ảnh hưởng trực tiếp đến điểm của nhóm.
+
+## Chạy MVP MatchSkill DSS
+
+### Backend Django
+
+```powershell
+python manage.py migrate
+python manage.py runserver 8000
+```
+
+Kiểm tra backend đã sẵn sàng:
+
+```powershell
+Invoke-RestMethod http://localhost:8000/api/health/
+```
+
+### Frontend React/Vite
+
+Trong terminal thứ hai:
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend mặc định gọi `http://localhost:8000/api`. Khi chạy ở môi trường khác, đặt biến `VITE_API_BASE`, ví dụ:
+
+```powershell
+$env:VITE_API_BASE = 'https://your-api.example.com/api'
+npm run build
+```
+
+### Luồng demo 5 phút
+
+1. Chọn một nhóm mockdata ở bước `Team Profile`.
+2. Mở `Skill Verifier` để tạo câu hỏi xác minh kỹ năng khai báo.
+3. Chọn một hoặc nhiều đề tài ở bước `Topic Multi-Select`.
+4. Chạy `Phân tích Matching Sơ Bộ` để xem điểm MCDA, `scoreBreakdown`, skill gap và Risk Matrix.
+5. Mở `What-If` với một kỹ năng đang thiếu để mô phỏng score/risk.
+6. Chọn một đề tài, hoàn thành `Deep Quiz`, rồi sinh kết luận và roadmap 6 tuần. Không nhập API key sẽ dùng Offline Rule Engine.
+
+### Kiểm thử và build
+
+```powershell
+python manage.py test
+cd frontend
+npm run build
+```
+
+Bộ câu thử có 21 case tại [eval/test_questions.json](eval/test_questions.json). Mỗi case ghi rõ input và response bắt buộc để nhóm đo grounding, risk evidence, fallback và các edge case của API.

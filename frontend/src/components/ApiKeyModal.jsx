@@ -1,71 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Key, X, Check } from 'lucide-react';
+import { Button } from './ui/button';
+import { Input } from './ui/input';
+import { Card } from './ui/card';
 
-export default function ApiKeyModal({ isOpen, onClose, provider, setProvider, apiKey, setApiKey, onSave }) {
+export default function ApiKeyModal({ isOpen, onClose, currentKey, onSave }) {
+  const [provider, setProvider] = useState(localStorage.getItem('matchskill_provider') || 'gemini');
+  const [apiKey, setApiKey] = useState(currentKey || '');
+
   if (!isOpen) return null;
 
   return (
-    <div style={{
-      position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
-      background: 'rgba(0,0,0,0.6)', zIndex: 9999, display: 'flex',
-      alignItems: 'center', justifyContent: 'center'
-    }}>
-      <div style={{
-        background: 'var(--surface-primary)', border: '1px solid var(--border-color)',
-        borderRadius: 'var(--radius)', width: '90%', maxWidth: '480px', padding: '24px',
-        boxShadow: 'var(--shadow-hover)'
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-          <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem' }}>
-            <Key size={18} color="var(--signal-red)" /> Cấu Hình LLM API Provider
+    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <Card className="w-full max-w-md p-6 bg-white shadow-2xl animate-in fade-in zoom-in duration-200">
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="flex items-center gap-2 text-lg font-bold text-slate-800">
+            <Key size={18} className="text-blue-600" /> Cấu Hình LLM API Provider
           </h3>
-          <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={onClose}>
-            <X size={18} />
-          </button>
+          <Button variant="ghost" size="icon" onClick={onClose} className="h-8 w-8 rounded-full">
+            <X size={16} />
+          </Button>
         </div>
 
-        <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', color: 'var(--text-secondary)', marginBottom: '8px' }}>
-          Chọn AI Provider / Model
-        </label>
-        <select
-          value={provider}
-          onChange={(e) => setProvider(e.target.value)}
-          style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', marginBottom: '16px' }}
-        >
-          <option value="gemini">Google Gemini (gemini-3.6-flash / gemini-1.5-flash)</option>
-          <option value="openai">OpenAI GPT (gpt-4o / gpt-4o-mini)</option>
-        </select>
+        <div className="space-y-4">
+          <div>
+            <label className="block text-xs font-bold uppercase text-slate-500 mb-2">
+              Chọn AI Provider / Model
+            </label>
+            <select
+              value={provider}
+              onChange={(e) => setProvider(e.target.value)}
+              className="w-full p-2.5 rounded-md border border-slate-200 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-blue-500 outline-none"
+            >
+              <option value="gemini">Google Gemini (gemini-1.5-flash / pro)</option>
+              <option value="openai">OpenAI GPT (gpt-4o / gpt-4o-mini)</option>
+            </select>
+          </div>
 
-        <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', color: 'var(--text-secondary)', marginBottom: '8px' }}>
-          Nhập API Key
-        </label>
-        <input
-          type="text"
-          value={apiKey}
-          onChange={(e) => setApiKey(e.target.value)}
-          placeholder="AIzaSy... hoặc sk-..."
-          className="mono"
-          style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', marginBottom: '8px' }}
-        />
-        <p style={{ fontSize: '12px', color: 'var(--text-secondary)', marginBottom: '20px' }}>
-          * Key được lưu bảo mật trong LocalStorage. Nếu để rỗng, hệ thống sẽ sử dụng Rule-based Offline Engine.
-        </p>
+          <div>
+            <label className="block text-xs font-bold uppercase text-slate-500 mb-2">
+              Nhập API Key
+            </label>
+            <Input
+              type="text"
+              value={apiKey}
+              onChange={(e) => setApiKey(e.target.value)}
+              placeholder="AIzaSy... hoặc sk-proj-..."
+              className="font-mono bg-slate-50"
+            />
+            <p className="text-xs text-slate-500 mt-2">
+              * Key được lưu bảo mật trong LocalStorage. Nếu để rỗng, hệ thống sẽ sử dụng Rule-based Offline Engine.
+            </p>
+          </div>
+        </div>
 
-        <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
-          <button
-            onClick={onClose}
-            style={{ padding: '8px 16px', background: 'var(--surface-primary)', border: '1px solid var(--border-color)', borderRadius: '4px', cursor: 'pointer' }}
-          >
+        <div className="flex gap-3 justify-end mt-8 pt-4 border-t border-slate-100">
+          <Button variant="outline" onClick={onClose}>
             Hủy
-          </button>
-          <button
-            onClick={onSave}
-            style={{ padding: '8px 16px', background: 'var(--signal-red)', color: '#FFF', border: 'none', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 600 }}
+          </Button>
+          <Button 
+            onClick={() => onSave(provider, apiKey)}
+            className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
           >
             <Check size={16} /> OK / Lưu Key
-          </button>
+          </Button>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

@@ -22,7 +22,7 @@ export default function DeepEvalQuiz({ topicCode, quizData, quizAnswers, setQuiz
       {quizData.questions.map((q, idx) => (
         <div key={q.id} style={{ marginBottom: '24px' }}>
           <div style={{ fontWeight: 600, fontSize: '14px', marginBottom: '12px', display: 'flex', gap: '8px' }}>
-            <span style={{ background: 'var(--deep-blue)', color: '#FFF', borderRadius: '50%', width: '22px', height: '22px', display: 'flex', alignItems: 'center', justifyCenter: 'center', fontSize: '12px', flexShrink: 0 }}>
+            <span style={{ background: 'var(--deep-blue)', color: '#FFF', borderRadius: '50%', width: '22px', height: '22px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', flexShrink: 0 }}>
               {idx + 1}
             </span>
             <span>{q.question}</span>
@@ -95,7 +95,7 @@ export default function DeepEvalQuiz({ topicCode, quizData, quizAnswers, setQuiz
           border: 'none', borderRadius: '4px', fontWeight: 700, cursor: 'pointer', opacity: loading ? 0.6 : 1
         }}
       >
-        {loading ? 'Đang Gọi Agent Phân Tích...' : '🚀 Hoàn Tất & Sinh Kết Luận Khả Thi + Lộ Trình 6 Tuần'}
+        {loading ? 'Đang Gọi Agent Phân Tích...' : 'Hoàn Tất & Sinh Kết Luận Khả Thi + Lộ Trình 6 Tuần'}
       </button>
     </div>
   );
