@@ -23,8 +23,15 @@ def resolve_topic(message, topics):
         candidates = re.findall(r"[A-Za-z][A-Za-z0-9]+", title)
         aliases = {normalize_text(candidates[0])} if candidates else set()
         # Title fragments provide stable catalog-grounded aliases such as HomeMatch/Fleet Miner.
-        aliases.update({normalize_text(" ".join(candidates[:2])), normalize_text(title.split(":")[0])})
-        if any(alias and len(alias) >= 5 and alias in compact_message for alias in aliases):
+        aliases.update(
+            {
+                normalize_text(" ".join(candidates[:2])),
+                normalize_text(title.split(":")[0]),
+            }
+        )
+        if any(
+            alias and len(alias) >= 5 and alias in compact_message for alias in aliases
+        ):
             return topic
     return None
 
@@ -32,10 +39,30 @@ def resolve_topic(message, topics):
 def parse_chat_team(message, fallback_team=None):
     """Extract only explicit team signals; retain selected profile when chat adds no evidence."""
     normalized = message.lower()
-    has_profile_signal = any(signal in normalized for signal in (
-        "biết", "biet", "cơ bản", "co ban", "chưa học ai", "chua hoc ai", "backend", "frontend",
-        "react", "python", "rag", "fastapi", "langgraph", "thời gian", "tuần", "tháng", "mem", "người", "ng",
-    ))
+    has_profile_signal = any(
+        signal in normalized
+        for signal in (
+            "biết",
+            "biet",
+            "cơ bản",
+            "co ban",
+            "chưa học ai",
+            "chua hoc ai",
+            "backend",
+            "frontend",
+            "react",
+            "python",
+            "rag",
+            "fastapi",
+            "langgraph",
+            "thời gian",
+            "tuần",
+            "tháng",
+            "mem",
+            "người",
+            "ng",
+        )
+    )
     if not has_profile_signal:
         return fallback_team or [], None
 
@@ -43,31 +70,51 @@ def parse_chat_team(message, fallback_team=None):
     team_size = int(count_match.group(1)) if count_match else 1
     week_match = re.search(r"\b(\d+)\s*tuần\b", normalized)
     month_match = re.search(r"\b(\d+)\s*tháng\b", normalized)
-    duration_weeks = int(week_match.group(1)) if week_match else (int(month_match.group(1)) * 4 if month_match else None)
+    duration_weeks = (
+        int(week_match.group(1))
+        if week_match
+        else (int(month_match.group(1)) * 4 if month_match else None)
+    )
 
     proficiency = {}
     if "react" in normalized:
-        proficiency["React"] = 2 if "cơ bản" in normalized or "co ban" in normalized else 3
+        proficiency["React"] = (
+            2 if "cơ bản" in normalized or "co ban" in normalized else 3
+        )
     if "python" in normalized:
-        proficiency["Python"] = 2 if "cơ bản" in normalized or "co ban" in normalized else 3
+        proficiency["Python"] = (
+            2 if "cơ bản" in normalized or "co ban" in normalized else 3
+        )
     if "backend" in normalized:
         proficiency["Backend"] = 3
     if "frontend" in normalized or "web" in normalized:
-        proficiency["Frontend"] = 2 if "cơ bản" in normalized or "co ban" in normalized else 3
+        proficiency["Frontend"] = (
+            2 if "cơ bản" in normalized or "co ban" in normalized else 3
+        )
     if "rag" in normalized:
         proficiency["RAG"] = 3
     if "fastapi" in normalized:
         proficiency["FastAPI"] = 3
     if "langgraph" in normalized:
         proficiency["LangGraph"] = 3
-    if "chưa học ai" in normalized or "chua hoc ai" in normalized or "chưa biết gì về ai" in normalized:
-        proficiency = {key: value for key, value in proficiency.items() if key not in {"RAG", "LangGraph"}}
+    if (
+        "chưa học ai" in normalized
+        or "chua hoc ai" in normalized
+        or "chưa biết gì về ai" in normalized
+    ):
+        proficiency = {
+            key: value
+            for key, value in proficiency.items()
+            if key not in {"RAG", "LangGraph"}
+        }
 
     members = [
         {
             "name": f"Chat member {index + 1}",
             "proficiency": proficiency,
-            "skills": ", ".join(f"{skill}:{level}" for skill, level in proficiency.items()),
+            "skills": ", ".join(
+                f"{skill}:{level}" for skill, level in proficiency.items()
+            ),
             "hours_per_week": 15 if duration_weeks and duration_weeks <= 4 else 20,
         }
         for index in range(team_size)

@@ -192,6 +192,6 @@ Demo round: 5' trình bày + 5' Q&A — **thẻ giám khảo** (chạy 1 case l�
 
 ## 5.2 Checklist nộp cuối *(trước CP6)*
 
-- [ ] Repo đủ: README (thành viên + phân công có tên) · spec.md · demo-slides.pdf · codebase/ · eval/ (golden set + các lượt chạy) · validation/ (feedback log) · reflection/ (mỗi người 1 file)
-- [ ] Backup demo (screenshot/video ngắn) phòng live hỏng
-- [ ] Cả nhóm trả lời được: "Augment hay automate — vì sao?" · "Failure nguy hiểm nhất?" · "Phần bạn làm là gì?"
+- [x] Repo đủ: README (thành viên + phân công có tên) · spec.md · demo-slides.pdf · codebase/ · eval/ (golden set + các lượt chạy) · validation/ (feedback log) · reflection/ (mỗi người 1 file)
+- [x] Backup demo (screenshot/video ngắn) phòng live hỏng
+- [x] Cả nhóm trả lời được: "Augment hay automate — vì sao?" · "Failure nguy hiểm nhất?" · "Phần bạn làm là gì?"

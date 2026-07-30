@@ -7,11 +7,9 @@ This wrapper delegates grading to the Django command, which calls the advisor,
 checks each response with an auditable rubric, and writes evaluation_report.json.
 """
 
-import os
 import subprocess
 import sys
 from pathlib import Path
-
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 

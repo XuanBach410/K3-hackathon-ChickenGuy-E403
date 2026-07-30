@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Data integrity guardrail for ui-ux-pro-max. Stdlib-only, no pytest dependency,
 so it can run as a standalone pre-publish/CI check:
@@ -20,9 +19,8 @@ several files at once, so we want the full list in one run).
 import csv
 import json
 import sys
-from pathlib import Path
 
-from core import CSV_CONFIG, STACK_CONFIG, _STACK_COLS, DATA_DIR
+from core import _STACK_COLS, CSV_CONFIG, DATA_DIR, STACK_CONFIG
 
 # REASONING_FILE lives in design_system.py, not core.py -- redeclared here to
 # avoid a circular import (design_system.py imports core.py).
@@ -50,7 +48,9 @@ def _check_file(label, filepath, search_cols, output_cols, problems):
     header_set = set(headers)
     for col in set(search_cols) | set(output_cols):
         if col not in header_set:
-            problems.append(f"[{label}] {filepath.name}: expected column '{col}' not found in header")
+            problems.append(
+                f"[{label}] {filepath.name}: expected column '{col}' not found in header"
+            )
 
     # Only check for duplicates against an actual identifier column ("No" is
     # the sequential-index convention used across this dataset). The first
@@ -74,7 +74,7 @@ def _check_file(label, filepath, search_cols, output_cols, problems):
 
     for row_idx, row in enumerate(rows, start=2):
         for col in JSON_COLUMNS:
-            if col in row and row[col]:
+            if row.get(col):
                 try:
                     json.loads(row[col])
                 except json.JSONDecodeError as e:
@@ -87,16 +87,32 @@ def main():
     problems = []
 
     for domain, config in CSV_CONFIG.items():
-        _check_file(f"domain:{domain}", DATA_DIR / config["file"],
-                    config["search_cols"], config["output_cols"], problems)
+        _check_file(
+            f"domain:{domain}",
+            DATA_DIR / config["file"],
+            config["search_cols"],
+            config["output_cols"],
+            problems,
+        )
 
     for stack, config in STACK_CONFIG.items():
-        _check_file(f"stack:{stack}", DATA_DIR / config["file"],
-                    _STACK_COLS["search_cols"], _STACK_COLS["output_cols"], problems)
+        _check_file(
+            f"stack:{stack}",
+            DATA_DIR / config["file"],
+            _STACK_COLS["search_cols"],
+            _STACK_COLS["output_cols"],
+            problems,
+        )
 
     reasoning_path = DATA_DIR / REASONING_FILE
     if reasoning_path.exists():
-        _check_file("reasoning", reasoning_path, ["UI_Category"], ["UI_Category", "Decision_Rules"], problems)
+        _check_file(
+            "reasoning",
+            reasoning_path,
+            ["UI_Category"],
+            ["UI_Category", "Decision_Rules"],
+            problems,
+        )
     else:
         problems.append(f"[reasoning] missing file: {reasoning_path}")
 
@@ -106,7 +122,9 @@ def main():
             print(f"  - {p}")
         sys.exit(1)
 
-    print(f"OK: validated {len(CSV_CONFIG)} domain files, {len(STACK_CONFIG)} stack files, and ui-reasoning.csv")
+    print(
+        f"OK: validated {len(CSV_CONFIG)} domain files, {len(STACK_CONFIG)} stack files, and ui-reasoning.csv"
+    )
     sys.exit(0)
 
 

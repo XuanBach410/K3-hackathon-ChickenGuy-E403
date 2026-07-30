@@ -1,7 +1,7 @@
-import os
 import json
-import urllib.request
 import urllib.error
+import urllib.request
+
 
 class LLMProvider:
     @staticmethod
@@ -17,11 +17,17 @@ class LLMProvider:
         provider = provider.lower() if provider else "gemini"
 
         if "gemini" in provider:
-            return LLMProvider._call_gemini(api_key, system_prompt, user_prompt, model_name or "gemini-1.5-flash")
+            return LLMProvider._call_gemini(
+                api_key, system_prompt, user_prompt, model_name or "gemini-1.5-flash"
+            )
         elif "openai" in provider or "gpt" in provider:
-            return LLMProvider._call_openai(api_key, system_prompt, user_prompt, model_name or "gpt-4o-mini")
+            return LLMProvider._call_openai(
+                api_key, system_prompt, user_prompt, model_name or "gpt-4o-mini"
+            )
         else:
-            return LLMProvider._call_gemini(api_key, system_prompt, user_prompt, "gemini-1.5-flash")
+            return LLMProvider._call_gemini(
+                api_key, system_prompt, user_prompt, "gemini-1.5-flash"
+            )
 
     @staticmethod
     def _call_gemini(api_key, system_prompt, user_prompt, model):
@@ -36,8 +42,8 @@ class LLMProvider:
             ],
             "generationConfig": {
                 "temperature": 0.3,
-                "responseMimeType": "application/json"
-            }
+                "responseMimeType": "application/json",
+            },
         }
 
         try:
@@ -45,7 +51,7 @@ class LLMProvider:
                 url,
                 data=json.dumps(payload).encode("utf-8"),
                 headers={"Content-Type": "application/json"},
-                method="POST"
+                method="POST",
             )
             with urllib.request.urlopen(req, timeout=12) as response:
                 result = json.loads(response.read().decode("utf-8"))
@@ -62,10 +68,10 @@ class LLMProvider:
             "model": model,
             "messages": [
                 {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
+                {"role": "user", "content": user_prompt},
             ],
             "temperature": 0.3,
-            "response_format": {"type": "json_object"}
+            "response_format": {"type": "json_object"},
         }
 
         try:
@@ -74,9 +80,9 @@ class LLMProvider:
                 data=json.dumps(payload).encode("utf-8"),
                 headers={
                     "Content-Type": "application/json",
-                    "Authorization": f"Bearer {api_key}"
+                    "Authorization": f"Bearer {api_key}",
                 },
-                method="POST"
+                method="POST",
             )
             with urllib.request.urlopen(req, timeout=12) as response:
                 result = json.loads(response.read().decode("utf-8"))

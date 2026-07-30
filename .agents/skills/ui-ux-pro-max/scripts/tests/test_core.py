@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Stdlib-only regression tests for core.py / design_system.py (unittest, not
 pytest -- this project ships with zero external dependencies and the tests
@@ -19,8 +18,11 @@ from pathlib import Path
 SCRIPTS_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(SCRIPTS_DIR))
 
-from core import BM25, detect_domain, search, search_stack, CSV_CONFIG, AVAILABLE_STACKS
-from design_system import generate_design_system, persist_design_system, DesignSystemGenerator
+from core import AVAILABLE_STACKS, BM25, CSV_CONFIG, detect_domain, search, search_stack
+from design_system import (
+    DesignSystemGenerator,
+    generate_design_system,
+)
 
 
 class TestTokenizer(unittest.TestCase):
@@ -39,8 +41,12 @@ class TestTokenizer(unittest.TestCase):
 
     def test_synonym_normalization(self):
         bm25 = BM25()
-        self.assertEqual(bm25.tokenize("e-commerce store"), bm25.tokenize("ecommerce store"))
-        self.assertEqual(bm25.tokenize("dark-mode toggle"), bm25.tokenize("dark toggle"))
+        self.assertEqual(
+            bm25.tokenize("e-commerce store"), bm25.tokenize("ecommerce store")
+        )
+        self.assertEqual(
+            bm25.tokenize("dark-mode toggle"), bm25.tokenize("dark toggle")
+        )
 
 
 class TestSearchDomains(unittest.TestCase):
@@ -50,10 +56,16 @@ class TestSearchDomains(unittest.TestCase):
 
     def test_ui_is_searchable_in_style_domain(self):
         result = search("ui minimalism", domain="style", max_results=1)
-        self.assertGreater(result["count"], 0, "literal 'ui' token must be searchable, not filtered by tokenizer")
+        self.assertGreater(
+            result["count"],
+            0,
+            "literal 'ui' token must be searchable, not filtered by tokenizer",
+        )
 
     def test_accessibility_query_hits_ux(self):
-        result = search("accessibility contrast wcag keyboard", domain="ux", max_results=3)
+        result = search(
+            "accessibility contrast wcag keyboard", domain="ux", max_results=3
+        )
         self.assertGreater(result["count"], 0)
 
     def test_zero_result_query_reports_suggestions_not_error(self):
@@ -66,13 +78,17 @@ class TestSearchDomains(unittest.TestCase):
         for domain, config in CSV_CONFIG.items():
             with self.subTest(domain=domain):
                 result = search("design", domain=domain, max_results=1)
-                self.assertNotIn("error", result, f"domain '{domain}' failed: {result.get('error')}")
+                self.assertNotIn(
+                    "error", result, f"domain '{domain}' failed: {result.get('error')}"
+                )
 
     def test_every_stack_file_exists_and_is_searchable(self):
         for stack in AVAILABLE_STACKS:
             with self.subTest(stack=stack):
                 result = search_stack("performance", stack, max_results=1)
-                self.assertNotIn("error", result, f"stack '{stack}' failed: {result.get('error')}")
+                self.assertNotIn(
+                    "error", result, f"stack '{stack}' failed: {result.get('error')}"
+                )
 
 
 class TestDomainDetection(unittest.TestCase):
@@ -83,7 +99,9 @@ class TestDomainDetection(unittest.TestCase):
         self.assertEqual(detect_domain("accessibility contrast wcag"), "ux")
 
     def test_ambiguous_query_returns_runner_up(self):
-        domain, runner_up = detect_domain("font pairing elegant crypto", return_scores=True)
+        domain, runner_up = detect_domain(
+            "font pairing elegant crypto", return_scores=True
+        )
         self.assertIsNotNone(domain)
         # runner_up may be None if the winning domain has no close second --
         # this just verifies the call shape works without raising.
@@ -95,24 +113,36 @@ class TestDomainDetection(unittest.TestCase):
 class TestPersistence(unittest.TestCase):
     def test_persist_then_skip_then_force(self):
         with tempfile.TemporaryDirectory() as tmp:
-            result = generate_design_system("saas dashboard", "Test Project", persist=True, output_dir=tmp)
+            result = generate_design_system(
+                "saas dashboard", "Test Project", persist=True, output_dir=tmp
+            )
             self.assertEqual(result["persistence"]["status"], "success")
             master = Path(result["persistence"]["master_file"])
             self.assertTrue(master.exists())
             original_content = master.read_text(encoding="utf-8")
 
             # Second persist without force must not overwrite.
-            result2 = generate_design_system("saas dashboard", "Test Project", persist=True, output_dir=tmp)
+            result2 = generate_design_system(
+                "saas dashboard", "Test Project", persist=True, output_dir=tmp
+            )
             self.assertEqual(result2["persistence"]["status"], "skipped_exists")
             self.assertEqual(master.read_text(encoding="utf-8"), original_content)
 
             # With force=True it must overwrite.
-            result3 = generate_design_system("ecommerce luxury", "Test Project", persist=True, output_dir=tmp, force=True)
+            result3 = generate_design_system(
+                "ecommerce luxury",
+                "Test Project",
+                persist=True,
+                output_dir=tmp,
+                force=True,
+            )
             self.assertEqual(result3["persistence"]["status"], "success")
 
     def test_persist_writes_only_under_output_dir(self):
         with tempfile.TemporaryDirectory() as tmp:
-            generate_design_system("saas dashboard", "Scoped Project", persist=True, output_dir=tmp)
+            generate_design_system(
+                "saas dashboard", "Scoped Project", persist=True, output_dir=tmp
+            )
             expected = Path(tmp) / "design-system" / "scoped-project" / "MASTER.md"
             self.assertTrue(expected.exists())
 
@@ -121,7 +151,10 @@ class TestReasoningMatch(unittest.TestCase):
     def test_known_category_matches_exactly(self):
         gen = DesignSystemGenerator()
         rule = gen._find_reasoning_rule("SaaS (General)")
-        self.assertTrue(rule, "exact-match category lookup should not fall through to fuzzy matching")
+        self.assertTrue(
+            rule,
+            "exact-match category lookup should not fall through to fuzzy matching",
+        )
 
     def test_unknown_category_falls_back_gracefully(self):
         gen = DesignSystemGenerator()

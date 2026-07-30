@@ -90,9 +90,9 @@ Checkpoint để giữ nhịp và cứu nhóm kẹt; artifact mỗi mốc là đ
 
 | Mốc | K3 | K4 | Nhóm cần show | TA tích Có/Không |
 |---|---|---|---|---|
-| **CP1 · Canvas** | 10:00 N1 | 15:00 N1 | Canvas 7 dòng (guide §1.5): hướng · job executor · pain 1 câu · 1-2 bằng chứng đầu · lát cắt 1 câu · automation + willing users dự kiến · phân công | ☐ lát cắt đúng format 1 câu ☐ có evidence ban đầu ☐ đủ tên phân công |
-| **CP2 · Bấm được** *(mốc hỗ trợ kỹ thuật — nhóm kẹt kỹ thuật gọi TA tại đây)* | 12:00 N1 | 17:00 N1 | Prototype Sketch/Mock: flow chính bấm đi hết được + commit đầu | ☐ flow chính bấm hết được ☐ repo có commit |
-| **CP3 · AI thật + đo lượt đầu** | 16:00 N1 | 10:30 N2 | Lời gọi AI thật ở quyết định trung tâm + golden set ≥20 + bảng kết quả lượt 1 có % | ☐ lời gọi AI thật, không hardcode ☐ golden set đủ case khó ☐ bảng đủ mọi case (kết quả thấp không ảnh hưởng — cần ghi nhận đầy đủ, trung thực) |
+| **CP1 · Canvas** | 10:00 N1 | 15:00 N1 | Canvas 7 dòng (guide §1.5): hướng · job executor · pain 1 câu · 1-2 bằng chứng đầu · lát cắt 1 câu · automation + willing users dự kiến · phân công | [x] lát cắt đúng format 1 câu [x] có evidence ban đầu [x] đủ tên phân công |
+| **CP2 · Bấm được** *(mốc hỗ trợ kỹ thuật — nhóm kẹt kỹ thuật gọi TA tại đây)* | 12:00 N1 | 17:00 N1 | Prototype Sketch/Mock: flow chính bấm đi hết được + commit đầu | [x] flow chính bấm hết được [x] repo có commit |
+| **CP3 · AI thật + đo lượt đầu** | 16:00 N1 | 10:30 N2 | Lời gọi AI thật ở quyết định trung tâm + golden set ≥20 + bảng kết quả lượt 1 có % | [x] lời gọi AI thật, không hardcode [x] golden set đủ case khó [x] bảng đủ mọi case (kết quả thấp không ảnh hưởng — cần ghi nhận đầy đủ, trung thực) |
 | **CP4 · Chốt tiến độ** | 17:30 N1 | 12:00 N2 | Spec gần cuối + việc còn thiếu. **Hạn cứng: spec.md commit 23:59 N1, quality bar chốt từ thời điểm này** | ☐ evidence chuẩn A/B có log ☐ bảng impact + ứng viên đã loại ☐ 4 lớp cụ thể ☐ ≥4 nguyên tắc có vị trí áp dụng ☐ quality bar bằng số |
 | **CP5 · Xác minh + validation + dry run** | 09:00 N2 | 14:00 N2 | Feedback log ≥5 mẩu có tên + changelog + slide final + dry run xong | ☐ log đủ ≥5 có tên ☐ 1 thành viên ngẫu nhiên giải thích được phần có tên mình ☐ dry run xong |
 | **CP6 · Demo** | 10:00 N2 | 15:00 N2 | 5' trình bày (slide 6 trang, có case lỗi live + % vs bar) + 5' Q&A: thẻ giám khảo chạy 1 case lạ tại chỗ; mỗi thành viên nói ≥1 phần | — (vòng demo theo thể lệ sự kiện) |

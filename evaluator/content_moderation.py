@@ -36,7 +36,9 @@ Do not answer the topic question itself. Do not invent requirements. Use Vietnam
 """
 
     @classmethod
-    def review(cls, message, has_team, has_topic_reference, provider="gemini", api_key=""):
+    def review(
+        cls, message, has_team, has_topic_reference, provider="gemini", api_key=""
+    ):
         facts = {
             "message": message,
             "has_team_profile": has_team,
@@ -68,8 +70,15 @@ Do not answer the topic question itself. Do not invent requirements. Use Vietnam
     def _fallback(cls, message, has_team, has_topic_reference):
         normalized = message.lower()
         deliverable_terms = (
-            "source code", "code hoàn chỉnh", "báo cáo", "luận văn", "đáp án",
-            "làm thay", "slide bảo vệ", "video demo", "thi hộ",
+            "source code",
+            "code hoàn chỉnh",
+            "báo cáo",
+            "luận văn",
+            "đáp án",
+            "làm thay",
+            "slide bảo vệ",
+            "video demo",
+            "thi hộ",
         )
         if any(term in normalized for term in deliverable_terms):
             return ModerationDecision(
@@ -78,8 +87,20 @@ Do not answer the topic question itself. Do not invent requirements. Use Vietnam
                 safe_reply="Từ chối. Chatbot chỉ hỗ trợ đánh giá mức độ phù hợp của đề tài, không làm thay hoặc tạo artifact nộp bài.",
             )
 
-        recommendation_intents = ("nên chọn đề tài", "đề tài nào", "gợi ý đề tài", "chọn giúp", "chắc ăn lấy điểm", "né đề nào", "ít code ai nhất", "recommend giúp")
-        if any(intent in normalized for intent in recommendation_intents) and not has_topic_reference:
+        recommendation_intents = (
+            "nên chọn đề tài",
+            "đề tài nào",
+            "gợi ý đề tài",
+            "chọn giúp",
+            "chắc ăn lấy điểm",
+            "né đề nào",
+            "ít code ai nhất",
+            "recommend giúp",
+        )
+        if (
+            any(intent in normalized for intent in recommendation_intents)
+            and not has_topic_reference
+        ):
             if has_team:
                 return ModerationDecision(
                     action=cls.ACTION_TOPIC_RECOMMENDATION,
@@ -91,7 +112,17 @@ Do not answer the topic question itself. Do not invent requirements. Use Vietnam
                 safe_reply="Chưa đủ thông tin. Cần biết số thành viên, kỹ năng, thời gian và mục tiêu dự án.",
             )
 
-        fit_intents = ("phù hợp", "có nên", "nên làm", "dễ nhất", "easy hay hard", "khó k", "dc ko", "dc hông", "thế nào")
+        fit_intents = (
+            "phù hợp",
+            "có nên",
+            "nên làm",
+            "dễ nhất",
+            "easy hay hard",
+            "khó k",
+            "dc ko",
+            "dc hông",
+            "thế nào",
+        )
         if any(intent in normalized for intent in fit_intents):
             if not has_topic_reference:
                 return ModerationDecision(
@@ -106,4 +137,6 @@ Do not answer the topic question itself. Do not invent requirements. Use Vietnam
                     safe_reply="Chưa thể kết luận nếu chưa biết năng lực, thời gian và quy mô của nhóm.",
                 )
 
-        return ModerationDecision(action=cls.ACTION_ALLOW, reason="Grounded advisor question.")
+        return ModerationDecision(
+            action=cls.ACTION_ALLOW, reason="Grounded advisor question."
+        )

@@ -1,14 +1,13 @@
-import os
-import json
 import asyncio
+import json
+
 from openai import AsyncOpenAI
 
 # API key from QwenCloud
 API_KEY = "sk-ws-H.XEXLID.QTgJ.MEUCIQDqQtS_NR7Cw2c8WPlJUo4JvzKharOKpCI0-4gcw_snfAIgcks7DNKnJJm2itoSQ-JrjVqze-FiZnKFuDPspfQ-LL4"
 
 client = AsyncOpenAI(
-    api_key=API_KEY,
-    base_url="https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
+    api_key=API_KEY, base_url="https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
 )
 
 SYSTEM_PROMPT = """Bạn là một chuyên gia tạo dữ liệu mock (dữ liệu giả lập) cho hệ thống hồ sơ năng lực nhân sự.
@@ -39,59 +38,64 @@ Cấu trúc mỗi object trong JSON như sau:
 Hãy sinh ra chính xác 20 đối tượng JSON (20 người khác nhau) trong mảng. Đảm bảo dữ liệu đa dạng và hợp lý.
 """
 
+
 async def generate_batch():
     try:
         response = await client.chat.completions.create(
-            model="qwen-plus", # Dùng qwen-plus cho tác vụ này
+            model="qwen-plus",  # Dùng qwen-plus cho tác vụ này
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": "Tạo cho tôi 20 hồ sơ. Chỉ trả về mảng JSON."}
+                {
+                    "role": "user",
+                    "content": "Tạo cho tôi 20 hồ sơ. Chỉ trả về mảng JSON.",
+                },
             ],
-            temperature=0.8
+            temperature=0.8,
         )
         content = response.choices[0].message.content.strip()
-        
+
         # Làm sạch kết quả trả về trong trường hợp mô hình vẫn thêm markdown
         if content.startswith("```json"):
             content = content[7:]
         elif content.startswith("```"):
             content = content[3:]
-        if content.endswith("```"):
-            content = content[:-3]
-            
+        content = content.removesuffix("```")
+
         return json.loads(content.strip())
     except Exception as e:
         print(f"Error generating batch: {e}")
         return []
 
+
 async def main():
     total_records = 100
     batch_size = 20
     batches = total_records // batch_size
-    
+
     all_data = []
-    
+
     print(f"Bắt đầu tạo {total_records} dữ liệu mock qua {batches} batch...")
-    
+
     # Chạy các batch đồng thời hoặc tuần tự
     # Để an toàn với rate limit, chạy tuần tự
     for i in range(batches):
-        print(f"Đang xử lý batch {i+1}/{batches}...")
+        print(f"Đang xử lý batch {i + 1}/{batches}...")
         batch_data = await generate_batch()
         if batch_data:
             all_data.extend(batch_data)
-            print(f"Đã nhận {len(batch_data)} bản ghi từ batch {i+1}.")
+            print(f"Đã nhận {len(batch_data)} bản ghi từ batch {i + 1}.")
         else:
-            print(f"Batch {i+1} trả về rỗng do lỗi.")
-    
+            print(f"Batch {i + 1} trả về rỗng do lỗi.")
+
     # Đảm bảo đủ số lượng (trong trường hợp có lỗi)
     all_data = all_data[:total_records]
-    
+
     output_file = "mock_profiles.json"
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(all_data, f, ensure_ascii=False, indent=2)
-        
+
     print(f"\nĐã tạo thành công {len(all_data)} bản ghi và lưu vào {output_file}")
+
 
 if __name__ == "__main__":
     asyncio.run(main())

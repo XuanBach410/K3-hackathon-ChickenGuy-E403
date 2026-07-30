@@ -1,4 +1,4 @@
-# AI SPEC — MatchSkill AI (AI Chatbot hỗ trợ chọn đề tài theo năng lực nhóm) · Nhóm [2A202601889] · Zone [1]
+# AI SPEC — MatchSkill AI (AI Chatbot hỗ trợ chọn đề tài theo năng lực nhóm) · Nhóm [ChickenGuy] · Lớp [E403]
 Hướng: [x] C — Làn mở (AI cho quản lý học tập/đội ngũ)
 Loại: [x] Tính năng mới
 
@@ -75,13 +75,16 @@ Loại: [x] Tính năng mới
 ---
 
 ## §7. Kiểm thử
-- **Quality bar**: ≥ 90% case test gợi ý đề tài chính xác đúng theo năng lực nhóm và không vi phạm quy định Max Team hay Bịa thông tin công nghệ.
-- **Golden set**: 20 bộ profile nhóm kiểm thử đại diện cho các tổ hợp skill (Dev nặng, Data nặng, Non-tech nặng, Mixed).
+- **Quality bar**: Đạt khi ≥75% câu thử đạt, và không được trả lời sai deadline lần nào.
+- **Golden set**: 20 bộ profile nhóm kiểm thử đại diện cho các tổ hợp skill (Dev nặng, Data nặng, Non-tech nặng, Mixed). Có 15 câu bắt nguồn từ quan sát thực tế.
+- **Kết quả các lượt chạy**: Đạt 10/20 câu (Lượt chạy đầu tại CP3).
 
 ---
 
 ## §8. Phân công & Kế hoạch
-- **Đội ngũ**:
-  - `Đội trưởng`: Lead Spec, thiết kế MCDA Framework, Prompt Engineering.
-  - `Dev Lead`: Build UI Web app (React/Streamlit/Vite), tích hợp Excel Parser & LLM API.
-  - `Data & Eval`: Chuẩn hóa 360 đề tài từ file `DS_K3_Formatted.xlsx`, xây dựng 20 golden test cases.
+- **Đội ngũ (ChickenGuy)**:
+  - `Trần Xuân Bách - 2A202601093 (Leader)`: Lead Spec, thiết kế MCDA Framework, Prompt Engineering.
+  - `Trịnh Quốc Trọng - 2A202601779`: Build UI Web app (React/Vite), tích hợp Excel Parser & LLM API.
+  - `Đinh Hoài Nam - 2A202601889`: Chuẩn hóa 360 đề tài từ file `DS_K3_Formatted.xlsx`, xây dựng 20 golden test cases.
+  - `Phạm Thị Phương Linh - 2A202601181`: Khảo sát người dùng, đo lường vòng validation CP5.
+- **Github Repo**: https://github.com/XuanBach410/K3-hackathon-ChickenGuy-E403

@@ -125,42 +125,50 @@ Hệ thống đăng ký 6 Agent Tools chuẩn hóa:
 register_tool(
     name="parse_member_profile",
     description="Parse và trích xuất kỹ năng ẩn (latent skills), số năm kinh nghiệm, lĩnh vực quan tâm từ thông tin giới thiệu bản thân.",
-    parameters={"profile_text": "string", "proficiency_dict": "object"}
+    parameters={"profile_text": "string", "proficiency_dict": "object"},
 )
 
 # 2. Preset Data Tool
 register_tool(
     name="load_mock_profiles",
     description="Tải danh sách hồ sơ mockdata từ mork_data/mock_profiles.json để thử nghiệm.",
-    parameters={"preset_id": "string"}
+    parameters={"preset_id": "string"},
 )
 
 # 3. Fitting Engine Tool
 register_tool(
     name="evaluate_preliminary_fit",
     description="Tính toán điểm MCDA sơ bộ cho danh sách đề tài multi-select dựa trên skill taxonomy.",
-    parameters={"team_profiles": "array", "selected_topic_codes": "array"}
+    parameters={"team_profiles": "array", "selected_topic_codes": "array"},
 )
 
 # 4. Quiz Generation Tool
 register_tool(
     name="generate_topic_deep_quiz",
     description="Sinh bộ câu hỏi trừu tượng và chuyên sâu thiết kế riêng cho MỘT đề tài cụ thể dựa trên skill gap.",
-    parameters={"topic_code": "string", "missing_skills": "array", "domain_gap": "boolean"}
+    parameters={
+        "topic_code": "string",
+        "missing_skills": "array",
+        "domain_gap": "boolean",
+    },
 )
 
 # 5. Final Assessment Tool
 register_tool(
     name="evaluate_deep_response",
     description="Phân tích câu trả lời đánh giá sâu, kết hợp kinh nghiệm thành viên để đưa ra kết luận (Fit/Able to Learn/Not Able to Learn) và lộ trình 6 tuần.",
-    parameters={"topic_code": "string", "quiz_answers": "object", "team_capacity": "object"}
+    parameters={
+        "topic_code": "string",
+        "quiz_answers": "object",
+        "team_capacity": "object",
+    },
 )
 
 # 6. Fallback Handler Tool
 register_tool(
     name="handle_evaluation_fallback",
     description="Xử lý fallback khi API lỗi, thiếu API Key hoặc dữ liệu không hợp lệ.",
-    parameters={"error_code": "string", "context": "object"}
+    parameters={"error_code": "string", "context": "object"},
 )
 ```
 
