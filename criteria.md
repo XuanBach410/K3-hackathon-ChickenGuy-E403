@@ -91,9 +91,28 @@ graph TD
 [Bước 2: Đánh Giá Sâu On-Demand (Per-Topic Deep Assessment)]
    ├── Trigger: Người dùng bấm "View Detailed Analysis & Deep Evaluation" trên MỘT ĐỀ TÀI CỤ THỂ.
    ├── Dynamic Quiz Generator: Agent sinh bộ câu hỏi trừu tượng & chuyên sâu (3-5 câu) RIÊNG cho đề tài đó.
-   ├── User Input: Học viên nhập câu trả lời / chọn thang điểm / số giờ cam kết.
+   ├── User Input: Học viên nhập câu trả lời / chọn thang điểm / số giờ cam kết / tự luận.
    └── Agent Evaluation Module: Gọi Gemini / GPT API phân tích câu trả lời ➔ Trả về Kết luận cuối cùng + Lộ trình 6 tuần.
 ```
+
+### 4.2. Bộ Tiêu Chí Sinh Câu Hỏi Đánh Giá Sâu Linh Hoạt (Dynamic Quiz Criteria)
+
+Mỗi đề tài khi click xem đánh giá sâu sẽ được Agent sinh ra bộ câu hỏi linh hoạt đáp ứng **4 dạng câu hỏi bắt buộc**:
+
+1. **Câu Hỏi Hình Dung Đầu Ra (Abstract / Architectural Product Vision - Scale 1-5)**:
+   - *Mục tiêu*: Đánh giá mức độ mơ hồ hay rõ ràng về sản phẩm thực tế cần nộp tại CP6.
+   - *Ví dụ*: "Nhóm bạn hình dung như thế nào về kiến trúc Agent xây lộ trình học cá nhân hóa cho đề tài [EDU-06]?"
+
+2. **Câu Hỏi Kế Hoạch Bù Đắp Kỹ Năng Thiếu (Skill Gap Mitigation Strategy - Multiple Choice)**:
+   - *Mục tiêu*: Đánh giá phương pháp bù đắp cho từng skill bị thiếu cụ thể (vd: Docker, RAG, PyTorch).
+   - *Ví dụ*: "Đối với kỹ năng [RAG / Vector DB] còn thiếu, nhóm sẽ phân chia học tự học hay nhờ TA?"
+
+3. **Câu Hỏi Tự Luận Giải Pháp Kỹ Thuật Chuyên Sâu (Deep Technical Essay / Open Text)**:
+   - *Mục tiêu*: Đánh giá tư duy thiết kế hệ thống thực chiến cho đề tài đang chọn.
+   - *Ví dụ*: "Mô tả ngắn gọn hướng tiếp cận kỹ thuật của nhóm để xử lý bài toán Cold-Start cho người học mới trong đề tài [EDU-06]?"
+
+4. **Câu Hỏi Cam Kết Thời Gian & Nguồn Lực (Daily Capacity & Commitment - Numeric)**:
+   - *Mục tiêu*: Tính toán tổng năng suất làm việc (Hours/Week = Thành viên $\times$ Giờ/ngày $\times$ 5 ngày).
 
 ---
 

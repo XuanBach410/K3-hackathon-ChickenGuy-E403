@@ -78,8 +78,8 @@ def evaluate_preliminary(request):
 @csrf_exempt
 def generate_deep_quiz(request):
     """
-    Step 2: On-demand per-topic dynamic quiz generation.
-    Generates 3-5 abstract & deep questions specific to ONE chosen topic.
+    Step 2: On-demand per-topic dynamic quiz generation via Registered Agent Tool.
+    Generates dynamic abstract & deep technical essay/choice questions specific to ONE chosen topic.
     """
     if request.method != "POST":
         return JsonResponse({"error": "Only POST allowed"}, status=405)
@@ -87,62 +87,28 @@ def generate_deep_quiz(request):
     try:
         body = json.loads(request.body.decode("utf-8"))
         topic_code = body.get("topic_code")
-        missing_skills = body.get("missing_skills", [])
-        domain_mismatch = body.get("domain_mismatch", False)
+        team_members = body.get("team_members", [])
 
         topics = load_json(TOPICS_FILE)
         topic = next((t for t in topics if t.get("code") == topic_code), {})
+        
+        # Calculate MCDA gap context
+        mcda_res = calculate_mcda_score(team_members, topic) if team_members else {}
+        missing_skills = [m for m in mcda_res.get("missingTechs", [])]
+        domain_mismatch = mcda_res.get("domainMismatch", False)
 
-        # Default dynamic questions
-        questions = [
-          {
-            "id": 1,
-            "question": f"Nhóm bạn hình dung như thế nào về kết quả đầu ra thực tế của đề tài '{topic.get('title', topic_code)}'?",
-            "type": "scale",
-            "options": ["Chưa hình dung", "Hiểu mơ hồ", "Hình dung khá rõ", "Đã có bản thiết kế chi tiết"]
-          },
-          {
-            "id": 2,
-            "question": f"Đối với các kỹ năng chưa có ({', '.join(missing_skills) if missing_skills else 'công nghệ nâng cao'}), nhóm kế hoạch bù đắp thế nào trong 6 tuần?",
-            "type": "choice",
-            "options": [
-              "Học qua tài liệu chính thức & bài tập ngắn (1-2 tuần đầu)",
-              "Phân chia người chuyên trách học rồi hướng dẫn lại nhóm",
-              "Chưa có kế hoạch cụ thể",
-              "Sẽ nhờ cố vấn/TA hỗ trợ trực tiếp"
-            ]
-          },
-          {
-            "id": 3,
-            "question": "Mỗi thành viên trong nhóm có thể cam kết tối thiểu bao nhiêu giờ/ngày cho dự án này?",
-            "type": "number",
-            "default": 3
-          },
-          {
-            "id": 4,
-            "question": "Nhóm đã từng làm dự án/bài tập có độ phức tạp tương đương bài toán này chưa?",
-            "type": "choice",
-            "options": [
-              "Đã từng làm và hoàn thành tốt",
-              "Đã từng làm nhưng chưa tới đâu",
-              "Chưa từng làm dự án nào tương tự",
-              "Có thành viên nòng cốt từng làm"
-            ]
-          }
-        ]
-
-        if domain_mismatch:
-          questions.append({
-            "id": 5,
-            "question": "Đề tài thuộc lĩnh vực mới so với chuyên môn nhóm. Lý do chính nhóm vẫn muốn chọn là gì?",
-            "type": "text",
-            "placeholder": "Ví dụ: Muốn thử sức với AI Robotics, sẵn sàng bỏ thêm thời gian..."
-          })
+        # Execute Registered Agent Tool
+        tool_res = AgentToolRegistry.execute("generate_topic_deep_quiz", {
+            "topic_code": topic_code,
+            "topic_title": topic.get("title", ""),
+            "missing_skills": missing_skills,
+            "domain_mismatch": domain_mismatch
+        })
 
         return JsonResponse({
             "topic_code": topic_code,
             "topic_title": topic.get("title", ""),
-            "questions": questions
+            "questions": tool_res.get("questions", [])
         })
 
     except Exception as e:

@@ -89,23 +89,59 @@ def evaluate_preliminary_fit_tool(team_members, topic):
 
 @AgentToolRegistry.register(
     name="generate_topic_deep_quiz",
-    description="Sinh bộ câu hỏi trừu tượng và chuyên sâu (3-5 câu) thiết kế riêng cho MỘT đề tài cụ thể dựa trên skill gap.",
+    description="Sinh bộ câu hỏi trừu tượng và chuyên sâu (thang điểm, trắc nghiệm, tự luận) thiết kế riêng cho MỘT đề tài cụ thể dựa trên skill gap.",
     parameters={
         "type": "object",
         "properties": {
             "topic_code": {"type": "string", "description": "Mã đề tài"},
+            "topic_title": {"type": "string", "description": "Tên đề tài"},
             "missing_skills": {"type": "array", "description": "Danh sách kỹ năng thiếu"},
             "domain_mismatch": {"type": "boolean", "description": "Có bị lệch domain không"}
         },
         "required": ["topic_code"]
     }
 )
-def generate_topic_deep_quiz_tool(topic_code, missing_skills=None, domain_mismatch=False):
+def generate_topic_deep_quiz_tool(topic_code, topic_title="", missing_skills=None, domain_mismatch=False):
+    missing_str = ", ".join(missing_skills) if missing_skills else "công nghệ nâng cao"
+    
     questions = [
-        {"id": 1, "question": f"Mức độ hiểu về sản phẩm đầu ra của đề tài [{topic_code}]?", "type": "scale"},
-        {"id": 2, "question": f"Kế hoạch bù đắp các skill thiếu ({', '.join(missing_skills or ['nâng cao'])}):", "type": "choice"},
-        {"id": 3, "question": "Số giờ/ngày mỗi thành viên sẵn sàng cam kết?", "type": "number", "default": 3}
+        {
+            "id": 1,
+            "question": f"Nhóm bạn hình dung như thế nào về kết quả đầu ra thực tế của đề tài [{topic_code}] '{topic_title}'?",
+            "type": "scale",
+            "options": ["1. Chưa hình dung", "2. Mơ hồ", "3. Khá rõ", "4. Đã có kiến trúc", "5. Rất rõ ràng"]
+        },
+        {
+            "id": 2,
+            "question": f"Đối với các kỹ năng chưa có ({missing_str}), nhóm có kế hoạch bù đắp thế nào trong 6 tuần?",
+            "type": "choice",
+            "options": [
+                "Học qua tài liệu chính thức & bài tập ngắn (1-2 tuần đầu)",
+                "Phân chia người chuyên trách học rồi hướng dẫn lại nhóm",
+                "Chưa có kế hoạch cụ thể",
+                "Sẽ nhờ cố vấn/TA hỗ trợ trực tiếp"
+            ]
+        },
+        {
+            "id": 3,
+            "question": "Mỗi thành viên trong nhóm có thể cam kết tối thiểu bao nhiêu giờ/ngày cho dự án này?",
+            "type": "number",
+            "default": 3
+        },
+        {
+            "id": 4,
+            "question": f"[Tự Luận Chuyên Sâu] Mô tả ngắn gọn hướng tiếp cận kỹ thuật cốt lõi nhóm sẽ dùng để giải quyết bài toán [{topic_code}]?",
+            "type": "text",
+            "placeholder": f"Nhập câu trả lời tự luận (ví dụ: Dùng RAG kết hợp Vector DB để xây dựng Agent cá nhân hóa cho {topic_code}...)"
+        }
     ]
+
     if domain_mismatch:
-        questions.append({"id": 4, "question": "Lý do chính nhóm chọn đề tài mới ngoài chuyên môn?", "type": "text"})
+        questions.append({
+            "id": 5,
+            "question": f"[Lệch Domain] Đề tài [{topic_code}] thuộc lĩnh vực mới so với chuyên môn nhóm. Lý do và động lực chính nhóm vẫn muốn chọn là gì?",
+            "type": "text",
+            "placeholder": "Nhập lý do nhóm sẵn sàng vượt rào cản domain..."
+        })
+
     return {"status": "success", "topic_code": topic_code, "questions": questions}
