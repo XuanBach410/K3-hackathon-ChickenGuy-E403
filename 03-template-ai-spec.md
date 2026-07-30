@@ -86,5 +86,5 @@ Loại: [x] Tính năng mới
   - `Trần Xuân Bách - 2A202601093 (Leader)`: Lead Spec, thiết kế MCDA Framework, Prompt Engineering.
   - `Trịnh Quốc Trọng - 2A202601779`: Build UI Web app (React/Vite), tích hợp Excel Parser & LLM API.
   - `Đinh Hoài Nam - 2A202601889`: Chuẩn hóa 360 đề tài từ file `DS_K3_Formatted.xlsx`, xây dựng 20 golden test cases.
-  - `Phạm Thị Phương Linh - 2A202601181`: Khảo sát người dùng, đo lường vòng validation CP5.
+  - `Phạm Thị Thùy Linh - 2A202601181`: Khảo sát người dùng, đo lường vòng validation CP5.
 - **Github Repo**: https://github.com/XuanBach410/K3-hackathon-ChickenGuy-E403

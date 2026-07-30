@@ -7,7 +7,7 @@
 >   1. Trần Xuân Bách - 2A202601093
 >   2. Trịnh Quốc Trọng - 2A202601779
 >   3. Đinh Hoài Nam - 2A202601889
->   4. Phạm Thị Phương Linh - 2A202601181
+>   4. Phạm Thị Thùy Linh - 2A202601181
 **Bối cảnh.** Khoá đang vận hành các sản phẩm AI nội bộ phục vụ ~1.000 học viên. Nhóm bạn là product team: chọn một hướng, tìm pain có bằng chứng, và build prototype **một tính năng**.
 
 ## Chọn 1 trong 3 hướng
