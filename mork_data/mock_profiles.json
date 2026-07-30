@@ -1,0 +1,3584 @@
+[
+  {
+    "name": "Trần Thị Mai",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Backend"
+      ],
+      "ai_data": [
+        "Data Analysis",
+        "Machine Learning"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Backend": 3,
+      "Data Analysis": 4,
+      "Machine Learning": 3,
+      "Product Management": 4,
+      "Project Management": 3
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Tech Lead"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "IT",
+    "years_of_experience": 5,
+    "hours_per_week": 40,
+    "introduction": "Tôi là một kỹ sư phần mềm với 5 năm kinh nghiệm phát triển hệ thống giáo dục số. Tôi đặc biệt quan tâm đến việc ứng dụng AI để cá nhân hóa trải nghiệm học tập. Tôi có khả năng dẫn dắt sản phẩm từ ý tưởng đến triển khai thực tế và luôn chú trọng vào giá trị mang lại cho người dùng cuối."
+  },
+  {
+    "name": "Lê Văn Đức",
+    "skills": {
+      "engineering": [
+        "Mobile",
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Data Engineering"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "DevOps/Cloud": 4,
+      "Data Engineering": 3,
+      "Team Leadership": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Nông nghiệp"
+    ],
+    "current_industry": "Healthtech",
+    "years_of_experience": 7,
+    "hours_per_week": 45,
+    "introduction": "Tôi chuyên xây dựng các ứng dụng di động và hạ tầng đám mây cho giải pháp y tế cộng đồng. Gần đây tôi đang phát triển nền tảng thu thập và phân tích dữ liệu sức khỏe từ thiết bị đeo. Tôi tin rằng công nghệ phải gần gũi, đáng tin cậy và phục vụ trực tiếp nhu cầu con người."
+  },
+  {
+    "name": "Phạm Thu Hương",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "Prompt Engineering",
+        "NLP"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Prompt Engineering": 5,
+      "NLP": 4,
+      "Business Analysis": 4,
+      "UI/UX Design": 3,
+      "Communication": 5
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Chính phủ Thông minh",
+      "Giáo dục & Đào tạo"
+    ],
+    "current_industry": "Public Sector Tech",
+    "years_of_experience": 6,
+    "hours_per_week": 35,
+    "introduction": "Tôi kết hợp kỹ năng phân tích nghiệp vụ, thiết kế trải nghiệm và ứng dụng AI để xây dựng các nền tảng chính phủ số thân thiện. Tôi từng dẫn dắt dự án chatbot hỗ trợ thủ tục hành chính cho học sinh và phụ huynh. Tôi đam mê tạo ra công nghệ 'biết lắng nghe' và phản hồi đúng ngữ cảnh."
+  },
+  {
+    "name": "Nguyễn Minh Tuấn",
+    "skills": {
+      "engineering": [
+        "Backend",
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Machine Learning",
+        "Data Engineering"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "Backend": 5,
+      "DevOps/Cloud": 4,
+      "Machine Learning": 3,
+      "Data Engineering": 4,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Phòng chống Thiên tai"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 8,
+    "hours_per_week": 42,
+    "introduction": "Tôi phát triển hệ thống xử lý dữ liệu thời tiết và cảm biến nông nghiệp theo thời gian thực. Với kinh nghiệm vận hành hạ tầng đám mây quy mô lớn và xây dựng pipeline ML cho dự báo hạn hán, tôi mong muốn góp phần tăng cường khả năng thích ứng của cộng đồng trước biến đổi khí hậu."
+  },
+  {
+    "name": "Đặng Thị Lan",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Mobile"
+      ],
+      "ai_data": [
+        "NLP"
+      ],
+      "product": [
+        "User/Market Research"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": []
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Mobile": 3,
+      "NLP": 3,
+      "User/Market Research": 4,
+      "UI/UX Design": 4
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Designer"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Năng suất Doanh nghiệp Vừa & Nhỏ"
+    ],
+    "current_industry": "EdTech",
+    "years_of_experience": 4,
+    "hours_per_week": 38,
+    "introduction": "Tôi là nhà thiết kế sản phẩm chuyên về nền tảng học trực tuyến dành cho doanh nghiệp nhỏ. Tôi thường xuyên tiến hành nghiên cứu người dùng để hiểu sâu hành vi học tập và rào cản kỹ thuật của họ. Tôi tin rằng một giao diện tốt không chỉ đẹp mà còn phải giúp người học đạt được mục tiêu nhanh hơn."
+  },
+  {
+    "name": "Hoàng Văn Bình",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Computer Vision",
+        "Data Engineering"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 5,
+      "Computer Vision": 3,
+      "Data Engineering": 4,
+      "Team Leadership": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "MedTech",
+    "years_of_experience": 9,
+    "hours_per_week": 45,
+    "introduction": "Tôi xây dựng và vận hành hạ tầng AI cho hệ thống chẩn đoán hình ảnh y tế. Tôi đã triển khai pipeline xử lý hàng nghìn ảnh MRI mỗi ngày trên Kubernetes, đảm bảo độ trễ thấp và độ tin cậy cao. Tôi luôn đặt tính an toàn và tuân thủ quy định lên hàng đầu trong mọi quyết định kỹ thuật."
+  },
+  {
+    "name": "Vũ Thị Thanh",
+    "skills": {
+      "engineering": [
+        "Backend"
+      ],
+      "ai_data": [
+        "Data Analysis",
+        "Prompt Engineering"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Backend": 4,
+      "Data Analysis": 5,
+      "Prompt Engineering": 4,
+      "Business Analysis": 5,
+      "Communication": 5
+    },
+    "desired_roles": [
+      "Business Analyst",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Ngân hàng & Tài chính",
+      "Chính phủ Thông minh"
+    ],
+    "current_industry": "FinTech",
+    "years_of_experience": 6,
+    "hours_per_week": 40,
+    "introduction": "Tôi chuyển đổi dữ liệu thành insight chiến lược cho các sản phẩm tài chính số. Tôi kết hợp phân tích dữ liệu truyền thống với kỹ thuật prompt engineering để tự động hóa báo cáo và hỗ trợ ra quyết định cấp quản lý. Tôi đặc biệt giỏi trong việc 'dịch' yêu cầu nghiệp vụ thành yêu cầu kỹ thuật rõ ràng."
+  },
+  {
+    "name": "Bùi Quốc Anh",
+    "skills": {
+      "engineering": [
+        "Mobile",
+        "Frontend"
+      ],
+      "ai_data": [],
+      "product": [
+        "Product Management"
+      ],
+      "design": [
+        "Graphic Design"
+      ],
+      "leadership": []
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "Frontend": 4,
+      "Product Management": 4,
+      "Graphic Design": 3
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Phòng chống Thiên tai"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 3,
+    "hours_per_week": 35,
+    "introduction": "Tôi phát triển ứng dụng di động giúp nông dân theo dõi dịch hại và nhận khuyến nghị canh tác dựa trên ảnh chụp bằng điện thoại. Tôi chủ động tham gia khảo sát thực địa để hiểu đúng nhu cầu và điều kiện sử dụng thực tế. Tôi tin rằng công nghệ nông nghiệp phải đơn giản, bền bỉ và hoạt động offline được."
+  },
+  {
+    "name": "Lý Thị Hồng",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Machine Learning",
+        "Data Analysis"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 4,
+      "Machine Learning": 3,
+      "Data Analysis": 4,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Giáo dục & Đào tạo"
+    ],
+    "current_industry": "Healthtech",
+    "years_of_experience": 5,
+    "hours_per_week": 40,
+    "introduction": "Tôi xây dựng hệ thống giám sát sức khỏe học sinh qua wearable và phân tích xu hướng bệnh tật theo mùa. Tôi đảm bảo dữ liệu được xử lý an toàn, tuân thủ quy định bảo vệ thông tin cá nhân. Tôi cũng đào tạo đội ngũ y tế trường học cách đọc hiểu dashboard phân tích."
+  },
+  {
+    "name": "Ngô Tiến Dũng",
+    "skills": {
+      "engineering": [
+        "Backend",
+        "Mobile"
+      ],
+      "ai_data": [
+        "Data Engineering"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "Backend": 4,
+      "Mobile": 3,
+      "Data Engineering": 4,
+      "Product Management": 4,
+      "Team Leadership": 3
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Product Owner"
+    ],
+    "fields_of_interest": [
+      "Năng suất Doanh nghiệp Vừa & Nhỏ",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "SaaS",
+    "years_of_experience": 7,
+    "hours_per_week": 42,
+    "introduction": "Tôi xây dựng nền tảng quản lý bán hàng cho SMEs với chức năng tự động hóa báo cáo và gợi ý chiến lược dựa trên dữ liệu bán hàng thực tế. Tôi luôn bắt đầu từ những vấn đề cụ thể của chủ cửa hàng — như thiếu nhân lực nhập liệu hay khó đánh giá hiệu quả khuyến mãi — rồi mới thiết kế giải pháp."
+  },
+  {
+    "name": "Tạ Thị Mỹ Linh",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "Prompt Engineering",
+        "NLP"
+      ],
+      "product": [
+        "User/Market Research"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Prompt Engineering": 4,
+      "NLP": 3,
+      "User/Market Research": 4,
+      "UI/UX Design": 4,
+      "Communication": 5
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Chính phủ Thông minh"
+    ],
+    "current_industry": "GovTech",
+    "years_of_experience": 4,
+    "hours_per_week": 36,
+    "introduction": "Tôi thiết kế và phát triển các chatbot hỗ trợ người dân tra cứu chính sách, đăng ký dịch vụ công và phản ánh kiến nghị. Tôi kết hợp nghiên cứu người dân ở nhiều nhóm tuổi, phân tích tương tác thực tế để cải tiến prompt và UI sao cho dễ hiểu, không gây nhầm lẫn. Tôi coi mỗi cuộc trò chuyện là cơ hội để cải thiện niềm tin vào chính quyền số."
+  },
+  {
+    "name": "Đỗ Văn Khánh",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud",
+        "Backend"
+      ],
+      "ai_data": [
+        "Computer Vision"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 5,
+      "Backend": 4,
+      "Computer Vision": 3,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Phòng chống Thiên tai",
+      "Nông nghiệp"
+    ],
+    "current_industry": "ClimateTech",
+    "years_of_experience": 6,
+    "hours_per_week": 45,
+    "introduction": "Tôi xây dựng hệ thống phân tích ảnh vệ tinh và drone để phát hiện sớm cháy rừng và xói mòn đất. Tôi tối ưu pipeline xử lý ảnh để chạy hiệu quả trên hạ tầng edge tại vùng sâu, vùng xa. Tôi làm việc chặt chẽ với cán bộ kiểm lâm để đảm bảo đầu ra phân tích phù hợp với quy trình xử lý thực địa."
+  },
+  {
+    "name": "Mai Thị Thu Trang",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Mobile"
+      ],
+      "ai_data": [
+        "Data Analysis"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [],
+      "leadership": []
+    },
+    "proficiency": {
+      "Frontend": 3,
+      "Mobile": 4,
+      "Data Analysis": 4,
+      "Business Analysis": 4
+    },
+    "desired_roles": [
+      "Business Analyst",
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Ngân hàng & Tài chính",
+      "Năng suất Doanh nghiệp Vừa & Nhỏ"
+    ],
+    "current_industry": "FinTech",
+    "years_of_experience": 5,
+    "hours_per_week": 38,
+    "introduction": "Tôi phân tích hành vi người dùng và hiệu quả sản phẩm cho ứng dụng vay vốn vi mô. Tôi xây dựng dashboard theo dõi tỷ lệ hoàn nợ, thời gian duyệt khoản vay và phản hồi khách hàng để hỗ trợ đội ngũ tín dụng điều chỉnh chính sách. Tôi luôn đặt câu hỏi: 'Dữ liệu này giúp ai ra quyết định gì?'"
+  },
+  {
+    "name": "Trịnh Quốc Huy",
+    "skills": {
+      "engineering": [
+        "Backend"
+      ],
+      "ai_data": [
+        "Machine Learning",
+        "Data Engineering"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "Backend": 4,
+      "Machine Learning": 4,
+      "Data Engineering": 4,
+      "Team Leadership": 3
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "Healthtech",
+    "years_of_experience": 8,
+    "hours_per_week": 40,
+    "introduction": "Tôi phát triển mô hình dự đoán nguy cơ tái nhập viện cho bệnh nhân mãn tính dựa trên dữ liệu lâm sàng và hành vi điều trị. Tôi phối hợp với bác sĩ để xác thực tính lâm sàng của kết quả và thiết kế API tích hợp liền mạch vào hệ thống hồ sơ bệnh án điện tử hiện có."
+  },
+  {
+    "name": "Lâm Thị Ngọc Ánh",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "Prompt Engineering"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Prompt Engineering": 4,
+      "Product Management": 4,
+      "UI/UX Design": 4,
+      "Communication": 4
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Chính phủ Thông minh"
+    ],
+    "current_industry": "EdTech",
+    "years_of_experience": 3,
+    "hours_per_week": 32,
+    "introduction": "Tôi xây dựng nền tảng học ngoại ngữ tích hợp AI để cá nhân hóa lộ trình và phản hồi phát âm. Tôi thiết kế cả giao diện và hệ thống prompt để đảm bảo phản hồi của AI vừa chính xác về ngôn ngữ, vừa phù hợp với tâm lý người học. Tôi tin rằng công nghệ giáo dục nên là người bạn đồng hành chứ không phải người thầy áp đặt."
+  },
+  {
+    "name": "Hồ Văn Sơn",
+    "skills": {
+      "engineering": [
+        "Mobile"
+      ],
+      "ai_data": [
+        "Computer Vision"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": []
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "Computer Vision": 3
+    },
+    "desired_roles": [
+      "Developer",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Phòng chống Thiên tai"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 4,
+    "hours_per_week": 40,
+    "introduction": "Tôi phát triển ứng dụng di động giúp nông dân chẩn đoán bệnh cây trồng qua ảnh chụp. Tôi tối ưu mô hình để chạy trên điện thoại phổ thông, xử lý ảnh trong vài giây mà không cần mạng. Tôi thường xuyên đi thực địa để cập nhật bộ dữ liệu ảnh và kiểm tra độ chính xác thực tế dưới điều kiện ánh sáng, góc chụp khác nhau."
+  },
+  {
+    "name": "Nguyễn Thị Bích Liên",
+    "skills": {
+      "engineering": [
+        "Backend",
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Data Analysis",
+        "Machine Learning"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "Backend": 4,
+      "DevOps/Cloud": 4,
+      "Data Analysis": 5,
+      "Machine Learning": 3,
+      "Business Analysis": 5,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Business Analyst",
+      "Tech Lead"
+    ],
+    "fields_of_interest": [
+      "Ngân hàng & Tài chính",
+      "Chính phủ Thông minh"
+    ],
+    "current_industry": "GovTech",
+    "years_of_experience": 10,
+    "hours_per_week": 45,
+    "introduction": "Tôi từng dẫn dắt dự án phân tích dữ liệu thuế và hải quan để phát hiện gian lận và hỗ trợ hoạch định chính sách. Tôi xây dựng hệ thống ETL và dashboard trực quan giúp cơ quan quản lý nắm bắt xu hướng thu chi theo thời gian thực. Tôi luôn nhấn mạnh việc kiểm soát chất lượng dữ liệu đầu vào vì nó quyết định độ tin cậy của mọi phân tích."
+  },
+  {
+    "name": "Võ Minh Khôi",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Backend"
+      ],
+      "ai_data": [
+        "NLP",
+        "Prompt Engineering"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Backend": 4,
+      "NLP": 4,
+      "Prompt Engineering": 5,
+      "Product Management": 4,
+      "Communication": 4
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "EdTech",
+    "years_of_experience": 5,
+    "hours_per_week": 40,
+    "introduction": "Tôi xây dựng nền tảng hỗ trợ giảng viên soạn giáo án thông minh bằng cách phân tích chương trình học và gợi ý tài nguyên phù hợp. Tôi phát triển hệ thống prompt đa lớp để đảm bảo nội dung được cá nhân hóa theo môn học, cấp học và phong cách giảng dạy. Tôi luôn thử nghiệm với giáo viên thực tế để điều chỉnh độ chính xác và tính hữu dụng."
+  },
+  {
+    "name": "Dương Thị Thu Hà",
+    "skills": {
+      "engineering": [
+        "Mobile"
+      ],
+      "ai_data": [
+        "Data Analysis"
+      ],
+      "product": [
+        "User/Market Research"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": []
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "Data Analysis": 4,
+      "User/Market Research": 4,
+      "UI/UX Design": 4
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Designer"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Năng suất Doanh nghiệp Vừa & Nhỏ"
+    ],
+    "current_industry": "Healthtech",
+    "years_of_experience": 6,
+    "hours_per_week": 38,
+    "introduction": "Tôi thiết kế ứng dụng theo dõi sức khỏe cho người cao tuổi và nhân viên văn phòng. Tôi tiến hành nghiên cứu sâu về thói quen, rào cản kỹ thuật và nhu cầu chăm sóc sức khỏe thực tế của hai nhóm đối tượng rất khác nhau. Tôi tin rằng thiết kế tốt nhất là thiết kế khiến người dùng quên rằng mình đang dùng công nghệ."
+  },
+  {
+    "name": "Lê Thị Thu Thảo",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Data Engineering",
+        "Machine Learning"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 4,
+      "Data Engineering": 4,
+      "Machine Learning": 3,
+      "Team Leadership": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Y tế & Sức khỏe"
+    ],
+    "current_industry": "EdTech",
+    "years_of_experience": 7,
+    "hours_per_week": 42,
+    "introduction": "Tôi xây dựng hệ thống dữ liệu học tập tập trung cho các trường phổ thông, tích hợp dữ liệu từ LMS, điểm thi và phản hồi giáo viên. Tôi phát triển pipeline xử lý dữ liệu thời gian thực để hỗ trợ giáo viên điều chỉnh phương pháp giảng dạy kịp thời. Tôi cũng đào tạo đội ngũ CNTT trường học để vận hành và bảo trì hệ thống độc lập."
+  },
+  {
+    "name": "Trần Thị Mai",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Backend"
+      ],
+      "ai_data": [
+        "Data Analysis"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Backend": 3,
+      "Data Analysis": 4,
+      "Business Analysis": 5,
+      "Communication": 4
+    },
+    "desired_roles": [
+      "Business Analyst"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Năng suất Doanh nghiệp Vừa & Nhỏ"
+    ],
+    "current_industry": "IT",
+    "years_of_experience": 5,
+    "hours_per_week": 40,
+    "introduction": "Tôi là chuyên viên phân tích nghiệp vụ với hơn 5 năm kinh nghiệm trong các dự án chuyển đổi số cho trường học và doanh nghiệp SME. Tôi luôn chú trọng đến việc dịch yêu cầu người dùng thành giải pháp công nghệ thực tiễn, dễ vận hành. Hiện tôi đang tìm kiếm cơ hội đóng góp vào các sản phẩm giáo dục thông minh và nền tảng hỗ trợ doanh nghiệp nhỏ."
+  },
+  {
+    "name": "Lê Văn Hùng",
+    "skills": {
+      "engineering": [
+        "Mobile",
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Data Engineering"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "DevOps/Cloud": 4,
+      "Data Engineering": 3,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Tech Lead"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Chính phủ Thông minh"
+    ],
+    "current_industry": "Healthtech",
+    "years_of_experience": 8,
+    "hours_per_week": 45,
+    "introduction": "Kỹ sư phần mềm với nền tảng vững chắc về phát triển ứng dụng di động và kiến trúc hệ thống đám mây. Tôi từng dẫn dắt triển khai hệ thống quản lý hồ sơ sức khỏe điện tử cho bệnh viện tuyến tỉnh. Tôi quan tâm sâu sắc đến ứng dụng công nghệ nhằm nâng cao chất lượng dịch vụ y tế và minh bạch hóa dữ liệu công."
+  },
+  {
+    "name": "Phạm Thu Trang",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "Prompt Engineering",
+        "NLP"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 5,
+      "Prompt Engineering": 4,
+      "NLP": 3,
+      "Product Management": 4,
+      "UI/UX Design": 4,
+      "Team Leadership": 3
+    },
+    "desired_roles": [
+      "Product Owner"
+    ],
+    "fields_of_interest": [
+      "Đổi mới Sáng tạo",
+      "Nông nghiệp"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 6,
+    "hours_per_week": 35,
+    "introduction": "Tôi là người kết hợp giữa kỹ sư frontend, nhà thiết kế UX và quản lý sản phẩm. Tôi đã xây dựng nhiều nền tảng hỗ trợ nông dân tiếp cận thị trường, dự báo thời tiết và quản lý chuỗi cung ứng. Tôi tin rằng công nghệ cần được thiết kế từ góc nhìn người dùng cuối — đơn giản, thiết thực và có tác động rõ ràng."
+  },
+  {
+    "name": "Nguyễn Minh Đức",
+    "skills": {
+      "engineering": [
+        "Backend",
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Machine Learning",
+        "Data Engineering"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "Backend": 5,
+      "DevOps/Cloud": 4,
+      "Machine Learning": 3,
+      "Data Engineering": 4,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Developer",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Ngân hàng & Tài chính",
+      "Phòng chống Thiên tai"
+    ],
+    "current_industry": "Fintech",
+    "years_of_experience": 7,
+    "hours_per_week": 42,
+    "introduction": "Tôi chuyên xây dựng hạ tầng dữ liệu và mô hình dự báo rủi ro tín dụng, đồng thời tích hợp chúng vào hệ thống core banking. Gần đây tôi tham gia phát triển mô hình cảnh báo lũ sớm dựa trên dữ liệu cảm biến và lịch sử khí tượng. Tôi mong muốn mở rộng vai trò sang các bài toán AI có ý nghĩa xã hội cao."
+  },
+  {
+    "name": "Hoàng Thị Lan",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Mobile"
+      ],
+      "ai_data": [],
+      "product": [
+        "User/Market Research"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Mobile": 3,
+      "User/Market Research": 5,
+      "UI/UX Design": 5,
+      "Communication": 4
+    },
+    "desired_roles": [
+      "Designer"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Y tế & Sức khỏe"
+    ],
+    "current_industry": "EdTech",
+    "years_of_experience": 4,
+    "hours_per_week": 30,
+    "introduction": "Tôi là nhà thiết kế sản phẩm tập trung vào trải nghiệm người học và bệnh nhân. Tôi từng nghiên cứu hành vi người dùng để tối ưu giao diện nền tảng học trực tuyến cho học sinh vùng khó khăn và ứng dụng theo dõi sức khỏe cho người cao tuổi. Thiết kế của tôi luôn bắt nguồn từ dữ liệu khảo sát thực địa và kiểm thử liên tục."
+  },
+  {
+    "name": "Võ Quốc Anh",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Computer Vision",
+        "Data Engineering"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 5,
+      "Computer Vision": 4,
+      "Data Engineering": 4,
+      "Team Leadership": 3
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Phòng chống Thiên tai"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 9,
+    "hours_per_week": 48,
+    "introduction": "Tôi xây dựng và vận hành hệ thống xử lý ảnh vệ tinh và drone để giám sát cây trồng và cảnh báo ngập lụt sớm. Với hơn 9 năm trong lĩnh vực DevOps và AI, tôi đặc biệt quan tâm đến việc đưa các giải pháp trí tuệ nhân tạo ra thực địa một cách ổn định, chi phí thấp và dễ bảo trì bởi đội ngũ địa phương."
+  },
+  {
+    "name": "Đặng Thị Hồng",
+    "skills": {
+      "engineering": [
+        "Backend"
+      ],
+      "ai_data": [
+        "Data Analysis",
+        "Prompt Engineering"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Backend": 4,
+      "Data Analysis": 5,
+      "Prompt Engineering": 4,
+      "Product Management": 4,
+      "Communication": 5
+    },
+    "desired_roles": [
+      "Product Owner"
+    ],
+    "fields_of_interest": [
+      "Chính phủ Thông minh",
+      "Giáo dục & Đào tạo"
+    ],
+    "current_industry": "GovTech",
+    "years_of_experience": 6,
+    "hours_per_week": 40,
+    "introduction": "Tôi từng dẫn dắt phát triển cổng dịch vụ công cấp huyện và nền tảng quản lý học sinh toàn tỉnh. Tôi am hiểu cả kỹ thuật (xây dựng API, tích hợp dữ liệu) lẫn nhu cầu quản trị và người dân. Tôi hướng tới các sản phẩm số giúp giảm thủ tục hành chính và tăng cường công bằng trong tiếp cận giáo dục."
+  },
+  {
+    "name": "Bùi Tiến Dũng",
+    "skills": {
+      "engineering": [
+        "Mobile"
+      ],
+      "ai_data": [
+        "NLP"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [],
+      "leadership": []
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "NLP": 3,
+      "Business Analysis": 4
+    },
+    "desired_roles": [
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Nông nghiệp"
+    ],
+    "current_industry": "Healthtech",
+    "years_of_experience": 3,
+    "hours_per_week": 35,
+    "introduction": "Tôi phát triển ứng dụng di động hỗ trợ bác sĩ tư vấn từ xa và nông dân tra cứu kỹ thuật canh tác qua chatbot tiếng Việt. Tôi nhận thấy nhu cầu lớn về các giải pháp ngôn ngữ tự nhiên phù hợp với ngữ cảnh địa phương. Tôi đang tích cực học sâu hơn về NLP và cải thiện khả năng hiểu phương ngữ trong hệ thống."
+  },
+  {
+    "name": "Tô Thị Ngọc Ánh",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Mobile"
+      ],
+      "ai_data": [
+        "Prompt Engineering"
+      ],
+      "product": [
+        "User/Market Research"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Mobile": 4,
+      "Prompt Engineering": 3,
+      "User/Market Research": 5,
+      "UI/UX Design": 4,
+      "Communication": 5
+    },
+    "desired_roles": [
+      "Product Owner"
+    ],
+    "fields_of_interest": [
+      "Năng suất Doanh nghiệp Vừa & Nhỏ",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "SaaS",
+    "years_of_experience": 5,
+    "hours_per_week": 40,
+    "introduction": "Tôi làm việc trực tiếp với hơn 100 chủ cửa hàng, quán ăn và xưởng sản xuất nhỏ để hiểu điểm đau vận hành. Từ đó, tôi cùng đội kỹ thuật xây dựng các tính năng như quản lý đơn hàng đa kênh, nhắc nợ tự động và phân tích doanh thu theo thời gian thực. Tôi tin sản phẩm tốt nhất là sản phẩm được 'đóng gói' từ câu chuyện thật của người dùng."
+  },
+  {
+    "name": "Nguyễn Hữu Phúc",
+    "skills": {
+      "engineering": [
+        "Backend",
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Machine Learning",
+        "Computer Vision"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "Backend": 5,
+      "DevOps/Cloud": 4,
+      "Machine Learning": 4,
+      "Computer Vision": 3,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Ngân hàng & Tài chính"
+    ],
+    "current_industry": "IT Services",
+    "years_of_experience": 10,
+    "hours_per_week": 50,
+    "introduction": "Tôi có kinh nghiệm triển khai hệ thống chẩn đoán hình ảnh y tế và mô hình phát hiện gian lận thẻ tín dụng tại các ngân hàng lớn. Tôi đặc biệt chú trọng đến tính minh bạch, khả năng giải thích và độ tin cậy của mô hình AI trong môi trường sản xuất. Mục tiêu dài hạn của tôi là xây dựng các framework AI có thể áp dụng nhanh cho lĩnh vực công ích."
+  },
+  {
+    "name": "Lý Thị Thuỷ",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "Data Analysis"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Data Analysis": 4,
+      "Business Analysis": 5,
+      "Communication": 4
+    },
+    "desired_roles": [
+      "Business Analyst"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Chính phủ Thông minh"
+    ],
+    "current_industry": "Education",
+    "years_of_experience": 4,
+    "hours_per_week": 30,
+    "introduction": "Tôi làm phân tích dữ liệu hiệu quả chương trình dạy học trực tuyến và đề xuất cải tiến dựa trên hành vi học tập của học sinh THCS. Trước đây tôi cũng hỗ trợ Sở GD&ĐT xây dựng dashboard giám sát chỉ tiêu phổ cập giáo dục. Tôi mong muốn mở rộng vai trò sang phân tích chính sách công dựa trên dữ liệu mở."
+  },
+  {
+    "name": "Đỗ Văn Tú",
+    "skills": {
+      "engineering": [
+        "Mobile"
+      ],
+      "ai_data": [
+        "NLP"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": []
+    },
+    "proficiency": {
+      "Mobile": 5,
+      "NLP": 3
+    },
+    "desired_roles": [
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Y tế & Sức khỏe"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 2,
+    "hours_per_week": 40,
+    "introduction": "Tôi là lập trình viên trẻ chuyên phát triển ứng dụng Android cho nông dân và nhân viên y tế thôn bản. Tôi đang xây dựng chatbot hỏi đáp kỹ thuật canh tác bằng tiếng Việt và phương ngữ Nam Bộ. Tôi tin rằng công nghệ không cần phức tạp — mà cần đúng người, đúng lúc và đúng cách thức họ giao tiếp."
+  },
+  {
+    "name": "Mai Thị Bích Liên",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Data Engineering",
+        "Data Analysis"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 4,
+      "Data Engineering": 5,
+      "Data Analysis": 4,
+      "Product Management": 3,
+      "Team Leadership": 4
+    },
+    "desired_roles": [
+      "Tech Lead"
+    ],
+    "fields_of_interest": [
+      "Phòng chống Thiên tai",
+      "Chính phủ Thông minh"
+    ],
+    "current_industry": "GovTech",
+    "years_of_experience": 7,
+    "hours_per_week": 45,
+    "introduction": "Tôi chịu trách nhiệm xây dựng và duy trì hệ thống dữ liệu tích hợp cho Trung tâm Dự báo Khí tượng Thủy văn quốc gia. Tôi kết hợp kỹ năng vận hành hạ tầng đám mây với khả năng thiết kế pipeline xử lý dữ liệu thời tiết ở quy mô petabyte. Tôi mong muốn thúc đẩy chuẩn hóa dữ liệu công và chia sẻ dữ liệu mở vì mục tiêu thích ứng khí hậu."
+  },
+  {
+    "name": "Trần Duy Khánh",
+    "skills": {
+      "engineering": [
+        "Backend"
+      ],
+      "ai_data": [
+        "Machine Learning"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": []
+    },
+    "proficiency": {
+      "Backend": 4,
+      "Machine Learning": 4
+    },
+    "desired_roles": [
+      "Developer",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Năng suất Doanh nghiệp Vừa & Nhỏ",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "Startup",
+    "years_of_experience": 3,
+    "hours_per_week": 40,
+    "introduction": "Tôi phát triển mô hình học máy dự báo nhu cầu nguyên vật liệu cho các xưởng sản xuất cơ khí vừa và nhỏ. Giải pháp giúp họ giảm tồn kho 20% và tăng tỷ lệ sử dụng máy móc. Tôi luôn ưu tiên mô hình nhẹ, chạy được trên server giá rẻ và dễ tích hợp vào hệ thống ERP cũ."
+  },
+  {
+    "name": "Hà Thị Thuỳ Dương",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Mobile"
+      ],
+      "ai_data": [
+        "Prompt Engineering"
+      ],
+      "product": [
+        "User/Market Research"
+      ],
+      "design": [],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Mobile": 3,
+      "Prompt Engineering": 4,
+      "User/Market Research": 4,
+      "Communication": 5
+    },
+    "desired_roles": [
+      "Product Owner"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Y tế & Sức khỏe"
+    ],
+    "current_industry": "EdTech",
+    "years_of_experience": 5,
+    "hours_per_week": 35,
+    "introduction": "Tôi từng điều phối nhóm phát triển nền tảng luyện thi đại học và ứng dụng hỗ trợ người bị tự kỷ giao tiếp qua hình ảnh. Tôi dành nhiều thời gian đi thực địa — từ lớp học vùng cao đến trung tâm phục hồi chức năng — để đảm bảo mỗi tính năng đều xuất phát từ nhu cầu thực sự, chứ không phải từ giả định kỹ thuật."
+  },
+  {
+    "name": "Lương Văn Sơn",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud",
+        "Backend"
+      ],
+      "ai_data": [],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 5,
+      "Backend": 4,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Tech Lead"
+    ],
+    "fields_of_interest": [
+      "Ngân hàng & Tài chính",
+      "Chính phủ Thông minh"
+    ],
+    "current_industry": "Banking",
+    "years_of_experience": 12,
+    "hours_per_week": 50,
+    "introduction": "Tôi có hơn một thập kỷ vận hành hệ thống core banking và thanh toán điện tử cho ngân hàng thương mại. Gần đây tôi dẫn dắt chuyển đổi sang kiến trúc microservices trên nền tảng cloud hybrid. Tôi quan tâm đến việc ứng dụng các nguyên tắc DevOps và bảo mật zero-trust trong các hệ thống tài chính công và dịch vụ công số."
+  },
+  {
+    "name": "Nguyễn Thị Thuý",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "Data Analysis"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [
+        "Graphic Design"
+      ],
+      "leadership": []
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Data Analysis": 4,
+      "Business Analysis": 4,
+      "Graphic Design": 3
+    },
+    "desired_roles": [
+      "Business Analyst"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Giáo dục & Đào tạo"
+    ],
+    "current_industry": "NGO",
+    "years_of_experience": 6,
+    "hours_per_week": 30,
+    "introduction": "Tôi làm việc với các tổ chức phi lợi nhuận hỗ trợ nông dân chuyển đổi số và giáo viên vùng sâu vùng xa ứng dụng công nghệ trong giảng dạy. Tôi thường xuyên xây dựng dashboard theo dõi tiến độ dự án và thiết kế tài liệu truyền thông bằng tiếng Việt dễ hiểu. Tôi tin rằng phân tích dữ liệu cần đi kèm với kể chuyện để tạo ảnh hưởng."
+  },
+  {
+    "name": "Phan Quốc Bảo",
+    "skills": {
+      "engineering": [
+        "Mobile"
+      ],
+      "ai_data": [
+        "Computer Vision"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": []
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "Computer Vision": 3
+    },
+    "desired_roles": [
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Phòng chống Thiên tai",
+      "Nông nghiệp"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 4,
+    "hours_per_week": 40,
+    "introduction": "Tôi phát triển ứng dụng di động sử dụng camera điện thoại để nhận diện sâu bệnh trên lúa và cảnh báo ngập úng qua ảnh chụp hiện trường. Tôi tập trung vào việc tối ưu mô hình để chạy trên thiết bị低端 (Android 7+) và xử lý offline khi không có mạng. Tôi mong muốn mở rộng giải pháp sang các loại cây trồng khác và khu vực miền núi."
+  },
+  {
+    "name": "Dương Thị Mỹ Linh",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Backend"
+      ],
+      "ai_data": [
+        "Data Analysis",
+        "NLP"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Backend": 4,
+      "Data Analysis": 4,
+      "NLP": 3,
+      "Product Management": 5,
+      "Team Leadership": 3
+    },
+    "desired_roles": [
+      "Product Owner"
+    ],
+    "fields_of_interest": [
+      "Đổi mới Sáng tạo",
+      "Chính phủ Thông minh"
+    ],
+    "current_industry": "Innovation Hub",
+    "years_of_experience": 8,
+    "hours_per_week": 42,
+    "introduction": "Tôi điều phối các chương trình ươm tạo startup công nghệ phục vụ cộng đồng — từ nền tảng đấu giá nông sản đến hệ thống giám sát chất lượng nước sông bằng IoT. Tôi kết hợp tư duy sản phẩm, kỹ năng kỹ thuật và khả năng kết nối đa bên để biến ý tưởng thành sản phẩm khả thi và bền vững."
+  },
+  {
+    "name": "Tạ Văn Tuấn",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Data Engineering",
+        "Machine Learning"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 5,
+      "Data Engineering": 5,
+      "Machine Learning": 3,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Năng suất Doanh nghiệp Vừa & Nhỏ"
+    ],
+    "current_industry": "Healthtech",
+    "years_of_experience": 11,
+    "hours_per_week": 48,
+    "introduction": "Tôi xây dựng hệ thống lưu trữ và xử lý dữ liệu y tế phi cấu trúc (ghi chú bác sĩ, báo cáo xét nghiệm) để hỗ trợ chẩn đoán hỗ trợ và phân tích xu hướng bệnh tật. Tôi đặc biệt quan tâm đến việc xây dựng hạ tầng dữ liệu mở, an toàn và tuân thủ luật bảo vệ dữ liệu cá nhân trong bối cảnh Việt Nam."
+  },
+  {
+    "name": "Trần Thị Mai",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Backend"
+      ],
+      "ai_data": [
+        "Data Analysis"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Backend": 3,
+      "Data Analysis": 4,
+      "Business Analysis": 5,
+      "Communication": 4
+    },
+    "desired_roles": [
+      "Business Analyst"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Năng suất Doanh nghiệp Vừa & Nhỏ"
+    ],
+    "current_industry": "IT",
+    "years_of_experience": 5,
+    "hours_per_week": 40,
+    "introduction": "Tôi là chuyên viên phân tích nghiệp vụ với hơn 5 năm kinh nghiệm trong các dự án chuyển đổi số cho trường học và doanh nghiệp SME. Tôi luôn chú trọng đến việc dịch yêu cầu người dùng thành giải pháp công nghệ thực tiễn, dễ vận hành. Hiện tôi đang tìm kiếm cơ hội đóng góp vào các sản phẩm giáo dục thông minh và nền tảng hỗ trợ doanh nghiệp nhỏ."
+  },
+  {
+    "name": "Lê Văn Hùng",
+    "skills": {
+      "engineering": [
+        "Mobile",
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Data Engineering"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "DevOps/Cloud": 4,
+      "Data Engineering": 3,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Tech Lead"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Phòng chống Thiên tai"
+    ],
+    "current_industry": "Healthcare Tech",
+    "years_of_experience": 7,
+    "hours_per_week": 45,
+    "introduction": "Kỹ sư di động và DevOps với kinh nghiệm triển khai hệ thống quản lý dữ liệu y tế trên nền tảng đám mây và ứng dụng giám sát thiên tai thời gian thực. Tôi đặc biệt quan tâm đến việc xây dựng hạ tầng công nghệ linh hoạt, an toàn và có khả năng mở rộng cho các lĩnh vực nhạy cảm như y tế và ứng phó khẩn cấp."
+  },
+  {
+    "name": "Phạm Thu Trang",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "Prompt Engineering",
+        "NLP"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 5,
+      "Prompt Engineering": 4,
+      "NLP": 3,
+      "Product Management": 4,
+      "UI/UX Design": 3,
+      "Team Leadership": 3
+    },
+    "desired_roles": [
+      "Product Owner"
+    ],
+    "fields_of_interest": [
+      "Đổi mới Sáng tạo",
+      "Chính phủ Thông minh"
+    ],
+    "current_industry": "Public Sector Tech",
+    "years_of_experience": 4,
+    "hours_per_week": 35,
+    "introduction": "Tôi là người kết hợp giữa kỹ sư phần mềm, nhà thiết kế UX và quản lý sản phẩm. Với nền tảng phát triển ứng dụng chính phủ số và công cụ hỗ trợ ra quyết định bằng AI, tôi tin rằng sản phẩm công nghệ cần bắt đầu từ trải nghiệm người dân và kết thúc bằng hiệu quả chính sách. Tôi đang tìm kiếm dự án thúc đẩy minh bạch và hiệu quả trong quản trị công."
+  },
+  {
+    "name": "Nguyễn Minh Đức",
+    "skills": {
+      "engineering": [
+        "Backend",
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Machine Learning",
+        "Data Engineering"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "Backend": 5,
+      "DevOps/Cloud": 4,
+      "Machine Learning": 3,
+      "Data Engineering": 4,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Developer",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Y tế & Sức khỏe"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 6,
+    "hours_per_week": 42,
+    "introduction": "Tôi xây dựng các nền tảng xử lý dữ liệu nông nghiệp quy mô lớn và hệ thống chẩn đoán hỗ trợ y tế dựa trên học máy. Kinh nghiệm của tôi tập trung vào việc đưa mô hình AI từ phòng thí nghiệm vào môi trường thực tế — nơi dữ liệu không hoàn hảo và hạ tầng thường hạn chế. Tôi mong muốn tiếp tục phát triển giải pháp công nghệ có tác động rõ rệt đến đời sống người nông dân và bệnh nhân."
+  },
+  {
+    "name": "Hoàng Thị Lan",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Mobile"
+      ],
+      "ai_data": [
+        "NLP"
+      ],
+      "product": [
+        "User/Market Research"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Mobile": 3,
+      "NLP": 3,
+      "User/Market Research": 4,
+      "UI/UX Design": 4,
+      "Communication": 5
+    },
+    "desired_roles": [
+      "Designer"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Nông nghiệp"
+    ],
+    "current_industry": "EdTech",
+    "years_of_experience": 3,
+    "hours_per_week": 30,
+    "introduction": "Tôi là nhà thiết kế đa năng với nền tảng kỹ thuật và am hiểu sâu về hành vi người dùng trong bối cảnh nông thôn và học sinh phổ thông. Tôi đã thiết kế các ứng dụng học tập tương tác cho vùng khó và nền tảng hỗ trợ đào tạo nghề cho thanh niên nông thôn. Tôi tin rằng thiết kế tốt phải xuất phát từ sự thấu cảm và kiểm chứng thực địa."
+  },
+  {
+    "name": "Vũ Đình Tuấn",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Computer Vision",
+        "Machine Learning"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 5,
+      "Computer Vision": 4,
+      "Machine Learning": 4,
+      "Team Leadership": 3
+    },
+    "desired_roles": [
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Phòng chống Thiên tai",
+      "Năng suất Doanh nghiệp Vừa & Nhỏ"
+    ],
+    "current_industry": "Climate Tech",
+    "years_of_experience": 8,
+    "hours_per_week": 50,
+    "introduction": "Tôi chuyên xây dựng hệ thống AI xử lý ảnh vệ tinh và video giám sát để dự báo lũ, cháy rừng và đánh giá thiệt hại sau thiên tai. Đồng thời, tôi hỗ trợ doanh nghiệp vừa và nhỏ triển khai giải pháp tự động hóa kiểm soát chất lượng sản phẩm qua thị giác máy. Tôi hướng tới việc làm chủ công nghệ nhận diện hình ảnh một cách bền vững và chi phí thấp."
+  },
+  {
+    "name": "Đặng Ngọc Anh",
+    "skills": {
+      "engineering": [
+        "Backend"
+      ],
+      "ai_data": [
+        "Data Analysis",
+        "Prompt Engineering"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [],
+      "leadership": []
+    },
+    "proficiency": {
+      "Backend": 4,
+      "Data Analysis": 4,
+      "Prompt Engineering": 4,
+      "Product Management": 4
+    },
+    "desired_roles": [
+      "Product Owner"
+    ],
+    "fields_of_interest": [
+      "Ngân hàng & Tài chính",
+      "Chính phủ Thông minh"
+    ],
+    "current_industry": "FinTech",
+    "years_of_experience": 5,
+    "hours_per_week": 40,
+    "introduction": "Tôi từng dẫn dắt phát triển nền tảng cho vay vi mô số và hệ thống phân tích rủi ro tín dụng dựa trên dữ liệu phi tài chính. Tôi kết hợp tư duy sản phẩm, kỹ năng phân tích dữ liệu và hiểu biết về hành vi người dùng để xây dựng giải pháp tài chính bao dung và minh bạch. Hiện tôi đang tìm kiếm cơ hội tại các dự án chính phủ số hoặc fintech phục vụ cộng đồng."
+  },
+  {
+    "name": "Bùi Quốc Bảo",
+    "skills": {
+      "engineering": [
+        "Mobile"
+      ],
+      "ai_data": [
+        "NLP"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [],
+      "leadership": []
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "NLP": 3,
+      "Business Analysis": 4
+    },
+    "desired_roles": [
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Giáo dục & Đào tạo"
+    ],
+    "current_industry": "HealthTech",
+    "years_of_experience": 2,
+    "hours_per_week": 35,
+    "introduction": "Tôi phát triển ứng dụng hỗ trợ người cao tuổi theo dõi sức khỏe và nền tảng học tiếng Việt cho trẻ em dân tộc thiểu số. Với kiến thức NLP cơ bản và kinh nghiệm làm việc gần gũi với người dùng cuối, tôi luôn ưu tiên tính khả dụng, độ tin cậy và sự phù hợp văn hóa trong từng dòng mã. Tôi mong muốn được làm việc trong môi trường lấy con người làm trung tâm."
+  },
+  {
+    "name": "Lý Thị Hương",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Mobile"
+      ],
+      "ai_data": [],
+      "product": [
+        "User/Market Research"
+      ],
+      "design": [
+        "UI/UX Design",
+        "Graphic Design"
+      ],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Mobile": 3,
+      "User/Market Research": 4,
+      "UI/UX Design": 4,
+      "Graphic Design": 3,
+      "Communication": 5
+    },
+    "desired_roles": [
+      "Designer"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Giáo dục & Đào tạo"
+    ],
+    "current_industry": "Social Impact",
+    "years_of_experience": 4,
+    "hours_per_week": 30,
+    "introduction": "Tôi thiết kế giao diện và nội dung trực quan cho các nền tảng truyền thông nông nghiệp cộng đồng và tài liệu học tập số dành cho học sinh vùng sâu. Tôi tin rằng thiết kế không chỉ đẹp mà còn phải đúng ngữ cảnh, dễ hiểu và dễ tiếp cận — đặc biệt khi người dùng không quen với công nghệ. Tôi luôn phối hợp chặt chẽ với đội ngũ địa phương để đảm bảo tính thực tiễn."
+  },
+  {
+    "name": "Tô Văn Kiên",
+    "skills": {
+      "engineering": [
+        "Backend",
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Data Engineering",
+        "Machine Learning"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "Backend": 5,
+      "DevOps/Cloud": 4,
+      "Data Engineering": 5,
+      "Machine Learning": 3,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Tech Lead"
+    ],
+    "fields_of_interest": [
+      "Năng suất Doanh nghiệp Vừa & Nhỏ",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "IT Services",
+    "years_of_experience": 9,
+    "hours_per_week": 45,
+    "introduction": "Tôi dẫn dắt nhóm kỹ thuật xây dựng hệ thống quản trị doanh nghiệp (ERP/CRM) tùy chỉnh và nền tảng phân tích dữ liệu nội bộ cho hơn 30 SME. Tôi tập trung vào việc giảm độ phức tạp kỹ thuật, tăng tốc độ triển khai và đảm bảo tính mở rộng khi doanh nghiệp phát triển. Tôi mong muốn hỗ trợ các startup và tổ chức xã hội xây dựng hạ tầng dữ liệu bền vững."
+  },
+  {
+    "name": "Nguyễn Thị Thảo",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "Prompt Engineering"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": []
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Prompt Engineering": 4,
+      "Product Management": 4,
+      "UI/UX Design": 4
+    },
+    "desired_roles": [
+      "Product Owner"
+    ],
+    "fields_of_interest": [
+      "Chính phủ Thông minh",
+      "Giáo dục & Đào tạo"
+    ],
+    "current_industry": "GovTech",
+    "years_of_experience": 3,
+    "hours_per_week": 35,
+    "introduction": "Tôi phát triển cổng dịch vụ công trực tuyến và nền tảng học tập số cho cán bộ công chức. Gần đây, tôi tích hợp công cụ hỗ trợ viết văn bản hành chính bằng AI — giúp giảm tải thủ tục và nâng cao chất lượng soạn thảo. Tôi tin rằng AI nên là trợ thủ, không phải thay thế, và luôn đặt tính minh bạch, đạo đức dữ liệu lên hàng đầu."
+  },
+  {
+    "name": "Đỗ Minh Quân",
+    "skills": {
+      "engineering": [
+        "Mobile"
+      ],
+      "ai_data": [
+        "Computer Vision"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "Computer Vision": 3,
+      "Team Leadership": 3
+    },
+    "desired_roles": [
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Phòng chống Thiên tai"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 4,
+    "hours_per_week": 40,
+    "introduction": "Tôi xây dựng ứng dụng di động giúp nông dân chẩn đoán sâu bệnh trên cây trồng qua ảnh chụp điện thoại và hệ thống cảnh báo sớm ngập úng dựa trên ảnh drone. Tôi đặc biệt chú trọng tối ưu hiệu năng trên thiết bị cũ và hỗ trợ ngoại tuyến — vì không phải lúc nào người dùng cũng có kết nối ổn định. Tôi đang tìm kiếm đối tác để mở rộng phạm vi ứng dụng."
+  },
+  {
+    "name": "Trương Thị Hồng",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Backend"
+      ],
+      "ai_data": [
+        "Data Analysis"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 3,
+      "Backend": 3,
+      "Data Analysis": 4,
+      "Business Analysis": 5,
+      "Communication": 4
+    },
+    "desired_roles": [
+      "Business Analyst"
+    ],
+    "fields_of_interest": [
+      "Ngân hàng & Tài chính",
+      "Y tế & Sức khỏe"
+    ],
+    "current_industry": "Healthcare",
+    "years_of_experience": 6,
+    "hours_per_week": 35,
+    "introduction": "Tôi làm việc với các bệnh viện và công ty bảo hiểm để phân tích luồng dữ liệu bệnh án, thanh toán và quản lý giường bệnh nhằm cải thiện hiệu quả vận hành. Tôi thành thạo việc xây dựng dashboard theo dõi KPI và chuyển đổi insight thành đề xuất cải tiến quy trình. Tôi mong muốn tiếp tục đóng góp vào chuyển đổi số ngành y tế với tư duy nghiệp vụ – công nghệ song hành."
+  },
+  {
+    "name": "Mai Văn Sơn",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Data Engineering"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 5,
+      "Data Engineering": 4,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Tech Lead"
+    ],
+    "fields_of_interest": [
+      "Chính phủ Thông minh",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "Consulting",
+    "years_of_experience": 10,
+    "hours_per_week": 45,
+    "introduction": "Tôi tư vấn và triển khai hạ tầng dữ liệu và nền tảng AI cho các sở ban ngành và tập đoàn. Tôi đã xây dựng data lake cho hệ thống giao thông thông minh và kho dữ liệu dân cư liên thông. Tôi luôn ưu tiên kiến trúc mở, tuân thủ chuẩn quốc gia và khả năng tích hợp với hệ thống hiện hữu — bởi chuyển đổi số thành công là khi công nghệ hòa nhập, không thay thế."
+  },
+  {
+    "name": "Lâm Thị Bích",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "Prompt Engineering",
+        "NLP"
+      ],
+      "product": [
+        "User/Market Research"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": []
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Prompt Engineering": 4,
+      "NLP": 3,
+      "User/Market Research": 4,
+      "UI/UX Design": 4
+    },
+    "desired_roles": [
+      "Designer"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Y tế & Sức khỏe"
+    ],
+    "current_industry": "EdTech",
+    "years_of_experience": 3,
+    "hours_per_week": 30,
+    "introduction": "Tôi thiết kế giao diện và tương tác cho nền tảng học trực tuyến và ứng dụng hỗ trợ sức khỏe tâm thần. Tôi sử dụng prompt engineering để xây dựng chatbot đồng hành học tập và tư vấn sơ bộ — nhưng luôn đảm bảo người dùng biết giới hạn của AI và được kết nối kịp thời với chuyên gia. Thiết kế của tôi hướng đến sự an toàn, riêng tư và cảm giác được lắng nghe."
+  },
+  {
+    "name": "Hà Đức Thịnh",
+    "skills": {
+      "engineering": [
+        "Backend",
+        "Mobile"
+      ],
+      "ai_data": [
+        "Machine Learning"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": []
+    },
+    "proficiency": {
+      "Backend": 4,
+      "Mobile": 3,
+      "Machine Learning": 3
+    },
+    "desired_roles": [
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Năng suất Doanh nghiệp Vừa & Nhỏ"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 2,
+    "hours_per_week": 40,
+    "introduction": "Tôi phát triển ứng dụng kết nối nông dân với thị trường tiêu thụ và hệ thống dự báo giá nông sản dựa trên mô hình học máy đơn giản, dễ bảo trì. Tôi tập trung vào trải nghiệm người dùng không cần internet mạnh, hỗ trợ tiếng địa phương và tích hợp SMS. Tôi tin rằng công nghệ nông nghiệp thành công khi nó nằm gọn trong chiếc điện thoại cũ của bác nông dân."
+  },
+  {
+    "name": "Võ Thị Mỹ Linh",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "Data Analysis",
+        "Prompt Engineering"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Data Analysis": 4,
+      "Prompt Engineering": 4,
+      "Product Management": 4,
+      "Communication": 5
+    },
+    "desired_roles": [
+      "Product Owner"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Chính phủ Thông minh"
+    ],
+    "current_industry": "EdTech",
+    "years_of_experience": 4,
+    "hours_per_week": 35,
+    "introduction": "Tôi xây dựng nền tảng quản lý học tập số cho các trường phổ thông và hệ thống theo dõi tiến độ học sinh yếu thế. Tôi tích hợp phân tích dữ liệu học tập và công cụ hỗ trợ giáo viên soạn bài/giải đáp nhanh bằng AI. Tôi luôn đặt câu hỏi: 'Giải pháp này có thực sự giảm tải cho giáo viên và tăng cơ hội học tập cho học sinh?' — đó là thước đo thành công của tôi."
+  },
+  {
+    "name": "Ngô Tiến Phát",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud",
+        "Backend"
+      ],
+      "ai_data": [
+        "Data Engineering",
+        "Computer Vision"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 5,
+      "Backend": 4,
+      "Data Engineering": 4,
+      "Computer Vision": 3,
+      "Team Leadership": 3
+    },
+    "desired_roles": [
+      "Tech Lead"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Phòng chống Thiên tai"
+    ],
+    "current_industry": "HealthTech",
+    "years_of_experience": 7,
+    "hours_per_week": 48,
+    "introduction": "Tôi dẫn dắt nhóm xây dựng hệ thống lưu trữ và xử lý hình ảnh y tế đám mây, đồng thời phát triển mô-đun phân tích ảnh siêu âm và X-quang hỗ trợ chẩn đoán sơ bộ. Gần đây, tôi mở rộng sang xử lý ảnh vệ tinh để giám sát biến đổi đất đai sau bão lũ. Tôi cam kết với nguyên tắc: công nghệ y tế phải tuân thủ quy định nghiêm ngặt và công nghệ thiên tai phải phản hồi nhanh trong điều kiện hạ tầng yếu."
+  },
+  {
+    "name": "Dương Thị Thu Hà",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "NLP"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": []
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "NLP": 3,
+      "Business Analysis": 4,
+      "UI/UX Design": 4
+    },
+    "desired_roles": [
+      "Business Analyst"
+    ],
+    "fields_of_interest": [
+      "Ngân hàng & Tài chính",
+      "Nông nghiệp"
+    ],
+    "current_industry": "FinTech",
+    "years_of_experience": 5,
+    "hours_per_week": 35,
+    "introduction": "Tôi phân tích nhu cầu và hành vi khách hàng cho các sản phẩm tài chính số dành riêng cho hộ kinh doanh cá thể và hợp tác xã nông nghiệp. Tôi kết hợp khảo sát thực địa, phân tích dữ liệu giao dịch và thiết kế giao diện thân thiện với người chưa quen dùng app ngân hàng. Tôi tin rằng tài chính số chỉ thực sự bao dung khi nó hiểu ngôn ngữ, thói quen và cả nỗi lo của người dùng."
+  },
+  {
+    "name": "Lê Hoàng Nam",
+    "skills": {
+      "engineering": [
+        "Mobile",
+        "Backend"
+      ],
+      "ai_data": [
+        "Data Analysis",
+        "Prompt Engineering"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "Backend": 4,
+      "Data Analysis": 4,
+      "Prompt Engineering": 4,
+      "Product Management": 4,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Product Owner"
+    ],
+    "fields_of_interest": [
+      "Đổi mới Sáng tạo",
+      "Năng suất Doanh nghiệp Vừa & Nhỏ"
+    ],
+    "current_industry": "Startup",
+    "years_of_experience": 6,
+    "hours_per_week": 50,
+    "introduction": "Tôi đồng sáng lập một startup cung cấp nền tảng quản lý vận hành cho tiệm sửa xe, quán ăn và cửa hàng tạp hóa. Chúng tôi kết hợp phân tích dữ liệu bán hàng, chatbot hỗ trợ chủ cửa hàng và ứng dụng di động cho nhân viên. Tôi tin rằng đổi mới sáng tạo không nhất thiết phải là thứ 'cao siêu' — mà là giải pháp đúng, đủ và sẵn sàng đi cùng doanh nghiệp nhỏ từng bước."
+  },
+  {
+    "name": "Trần Thị Mai",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Backend"
+      ],
+      "ai_data": [
+        "Data Analysis",
+        "Machine Learning"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Backend": 3,
+      "Data Analysis": 4,
+      "Machine Learning": 3,
+      "Product Management": 4,
+      "Project Management": 3
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Tech Lead"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Y tế & Sức khỏe"
+    ],
+    "current_industry": "IT",
+    "years_of_experience": 5,
+    "hours_per_week": 40,
+    "introduction": "Tôi là một kỹ sư phần mềm có kinh nghiệm phát triển ứng dụng web và phân tích dữ liệu. Tôi đặc biệt quan tâm đến việc ứng dụng công nghệ vào giáo dục và y tế để nâng cao chất lượng cuộc sống. Hiện tôi đang tìm kiếm cơ hội đảm nhận vai trò sản phẩm hoặc dẫn dắt kỹ thuật trong các dự án có tác động xã hội."
+  },
+  {
+    "name": "Lê Văn Tuấn",
+    "skills": {
+      "engineering": [
+        "Mobile",
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Data Engineering",
+        "NLP"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "DevOps/Cloud": 4,
+      "Data Engineering": 3,
+      "NLP": 2,
+      "Team Leadership": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Chính phủ Thông minh",
+      "Phòng chống Thiên tai"
+    ],
+    "current_industry": "IT",
+    "years_of_experience": 7,
+    "hours_per_week": 45,
+    "introduction": "Tôi chuyên về phát triển ứng dụng di động và xây dựng hạ tầng đám mây ổn định, mở rộng. Tôi đã tham gia nhiều dự án hỗ trợ chính quyền địa phương trong giám sát thiên tai và quản lý dữ liệu công cộng. Tôi mong muốn tiếp tục đóng góp vào các hệ thống thông minh phục vụ cộng đồng."
+  },
+  {
+    "name": "Phạm Thu Hà",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "Prompt Engineering",
+        "NLP"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Prompt Engineering": 4,
+      "NLP": 3,
+      "Business Analysis": 4,
+      "UI/UX Design": 3,
+      "Communication": 5
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Business Analyst"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 4,
+    "hours_per_week": 35,
+    "introduction": "Tôi kết hợp kỹ năng phân tích nghiệp vụ, thiết kế trải nghiệm người dùng và hiểu biết về mô hình ngôn ngữ để xây dựng giải pháp số cho nông dân. Tôi tin rằng giao diện thân thiện và AI được cá nhân hóa sẽ giúp chuyển đổi số nông nghiệp hiệu quả hơn."
+  },
+  {
+    "name": "Nguyễn Minh Đức",
+    "skills": {
+      "engineering": [
+        "Backend",
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Machine Learning",
+        "Computer Vision"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "Backend": 5,
+      "DevOps/Cloud": 4,
+      "Machine Learning": 4,
+      "Computer Vision": 3,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Năng suất Doanh nghiệp Vừa & Nhỏ"
+    ],
+    "current_industry": "HealthTech",
+    "years_of_experience": 8,
+    "hours_per_week": 40,
+    "introduction": "Tôi là kỹ sư toàn diện với nền tảng vững chắc về kiến trúc hệ thống và học máy. Tôi từng xây dựng nền tảng chẩn đoán hình ảnh y tế và hệ thống quản lý chuỗi cung ứng cho doanh nghiệp SME. Tôi hướng tới các vai trò dẫn dắt kỹ thuật hoặc AI trong lĩnh vực sức khỏe và hỗ trợ doanh nghiệp nhỏ."
+  },
+  {
+    "name": "Vũ Thị Lan",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Mobile"
+      ],
+      "ai_data": [],
+      "product": [
+        "User/Market Research"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Mobile": 3,
+      "User/Market Research": 4,
+      "UI/UX Design": 5,
+      "Communication": 4
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Designer"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Nông nghiệp"
+    ],
+    "current_industry": "EdTech",
+    "years_of_experience": 6,
+    "hours_per_week": 30,
+    "introduction": "Tôi là nhà thiết kế UX có kinh nghiệm nghiên cứu người dùng trong bối cảnh giáo dục và nông thôn. Tôi tập trung vào việc tạo ra các sản phẩm số dễ tiếp cận, phù hợp văn hóa và thực tiễn sử dụng của người dân vùng sâu vùng xa. Tôi mong muốn phát triển các giải pháp giáo dục số bền vững."
+  },
+  {
+    "name": "Hoàng Anh Kiệt",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Data Engineering",
+        "Data Analysis"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 5,
+      "Data Engineering": 4,
+      "Data Analysis": 3,
+      "Team Leadership": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Ngân hàng & Tài chính",
+      "Chính phủ Thông minh"
+    ],
+    "current_industry": "Finance",
+    "years_of_experience": 9,
+    "hours_per_week": 45,
+    "introduction": "Tôi chuyên xây dựng và vận hành hệ thống dữ liệu quy mô lớn cho ngành tài chính và dịch vụ công. Tôi tin rằng hạ tầng dữ liệu đáng tin cậy là nền tảng cho mọi quyết định thông minh. Tôi đang tìm kiếm cơ hội dẫn dắt nhóm kỹ thuật hoặc dữ liệu trong các tổ chức có sứ mệnh công ích."
+  },
+  {
+    "name": "Đặng Thị Thủy",
+    "skills": {
+      "engineering": [
+        "Backend"
+      ],
+      "ai_data": [
+        "Data Analysis",
+        "Prompt Engineering"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [],
+      "leadership": []
+    },
+    "proficiency": {
+      "Backend": 4,
+      "Data Analysis": 4,
+      "Prompt Engineering": 3,
+      "Business Analysis": 5
+    },
+    "desired_roles": [
+      "Business Analyst",
+      "Product Owner"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Giáo dục & Đào tạo"
+    ],
+    "current_industry": "HealthTech",
+    "years_of_experience": 3,
+    "hours_per_week": 35,
+    "introduction": "Tôi là chuyên viên phân tích nghiệp vụ với khả năng chuyển đổi nhu cầu lâm sàng và giáo dục thành yêu cầu kỹ thuật rõ ràng. Tôi thường xuyên làm việc với dữ liệu bệnh án và kết quả học tập để đề xuất cải tiến sản phẩm. Tôi mong muốn phát triển sâu hơn trong vai trò chủ sở hữu sản phẩm tại các startup y tế hoặc giáo dục."
+  },
+  {
+    "name": "Bùi Văn Sơn",
+    "skills": {
+      "engineering": [
+        "Mobile",
+        "Frontend"
+      ],
+      "ai_data": [],
+      "product": [
+        "User/Market Research"
+      ],
+      "design": [],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "Frontend": 3,
+      "User/Market Research": 4,
+      "Communication": 4
+    },
+    "desired_roles": [
+      "Developer",
+      "Product Owner"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Phòng chống Thiên tai"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 4,
+    "hours_per_week": 40,
+    "introduction": "Tôi phát triển ứng dụng di động cho nông dân và đội phản ứng nhanh thiên tai. Tôi thường trực tiếp khảo sát thực địa để hiểu nhu cầu thật và thiết kế giải pháp đơn giản, hiệu quả trên nền tảng thấp. Tôi mong muốn mở rộng vai trò sang quản lý sản phẩm trong các dự án nông nghiệp thông minh."
+  },
+  {
+    "name": "Lý Thị Hồng",
+    "skills": {
+      "engineering": [],
+      "ai_data": [
+        "Machine Learning",
+        "Data Analysis",
+        "NLP"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "Machine Learning": 5,
+      "Data Analysis": 5,
+      "NLP": 4,
+      "Project Management": 3
+    },
+    "desired_roles": [
+      "Data/AI",
+      "Tech Lead"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "Research",
+    "years_of_experience": 12,
+    "hours_per_week": 30,
+    "introduction": "Tôi là nhà khoa học dữ liệu với hơn một thập kỷ nghiên cứu ứng dụng học máy trong chẩn đoán sớm bệnh mãn tính và phân tích văn bản y khoa tiếng Việt. Tôi đang tìm kiếm môi trường hợp tác giữa nghiên cứu và triển khai thực tế để nhân rộng tác động của AI trong chăm sóc sức khỏe cộng đồng."
+  },
+  {
+    "name": "Ngô Quốc Bảo",
+    "skills": {
+      "engineering": [
+        "Backend",
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Data Engineering"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "Backend": 4,
+      "DevOps/Cloud": 4,
+      "Data Engineering": 4,
+      "Team Leadership": 3
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Chính phủ Thông minh",
+      "Năng suất Doanh nghiệp Vừa & Nhỏ"
+    ],
+    "current_industry": "IT",
+    "years_of_experience": 6,
+    "hours_per_week": 45,
+    "introduction": "Tôi xây dựng và duy trì các nền tảng số cho chính quyền địa phương và hệ sinh thái SME. Tôi chú trọng vào tính bảo mật, khả năng mở rộng và chi phí vận hành thấp. Tôi mong muốn dẫn dắt nhóm kỹ thuật phát triển các giải pháp số bền vững, tiết kiệm và dễ thích nghi với bối cảnh Việt Nam."
+  },
+  {
+    "name": "Tạ Minh Thư",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "Prompt Engineering"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Prompt Engineering": 4,
+      "Product Management": 4,
+      "UI/UX Design": 4,
+      "Communication": 5
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Designer"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "EdTech",
+    "years_of_experience": 5,
+    "hours_per_week": 35,
+    "introduction": "Tôi thiết kế và phát triển nền tảng học tập tương tác, tích hợp công cụ AI hỗ trợ cá nhân hóa lộ trình. Tôi tin rằng giáo dục số không chỉ là chuyển đổi công cụ mà còn là thay đổi cách tư duy và cách học. Tôi mong muốn trở thành chủ sở hữu sản phẩm cho các nền tảng giáo dục mở và sáng tạo."
+  },
+  {
+    "name": "Đinh Văn Hùng",
+    "skills": {
+      "engineering": [
+        "Mobile"
+      ],
+      "ai_data": [],
+      "product": [],
+      "design": [],
+      "leadership": []
+    },
+    "proficiency": {
+      "Mobile": 4
+    },
+    "desired_roles": [
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Y tế & Sức khỏe"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 2,
+    "hours_per_week": 40,
+    "introduction": "Tôi là lập trình viên di động trẻ, chuyên phát triển ứng dụng hỗ trợ nông dân theo dõi thời tiết, giá cả và kỹ thuật canh tác. Tôi cũng đang học hỏi để tích hợp các tính năng hỗ trợ sức khỏe cơ bản cho cộng đồng nông thôn. Tôi mong muốn làm việc trong môi trường thực tế, gắn liền với người dùng cuối."
+  },
+  {
+    "name": "Mai Thị Ngọc",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Mobile"
+      ],
+      "ai_data": [
+        "Data Analysis"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [],
+      "leadership": []
+    },
+    "proficiency": {
+      "Frontend": 3,
+      "Mobile": 3,
+      "Data Analysis": 3,
+      "Business Analysis": 4
+    },
+    "desired_roles": [
+      "Business Analyst",
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Ngân hàng & Tài chính",
+      "Giáo dục & Đào tạo"
+    ],
+    "current_industry": "Finance",
+    "years_of_experience": 3,
+    "hours_per_week": 35,
+    "introduction": "Tôi làm việc trong lĩnh vực tài chính số, nơi tôi vừa phát triển giao diện người dùng, vừa phân tích hành vi khách hàng để tối ưu sản phẩm. Tôi quan tâm đến việc áp dụng kinh nghiệm này vào lĩnh vực giáo dục tài chính cho học sinh và sinh viên — một nhu cầu cấp thiết nhưng chưa được đáp ứng đầy đủ."
+  },
+  {
+    "name": "Trương Hoàng Nam",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud",
+        "Backend"
+      ],
+      "ai_data": [
+        "Data Engineering"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 5,
+      "Backend": 4,
+      "Data Engineering": 4,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Chính phủ Thông minh",
+      "Phòng chống Thiên tai"
+    ],
+    "current_industry": "Public Sector",
+    "years_of_experience": 10,
+    "hours_per_week": 40,
+    "introduction": "Tôi xây dựng và vận hành hệ thống dữ liệu tích hợp cho các sở ban ngành và trung tâm điều hành thiên tai. Tôi am hiểu cả kỹ thuật và quy trình quản trị công. Tôi mong muốn dẫn dắt các dự án chuyển đổi số chính phủ theo hướng mở, minh bạch và lấy người dân làm trung tâm."
+  },
+  {
+    "name": "Lâm Thị Mỹ Linh",
+    "skills": {
+      "engineering": [],
+      "ai_data": [
+        "NLP",
+        "Prompt Engineering"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "NLP": 4,
+      "Prompt Engineering": 5,
+      "Product Management": 4,
+      "Communication": 5
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Y tế & Sức khỏe"
+    ],
+    "current_industry": "EdTech",
+    "years_of_experience": 4,
+    "hours_per_week": 30,
+    "introduction": "Tôi phát triển các công cụ AI hỗ trợ giảng dạy tiếng Việt và tư vấn sức khỏe sơ bộ bằng tiếng Việt. Tôi tập trung vào độ chính xác ngữ nghĩa, sự an toàn và phù hợp văn hóa. Tôi mong muốn mở rộng vai trò sản phẩm trong các hệ thống AI phục vụ cộng đồng, đặc biệt là nhóm yếu thế."
+  },
+  {
+    "name": "Dương Minh Tiến",
+    "skills": {
+      "engineering": [
+        "Backend",
+        "Mobile"
+      ],
+      "ai_data": [],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "Backend": 4,
+      "Mobile": 4,
+      "Team Leadership": 3
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Năng suất Doanh nghiệp Vừa & Nhỏ"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 5,
+    "hours_per_week": 45,
+    "introduction": "Tôi xây dựng hệ thống quản lý trang trại và nền tảng kết nối nông dân – doanh nghiệp. Tôi tin rằng công nghệ phải đơn giản, hoạt động offline và dễ học hỏi. Tôi đang tìm kiếm cơ hội dẫn dắt nhóm kỹ thuật phát triển các giải pháp số thực tiễn, có thể nhân rộng ở vùng nông thôn Việt Nam."
+  },
+  {
+    "name": "Nguyễn Thị Thu Trang",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "Data Analysis"
+      ],
+      "product": [
+        "User/Market Research"
+      ],
+      "design": [
+        "Graphic Design"
+      ],
+      "leadership": []
+    },
+    "proficiency": {
+      "Frontend": 3,
+      "Data Analysis": 3,
+      "User/Market Research": 4,
+      "Graphic Design": 4
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Designer"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "Education",
+    "years_of_experience": 3,
+    "hours_per_week": 30,
+    "introduction": "Tôi kết hợp kỹ năng thiết kế đồ họa, phân tích dữ liệu và nghiên cứu người học để xây dựng nội dung số hấp dẫn và hiệu quả. Tôi thường làm việc với giáo viên và học sinh để kiểm thử và điều chỉnh sản phẩm. Tôi mong muốn phát triển các nền tảng học tập sáng tạo, lấy người học làm trung tâm."
+  },
+  {
+    "name": "Phan Văn Quang",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud"
+      ],
+      "ai_data": [],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 5,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Project Manager"
+    ],
+    "fields_of_interest": [
+      "Chính phủ Thông minh",
+      "Ngân hàng & Tài chính"
+    ],
+    "current_industry": "IT",
+    "years_of_experience": 11,
+    "hours_per_week": 40,
+    "introduction": "Tôi là chuyên gia vận hành hệ thống số cho các ngân hàng và cơ quan nhà nước. Tôi có kinh nghiệm quản lý dự án chuyển đổi số phức tạp với yêu cầu bảo mật cao và tuân thủ pháp lý nghiêm ngặt. Tôi mong muốn dẫn dắt các chương trình số hóa mang lại hiệu quả rõ rệt cho tổ chức và người dân."
+  },
+  {
+    "name": "Hà Thị Kim Chi",
+    "skills": {
+      "engineering": [
+        "Mobile"
+      ],
+      "ai_data": [
+        "Computer Vision"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": []
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "Computer Vision": 3
+    },
+    "desired_roles": [
+      "Developer",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Nông nghiệp"
+    ],
+    "current_industry": "HealthTech",
+    "years_of_experience": 4,
+    "hours_per_week": 35,
+    "introduction": "Tôi phát triển ứng dụng di động tích hợp thị giác máy tính để hỗ trợ chẩn đoán sơ bộ bệnh da liễu và phân loại cây trồng bị sâu bệnh. Tôi tập trung vào mô hình nhẹ, chạy tốt trên thiết bị phổ thông và giải thích được kết quả cho người dùng. Tôi mong muốn mở rộng ứng dụng vào các lĩnh vực y tế và nông nghiệp cộng đồng."
+  },
+  {
+    "name": "Võ Thành Đạt",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Backend"
+      ],
+      "ai_data": [
+        "Data Analysis",
+        "Machine Learning"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Backend": 4,
+      "Data Analysis": 4,
+      "Machine Learning": 3,
+      "Product Management": 4,
+      "Team Leadership": 3
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Tech Lead"
+    ],
+    "fields_of_interest": [
+      "Đổi mới Sáng tạo",
+      "Năng suất Doanh nghiệp Vừa & Nhỏ"
+    ],
+    "current_industry": "Startup",
+    "years_of_experience": 6,
+    "hours_per_week": 45,
+    "introduction": "Tôi là nhà sáng lập kiêm CTO của một startup hỗ trợ SME số hóa quy trình bán hàng và quản trị. Tôi kết hợp kỹ năng kỹ thuật toàn diện với tư duy sản phẩm và hiểu biết thị trường. Tôi mong muốn tiếp tục xây dựng các giải pháp thực tế, tăng năng lực cạnh tranh cho doanh nghiệp Việt Nam."
+  },
+  {
+    "name": "Trần Thị Mai",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Backend"
+      ],
+      "ai_data": [
+        "Data Analysis",
+        "Machine Learning"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Backend": 3,
+      "Data Analysis": 4,
+      "Machine Learning": 3,
+      "Product Management": 4,
+      "Project Management": 3
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Tech Lead"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "IT",
+    "years_of_experience": 5,
+    "hours_per_week": 40,
+    "introduction": "Tôi là một kỹ sư phần mềm có kinh nghiệm phát triển ứng dụng web và phân tích dữ liệu. Tôi quan tâm đến việc ứng dụng công nghệ vào giáo dục để nâng cao chất lượng học tập. Luôn chủ động trong cải tiến quy trình và hợp tác đa chức năng."
+  },
+  {
+    "name": "Lê Văn Hùng",
+    "skills": {
+      "engineering": [
+        "Mobile",
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Data Engineering"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "DevOps/Cloud": 4,
+      "Data Engineering": 3,
+      "Team Leadership": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Năng suất Doanh nghiệp Vừa & Nhỏ"
+    ],
+    "current_industry": "Healthtech",
+    "years_of_experience": 7,
+    "hours_per_week": 45,
+    "introduction": "Chuyên gia phát triển ứng dụng di động và vận hành hệ thống đám mây cho các giải pháp y tế số. Tôi tin rằng công nghệ có thể làm thay đổi cách tiếp cận chăm sóc sức khỏe tại Việt Nam, đặc biệt ở khu vực nông thôn."
+  },
+  {
+    "name": "Phạm Thu Trang",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "NLP",
+        "Prompt Engineering"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "NLP": 3,
+      "Prompt Engineering": 4,
+      "Business Analysis": 3,
+      "UI/UX Design": 3,
+      "Communication": 5
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Chính phủ Thông minh"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 4,
+    "hours_per_week": 35,
+    "introduction": "Tôi kết hợp kiến thức kỹ thuật với khả năng phân tích nghiệp vụ để xây dựng sản phẩm phù hợp với người dùng cuối. Hiện đang làm việc trên nền tảng hỗ trợ nông dân ra quyết định dựa trên dữ liệu và ngôn ngữ tự nhiên."
+  },
+  {
+    "name": "Nguyễn Minh Đức",
+    "skills": {
+      "engineering": [
+        "Backend",
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Machine Learning",
+        "Computer Vision"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "Backend": 5,
+      "DevOps/Cloud": 4,
+      "Machine Learning": 4,
+      "Computer Vision": 3,
+      "Project Management": 3
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Phòng chống Thiên tai",
+      "Y tế & Sức khỏe"
+    ],
+    "current_industry": "IT",
+    "years_of_experience": 8,
+    "hours_per_week": 42,
+    "introduction": "Kỹ sư toàn diện với nền tảng vững về hệ thống backend và hạ tầng đám mây, đồng thời có kinh nghiệm áp dụng AI vào giám sát môi trường và chẩn đoán y khoa ban đầu. Mong muốn đóng góp vào các dự án có tác động xã hội rõ ràng."
+  },
+  {
+    "name": "Hoàng Thị Lan",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Mobile"
+      ],
+      "ai_data": [],
+      "product": [
+        "User/Market Research"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Mobile": 3,
+      "User/Market Research": 4,
+      "UI/UX Design": 4,
+      "Communication": 5
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Designer"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Nông nghiệp"
+    ],
+    "current_industry": "EdTech",
+    "years_of_experience": 6,
+    "hours_per_week": 38,
+    "introduction": "Tôi thiết kế và phát triển sản phẩm số lấy người học làm trung tâm. Với hơn 6 năm kinh nghiệm trong lĩnh vực giáo dục và nông nghiệp số, tôi luôn đặt câu hỏi: 'Giải pháp này thực sự giải quyết vấn đề gì cho người dùng?'"
+  },
+  {
+    "name": "Vũ Đình Tiến",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Data Engineering",
+        "Data Analysis"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 5,
+      "Data Engineering": 4,
+      "Data Analysis": 4,
+      "Team Leadership": 3
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Ngân hàng & Tài chính",
+      "Chính phủ Thông minh"
+    ],
+    "current_industry": "Finance",
+    "years_of_experience": 9,
+    "hours_per_week": 45,
+    "introduction": "Chuyên gia vận hành và xử lý dữ liệu quy mô lớn trong hệ thống tài chính. Tôi xây dựng các pipeline dữ liệu đáng tin cậy và tự động hóa hạ tầng để hỗ trợ ra quyết định nhanh chóng, minh bạch và tuân thủ."
+  },
+  {
+    "name": "Đặng Thị Hồng",
+    "skills": {
+      "engineering": [
+        "Backend"
+      ],
+      "ai_data": [
+        "Machine Learning",
+        "Data Analysis"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [],
+      "leadership": []
+    },
+    "proficiency": {
+      "Backend": 4,
+      "Machine Learning": 3,
+      "Data Analysis": 4,
+      "Product Management": 4
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Tech Lead"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "Healthtech",
+    "years_of_experience": 5,
+    "hours_per_week": 40,
+    "introduction": "Tôi là người kết nối giữa kỹ thuật và nhu cầu lâm sàng — từ thiết kế kiến trúc hệ thống đến tối ưu hóa mô hình dự báo bệnh. Mục tiêu của tôi là biến dữ liệu y tế thành hành động can thiệp kịp thời và cá nhân hóa."
+  },
+  {
+    "name": "Bùi Quốc Anh",
+    "skills": {
+      "engineering": [
+        "Mobile"
+      ],
+      "ai_data": [
+        "Prompt Engineering"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "Prompt Engineering": 4,
+      "Business Analysis": 3,
+      "Communication": 4
+    },
+    "desired_roles": [
+      "Developer",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Giáo dục & Đào tạo"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 3,
+    "hours_per_week": 35,
+    "introduction": "Tôi phát triển ứng dụng di động giúp nông dân tra cứu kỹ thuật canh tác và kết nối thị trường. Gần đây, tôi tích hợp công cụ hỗ trợ ra quyết định bằng prompt engineering để tăng tính tương tác và dễ sử dụng cho người không chuyên công nghệ."
+  },
+  {
+    "name": "Ngô Thị Thanh",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Backend",
+        "Mobile"
+      ],
+      "ai_data": [],
+      "product": [],
+      "design": [
+        "Graphic Design"
+      ],
+      "leadership": []
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Backend": 3,
+      "Mobile": 3,
+      "Graphic Design": 4
+    },
+    "desired_roles": [
+      "Developer",
+      "Designer"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Năng suất Doanh nghiệp Vừa & Nhỏ"
+    ],
+    "current_industry": "EdTech",
+    "years_of_experience": 4,
+    "hours_per_week": 40,
+    "introduction": "Tôi thiết kế và xây dựng các nền tảng học tập trực tuyến thân thiện, trực quan và hiệu quả. Kỹ năng đồ họa giúp tôi truyền tải nội dung phức tạp một cách dễ hiểu, đặc biệt với học sinh và doanh nghiệp SME."
+  },
+  {
+    "name": "Lý Văn Tuấn",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Data Engineering"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 5,
+      "Data Engineering": 4,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Chính phủ Thông minh",
+      "Phòng chống Thiên tai"
+    ],
+    "current_industry": "Public Sector",
+    "years_of_experience": 10,
+    "hours_per_week": 42,
+    "introduction": "Tôi xây dựng hạ tầng dữ liệu và dịch vụ đám mây cho các hệ thống quản lý đô thị thông minh và cảnh báo thiên tai sớm. Tin tưởng vào sức mạnh của dữ liệu mở và hạ tầng số bền vững để phục vụ cộng đồng."
+  },
+  {
+    "name": "Tạ Mỹ Linh",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "NLP",
+        "Prompt Engineering"
+      ],
+      "product": [
+        "User/Market Research"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "NLP": 3,
+      "Prompt Engineering": 4,
+      "User/Market Research": 4,
+      "UI/UX Design": 4,
+      "Communication": 5
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Giáo dục & Đào tạo"
+    ],
+    "current_industry": "Healthtech",
+    "years_of_experience": 5,
+    "hours_per_week": 38,
+    "introduction": "Tôi chuyên thiết kế giao diện và trải nghiệm người dùng cho các ứng dụng y tế và giáo dục. Gần đây, tôi tích hợp NLP để tạo chatbot hỗ trợ tư vấn sức khỏe và hướng dẫn học tập cá nhân hóa."
+  },
+  {
+    "name": "Đỗ Xuân Trường",
+    "skills": {
+      "engineering": [
+        "Backend"
+      ],
+      "ai_data": [
+        "Machine Learning",
+        "Data Analysis"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "Backend": 4,
+      "Machine Learning": 4,
+      "Data Analysis": 4,
+      "Product Management": 3,
+      "Team Leadership": 3
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Ngân hàng & Tài chính",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "Finance",
+    "years_of_experience": 6,
+    "hours_per_week": 45,
+    "introduction": "Tôi phát triển các mô hình đánh giá rủi ro tín dụng và hệ thống khuyến nghị đầu tư dựa trên dữ liệu thời gian thực. Mục tiêu là cân bằng giữa độ chính xác, tính minh bạch và khả năng giải thích cho người ra quyết định."
+  },
+  {
+    "name": "Nguyễn Thị Hương",
+    "skills": {
+      "engineering": [
+        "Mobile"
+      ],
+      "ai_data": [
+        "Data Analysis"
+      ],
+      "product": [
+        "Business Analysis"
+      ],
+      "design": [],
+      "leadership": []
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "Data Analysis": 3,
+      "Business Analysis": 4
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Nông nghiệp",
+      "Năng suất Doanh nghiệp Vừa & Nhỏ"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 4,
+    "hours_per_week": 35,
+    "introduction": "Tôi xây dựng ứng dụng di động giúp hộ kinh doanh nhỏ theo dõi chi tiêu, quản lý đơn hàng và phân tích xu hướng bán hàng. Luôn lắng nghe người dùng để điều chỉnh sản phẩm sao cho phù hợp với thực tiễn hoạt động."
+  },
+  {
+    "name": "Trịnh Văn Khánh",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud",
+        "Backend"
+      ],
+      "ai_data": [],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 5,
+      "Backend": 4,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Chính phủ Thông minh",
+      "Giáo dục & Đào tạo"
+    ],
+    "current_industry": "Public Sector",
+    "years_of_experience": 7,
+    "hours_per_week": 42,
+    "introduction": "Tôi thiết kế và duy trì các nền tảng số phục vụ quản trị trường học và quản lý hồ sơ công dân. Trọng tâm là đảm bảo tính ổn định, bảo mật và khả năng mở rộng cho hàng triệu người dùng."
+  },
+  {
+    "name": "Lâm Thị Bích",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "Prompt Engineering"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [
+        "UI/UX Design"
+      ],
+      "leadership": []
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Prompt Engineering": 3,
+      "Product Management": 3,
+      "UI/UX Design": 4
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Designer"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Đổi mới Sáng tạo"
+    ],
+    "current_industry": "EdTech",
+    "years_of_experience": 3,
+    "hours_per_week": 30,
+    "introduction": "Tôi tạo ra các giao diện học tập trực quan, dễ tiếp cận và linh hoạt cho mọi độ tuổi. Đang thử nghiệm tích hợp công cụ tạo nội dung học tập tự động dựa trên prompt engineering để hỗ trợ giáo viên soạn bài nhanh hơn."
+  },
+  {
+    "name": "Hồ Minh Quân",
+    "skills": {
+      "engineering": [
+        "Mobile",
+        "Backend"
+      ],
+      "ai_data": [
+        "Computer Vision"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Mobile": 4,
+      "Backend": 4,
+      "Computer Vision": 3,
+      "Communication": 4
+    },
+    "desired_roles": [
+      "Developer",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Phòng chống Thiên tai",
+      "Nông nghiệp"
+    ],
+    "current_industry": "AgriTech",
+    "years_of_experience": 5,
+    "hours_per_week": 40,
+    "introduction": "Tôi phát triển giải pháp giám sát cây trồng và cảnh báo thiên tai sớm bằng phân tích ảnh vệ tinh và ảnh chụp từ thiết bị di động. Tận dụng kiến thức kỹ thuật để hỗ trợ nông dân và chính quyền địa phương ra quyết định nhanh."
+  },
+  {
+    "name": "Võ Thị Thuỷ",
+    "skills": {
+      "engineering": [
+        "Frontend",
+        "Mobile"
+      ],
+      "ai_data": [
+        "Data Analysis"
+      ],
+      "product": [
+        "User/Market Research"
+      ],
+      "design": [],
+      "leadership": []
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "Mobile": 3,
+      "Data Analysis": 3,
+      "User/Market Research": 4
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Business Analyst"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Giáo dục & Đào tạo"
+    ],
+    "current_industry": "Healthtech",
+    "years_of_experience": 4,
+    "hours_per_week": 35,
+    "introduction": "Tôi nghiên cứu hành vi người dùng và phân tích dữ liệu để cải thiện hiệu quả các ứng dụng hỗ trợ sức khỏe cộng đồng và nền tảng học trực tuyến. Luôn đặt con người và bối cảnh sử dụng lên hàng đầu."
+  },
+  {
+    "name": "Dương Văn Sơn",
+    "skills": {
+      "engineering": [
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Data Engineering",
+        "Data Analysis"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Team Leadership"
+      ]
+    },
+    "proficiency": {
+      "DevOps/Cloud": 5,
+      "Data Engineering": 4,
+      "Data Analysis": 4,
+      "Team Leadership": 3
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Developer"
+    ],
+    "fields_of_interest": [
+      "Ngân hàng & Tài chính",
+      "Chính phủ Thông minh"
+    ],
+    "current_industry": "Finance",
+    "years_of_experience": 8,
+    "hours_per_week": 45,
+    "introduction": "Tôi xây dựng và quản lý hệ thống dữ liệu thời gian thực cho ngân hàng và cơ quan quản lý nhà nước. Tập trung vào tính nhất quán, độ trễ thấp và khả năng giám sát toàn bộ vòng đời dữ liệu."
+  },
+  {
+    "name": "Mai Thị Thảo",
+    "skills": {
+      "engineering": [
+        "Frontend"
+      ],
+      "ai_data": [
+        "NLP"
+      ],
+      "product": [
+        "Product Management"
+      ],
+      "design": [],
+      "leadership": [
+        "Communication"
+      ]
+    },
+    "proficiency": {
+      "Frontend": 4,
+      "NLP": 3,
+      "Product Management": 3,
+      "Communication": 5
+    },
+    "desired_roles": [
+      "Product Owner",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Giáo dục & Đào tạo",
+      "Nông nghiệp"
+    ],
+    "current_industry": "EdTech",
+    "years_of_experience": 3,
+    "hours_per_week": 30,
+    "introduction": "Tôi phát triển nền tảng học tiếng Việt cho người dân tộc thiểu số và công cụ phân tích văn bản nông nghiệp địa phương. Tin rằng ngôn ngữ là chìa khóa để thu hẹp khoảng cách số và nâng cao năng lực cộng đồng."
+  },
+  {
+    "name": "Tô Văn Hải",
+    "skills": {
+      "engineering": [
+        "Backend",
+        "DevOps/Cloud"
+      ],
+      "ai_data": [
+        "Machine Learning",
+        "Data Analysis"
+      ],
+      "product": [],
+      "design": [],
+      "leadership": [
+        "Project Management"
+      ]
+    },
+    "proficiency": {
+      "Backend": 4,
+      "DevOps/Cloud": 4,
+      "Machine Learning": 3,
+      "Data Analysis": 4,
+      "Project Management": 4
+    },
+    "desired_roles": [
+      "Tech Lead",
+      "Data/AI"
+    ],
+    "fields_of_interest": [
+      "Y tế & Sức khỏe",
+      "Phòng chống Thiên tai"
+    ],
+    "current_industry": "IT",
+    "years_of_experience": 6,
+    "hours_per_week": 42,
+    "introduction": "Tôi tích hợp hệ thống backend, hạ tầng đám mây và mô hình phân tích dữ liệu để xây dựng nền tảng giám sát sức khỏe cộng đồng và dự báo rủi ro thiên tai. Luôn hướng tới giải pháp có thể triển khai thực tế ở vùng khó khăn."
+  }
+]
