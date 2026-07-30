@@ -15,7 +15,21 @@ def extract_latent_skills(member):
     Parse latent skills from member introduction and proficiency dictionary.
     """
     intro = member.get("introduction", "")
-    proficiency = member.get("proficiency", {}) or {}
+    proficiency = dict(member.get("proficiency", {}) or {})
+
+    # The React team editor serializes skills as "Python:3, React:4".
+    # Accept that API shape alongside the structured proficiency object.
+    serialized_skills = member.get("skills", "")
+    if isinstance(serialized_skills, str):
+        for entry in serialized_skills.split(","):
+            skill, separator, level = entry.strip().partition(":")
+            if not skill:
+                continue
+            try:
+                proficiency[skill] = max(proficiency.get(skill, 0), int(level.strip()) if separator else 1)
+            except ValueError:
+                proficiency[skill] = max(proficiency.get(skill, 0), 1)
+
     latent_skills = dict(proficiency)
 
     # Keywords heuristic parsing for latent skills
@@ -72,6 +86,32 @@ def calculate_mcda_score(team_members, topic):
     req_text = f"{topic.get('tech_stack', '')} {topic.get('requirements', '')} {topic.get('description', '')}".lower()
     topic_cat = topic.get("category", "").lower()
 
+    # Learning Cost Mapping (hours)
+    learning_costs = {
+        "python": 30, "react": 40, "pytorch": 50, "docker": 15, "sql": 20, "rag": 35, 
+        "fastapi": 25, "nlp": 45, "computer vision": 45, "node": 30, "flutter": 45, 
+        "java": 40, "spark": 50, "pandas": 20, "redis": 10, "postgresql": 20, "mongodb": 15, 
+        "typescript": 25, "tailwind": 10, "vue": 30, "firebase": 15, "tensorflow": 50, 
+        "keras": 20, "scikit-learn": 25, "langchain": 30, "streamlit": 15, 
+        "html/css": 20, "javascript": 30, "c++": 50, "ros": 60, "matlab": 30, 
+        "opencv": 35, "yolo": 25, "bert": 40, "gpt": 20, "llm": 40, "api": 15, 
+        "aws": 40, "gcp": 40, "azure": 40, "linux": 25, "git": 10
+    }
+    
+    # Criticality Heuristic based on domain
+    is_ai = "ai" in topic_cat or "machine learning" in topic_cat or "data" in topic_cat
+    is_web = "web" in topic_cat or "phần mềm" in topic_cat or "app" in topic_cat
+    
+    def get_criticality(tech):
+        tech_lower = tech.lower()
+        if is_ai and tech_lower in ["python", "pytorch", "tensorflow", "rag", "llm", "nlp", "computer vision", "pandas", "opencv", "yolo"]:
+            return "Critical"
+        if is_web and tech_lower in ["react", "node", "java", "sql", "postgresql", "javascript", "typescript", "fastapi"]:
+            return "Critical"
+        if tech_lower in ["git", "docker", "linux", "html/css", "tailwind", "redis"]:
+            return "Minor"
+        return "Major"
+
     # C1: Skill Compatibility (35%)
     common_techs = ["python", "react", "pytorch", "docker", "sql", "rag", "fastapi", "nlp", "computer vision", 
                     "node", "flutter", "java", "spark", "pandas", "redis", "postgresql", "mongodb", "typescript", 
@@ -101,7 +141,11 @@ def calculate_mcda_score(team_members, topic):
                 matched_techs.append({"tech": tech, "level": user_lvl})
                 skill_sum += 0.4
             else:
-                missing_techs.append(tech)
+                missing_techs.append({
+                    "tech": tech,
+                    "criticality": get_criticality(tech),
+                    "cost_hours": learning_costs.get(tech, 20)
+                })
 
     c1_skill_score = (skill_sum / tech_count * 100) if tech_count > 0 else 65.0
     c1_skill_score = min(100.0, c1_skill_score)
@@ -128,17 +172,35 @@ def calculate_mcda_score(team_members, topic):
                 c2_domain_score = 95.0
                 break
 
-    # C3: Adaptability (20%)
-    c3_adaptability = max(100.0 - (len(missing_techs) * 15.0), 20.0)
+    # Total Learning Hours & C3 Adaptability (20%)
+    total_learning_hours = sum([m.get("cost_hours", 20) for m in missing_techs])
+    c3_adaptability = max(100.0 - (total_learning_hours * 0.5), 20.0)
 
-    # C4: Resource & Risk (20%)
-    c4_risk_score = 85.0
+    # C4: Resource & Risk Matrix (20%)
     max_team_limit = int(topic.get("max_team", 5))
     team_size_penalty = 0
-
     if len(team_members) > max_team_limit:
         team_size_penalty = -20
-        c4_risk_score -= 30.0
+
+    critical_missing = sum(1 for m in missing_techs if m.get("criticality") == "Critical")
+    skill_risk = "High" if critical_missing > 0 else ("Medium" if len(missing_techs) > 0 else "Low")
+    time_risk = "High" if total_learning_hours > (total_hours * 4) else ("Medium" if total_learning_hours > (total_hours * 2) else "Low")
+    team_risk = "High" if team_size_penalty < 0 else "Low"
+    domain_risk = "High" if domain_mismatch else "Low"
+    
+    risk_matrix = {
+        "skill_risk": skill_risk,
+        "time_risk": time_risk,
+        "team_risk": team_risk,
+        "domain_risk": domain_risk,
+        "total_learning_hours": total_learning_hours,
+        "critical_missing_count": critical_missing
+    }
+    
+    # Calculate synthetic c4_risk_score for legacy scoring formula
+    risk_deductions = {"High": 20, "Medium": 10, "Low": 0}
+    c4_risk_score = 100.0 - risk_deductions[skill_risk] - risk_deductions[time_risk] - risk_deductions[domain_risk]
+    c4_risk_score = max(20.0, c4_risk_score)
 
     # Total Score
     total_score = round(
@@ -154,7 +216,7 @@ def calculate_mcda_score(team_members, topic):
     if total_score >= 75 and not domain_mismatch:
         fit_state = "PERFECT_FIT"
         verdict_label = "Perfect / High Fit"
-    elif total_score >= 50 and len(missing_techs) <= 3:
+    elif total_score >= 50 and len(missing_techs) <= 4:
         fit_state = "ABLE_TO_LEARN"
         verdict_label = "Able to Learn (Conditionally Feasible)"
     else:
@@ -166,7 +228,10 @@ def calculate_mcda_score(team_members, topic):
     if matched_techs:
         explanation.append(f"Nhóm đáp ứng {len(matched_techs)} kỹ năng yêu cầu: {', '.join([m['tech'] for m in matched_techs[:4]])}.")
     if missing_techs:
-        explanation.append(f"Còn thiếu {len(missing_techs)} kỹ năng: {', '.join(missing_techs[:4])}. Ước tính cần {len(missing_techs)*3}-{len(missing_techs)*5} ngày tự học.")
+        missing_names = [m['tech'] for m in missing_techs]
+        explanation.append(f"Còn thiếu {len(missing_techs)} kỹ năng: {', '.join(missing_names[:4])}. Ước tính cần {total_learning_hours} giờ tự học.")
+        if critical_missing > 0:
+            explanation.append(f"CẢNH BÁO: Thiếu {critical_missing} kỹ năng cốt lõi (Critical) ảnh hưởng trực tiếp đến khả năng thành công của dự án.")
     if domain_mismatch:
         explanation.append("Cảnh báo lệch Domain: Chuyên môn của nhóm khác với lĩnh vực cốt lõi của đề tài này.")
     if team_size_penalty:
@@ -182,6 +247,7 @@ def calculate_mcda_score(team_members, topic):
         "verdictLabel": verdict_label,
         "matchedTechs": matched_techs,
         "missingTechs": missing_techs,
+        "riskMatrix": risk_matrix,
         "domainMismatch": domain_mismatch,
         "explanation": explanation
     }

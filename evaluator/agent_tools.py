@@ -145,3 +145,75 @@ def generate_topic_deep_quiz_tool(topic_code, topic_title="", missing_skills=Non
         })
 
     return {"status": "success", "topic_code": topic_code, "questions": questions}
+
+@AgentToolRegistry.register(
+    name="verify_declared_skills",
+    description="Xác minh trình độ thực tế của các kỹ năng được khai báo bằng các câu hỏi trắc nghiệm chuyên môn.",
+    parameters={
+        "type": "object",
+        "properties": {
+            "declared_skills": {
+                "type": "array", 
+                "items": {"type": "string"},
+                "description": "Danh sách các kỹ năng nhóm tự khai báo (VD: ['Docker', 'Python'])"
+            }
+        },
+        "required": ["declared_skills"]
+    }
+)
+def verify_declared_skills_tool(declared_skills):
+    question_bank = {
+        "docker": {
+            "question": "Bạn đã từng thực hiện thao tác nào với Docker?",
+            "options": ["Chưa từng dùng", "Pull và run image có sẵn", "Tự viết Dockerfile cơ bản", "Dùng Docker Compose chạy multi-container", "Triển khai Kubernetes/Swarm"],
+            "levels": [0, 1, 2, 3, 4]
+        },
+        "python": {
+            "question": "Kinh nghiệm Python của bạn ở mức nào?",
+            "options": ["Chưa biết", "Viết script cơ bản, cú pháp for/if", "Sử dụng OOP, Pandas/Numpy", "Viết API (FastAPI/Django/Flask)", "Tối ưu hóa performance, AsyncIO"],
+            "levels": [0, 1, 2, 3, 4]
+        },
+        "react": {
+            "question": "Bạn thường dùng React như thế nào?",
+            "options": ["Chưa từng dùng", "Chỉnh sửa template có sẵn", "Tạo component đơn giản, dùng useState", "Quản lý state phức tạp (Redux/Context), Hooks custom", "Tối ưu render, Next.js SSR"],
+            "levels": [0, 1, 2, 3, 4]
+        },
+        "machine learning": {
+            "question": "Bạn đã làm gì với Machine Learning?",
+            "options": ["Chỉ nghe nói", "Dùng thư viện scikit-learn cơ bản", "Huấn luyện model Deep Learning (PyTorch/TF)", "Tự tinh chỉnh kiến trúc model, Transfer Learning", "Triển khai model lên production (MLOps)"],
+            "levels": [0, 1, 2, 3, 4]
+        },
+        "default": {
+            "question": "Bạn đã ứng dụng công nghệ này vào dự án thực tế nào chưa?",
+            "options": ["Chỉ mới nghe tên", "Đã học qua tutorial", "Làm bài tập lớn trên lớp", "Làm dự án cá nhân hoàn chỉnh", "Sử dụng trong dự án công ty/production"],
+            "levels": [0, 1, 2, 3, 4]
+        }
+    }
+    
+    quizzes = []
+    for skill in declared_skills:
+        skill_lower = skill.lower().strip()
+        matched = False
+        for key, qdata in question_bank.items():
+            if key != "default" and key in skill_lower:
+                quizzes.append({
+                    "skill": skill,
+                    "question": qdata["question"],
+                    "options": qdata["options"]
+                })
+                matched = True
+                break
+        
+        if not matched:
+            qdata = question_bank["default"]
+            quizzes.append({
+                "skill": skill,
+                "question": qdata["question"].replace("công nghệ này", skill),
+                "options": qdata["options"]
+            })
+            
+    return {
+        "status": "success",
+        "verification_quizzes": quizzes
+    }
+

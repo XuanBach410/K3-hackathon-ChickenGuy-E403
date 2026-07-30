@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Users, Library, Zap, Key, Plus, X, ArrowLeft, ArrowRight, ShieldAlert, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Users, Library, Zap, Key, Plus, X, ArrowLeft, ArrowRight, ShieldAlert, CheckCircle, AlertTriangle, Sliders, ShieldCheck } from 'lucide-react';
 import ApiKeyModal from './components/ApiKeyModal';
 import DeepEvalQuiz from './components/DeepEvalQuiz';
 import RoadmapView from './components/RoadmapView';
+import RiskMatrixCard from './components/RiskMatrixCard';
+import WhatIfSimulatorModal from './components/WhatIfSimulatorModal';
+import SkillVerifierModal from './components/SkillVerifierModal';
 
 const API_BASE = 'http://localhost:8000/api';
 
@@ -14,8 +17,12 @@ export default function App() {
   const [selectedCodes, setSelectedCodes] = useState(new Set());
   const [matchingResults, setMatchingResults] = useState([]);
   
-  // API Key State
+  // Modals & Agent Tools State
   const [isApiKeyModalOpen, setIsApiKeyModalOpen] = useState(false);
+  const [isVerifierModalOpen, setIsVerifierModalOpen] = useState(false);
+  const [isWhatIfModalOpen, setIsWhatIfModalOpen] = useState(false);
+  const [whatIfTopic, setWhatIfTopic] = useState(null);
+
   const [provider, setProvider] = useState(localStorage.getItem('matchskill_provider') || 'gemini');
   const [apiKey, setApiKey] = useState(localStorage.getItem('matchskill_api_key') || '');
 
@@ -269,7 +276,15 @@ export default function App() {
               ))}
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '24px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '24px' }}>
+              <button
+                onClick={() => setIsVerifierModalOpen(true)}
+                disabled={teamMembers.length === 0}
+                style={{ padding: '10px 16px', background: 'var(--surface-secondary)', border: '1px solid var(--border-color)', borderRadius: '4px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', opacity: teamMembers.length === 0 ? 0.5 : 1 }}
+              >
+                <ShieldCheck size={16} color="var(--success)" /> Kích Hoạt Skill Verifier Agent Tool
+              </button>
+
               <button
                 onClick={() => setStep(2)}
                 disabled={teamMembers.length === 0}
@@ -368,25 +383,27 @@ export default function App() {
 
                 <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '12px' }}>{r.description}</p>
 
-                <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', flexWrap: 'wrap' }}>
-                  {r.matchedTechs?.map((m, i) => (
-                    <span key={i} style={{ background: 'var(--success-bg)', color: 'var(--success)', border: '1px solid #BBF0C8', padding: '2px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 600 }}>
-                      ✓ {m.tech} (Lvl {m.level})
-                    </span>
-                  ))}
-                  {r.missingTechs?.map((m, i) => (
-                    <span key={i} style={{ background: 'var(--danger-bg)', color: 'var(--signal-red)', border: '1px solid #FCA5A5', padding: '2px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 600 }}>
-                      ⚠ Thiếu {m}
-                    </span>
-                  ))}
-                </div>
+                {/* Risk Matrix Card */}
+                <RiskMatrixCard riskMatrix={r.riskMatrix} missingTechs={r.missingTechs} />
 
-                <button
-                  onClick={() => handleOpenDeepEval(r.code)}
-                  style={{ padding: '10px 16px', background: 'var(--deep-blue)', color: '#FFF', border: 'none', borderRadius: '4px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}
-                >
-                  <ShieldAlert size={16} /> Xem Đánh Giá Sâu & Lộ Trình Cho Đề Tài Này
-                </button>
+                <div style={{ display: 'flex', gap: '10px', marginTop: '16px' }}>
+                  <button
+                    onClick={() => handleOpenDeepEval(r.code)}
+                    style={{ flex: 1, padding: '10px 16px', background: 'var(--deep-blue)', color: '#FFF', border: 'none', borderRadius: '4px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
+                  >
+                    <ShieldAlert size={16} /> Xem Đánh Giá Sâu & Lộ Trình
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setWhatIfTopic(r);
+                      setIsWhatIfModalOpen(true);
+                    }}
+                    style={{ padding: '10px 16px', background: '#F8FAFC', border: '1px solid #CBD5E1', color: '#1E293B', borderRadius: '4px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}
+                  >
+                    <Sliders size={16} color="var(--signal-red)" /> Mô Phỏng What-If
+                  </button>
+                </div>
               </div>
             ))}
 
@@ -408,6 +425,24 @@ export default function App() {
           </div>
         )}
       </div>
+
+      {/* AGENT TOOL MODALS */}
+      <SkillVerifierModal
+        isOpen={isVerifierModalOpen}
+        onClose={() => setIsVerifierModalOpen(false)}
+        teamMembers={teamMembers}
+        apiBase={API_BASE}
+      />
+
+      <WhatIfSimulatorModal
+        isOpen={isWhatIfModalOpen}
+        onClose={() => setIsWhatIfModalOpen(false)}
+        topicCode={whatIfTopic?.code}
+        topicTitle={whatIfTopic?.title}
+        missingTechs={whatIfTopic?.missingTechs}
+        teamMembers={teamMembers}
+        apiBase={API_BASE}
+      />
     </div>
   );
 }
