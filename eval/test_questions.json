@@ -1,0 +1,107 @@
+[
+  {
+    "id": 1,
+    "input": "Chọn đoạn mô tả có từ 'học sâu' và hỏi 'liên quan đến reinforcement learning không?'.",
+    "expected_response": "Đoạn được chọn đề cập 'học sâu' nhưng không nói về 'reinforcement learning' (không suy đoán thêm)."
+  },
+  {
+    "id": 2,
+    "input": "Nhập một profile nhóm nói "Tôi làm Frontend với React" và hỏi liệu họ đã có skill PyTorch chưa.",
+    "expected_response": "Phải trả về: 'Không có bằng chứng PyTorch trong profile' (không phóng đoán)."
+  },
+  {
+    "id": 3,
+    "input": "Đưa mô tả đề tài không có từ 'Docker' rồi hỏi 'Đề tài này cần Docker không?'.",
+    "expected_response": "Phải trả về: 'Tài liệu đề tài không nêu Docker; nếu cần, hệ thống sẽ ghi là 'toLearn' chứ không tự thêm yêu cầu'."
+  },
+  {
+    "id": 4,
+    "input": "Gửi profile nhóm có hours_per_week thấp (5h/người) và hỏi 'có thể hoàn thành trong 6 tuần không?'.",
+    "expected_response": "Phải trả về: đánh giá dựa trên MCDA + rõ ràng nêu năng lực 2 tuần/6 tuần và kết luận ABLE_TO_LEARN hoặc NOT_ABLE_TO_LEARN dựa trên giờ cam kết (có số giờ)."
+  },
+  {
+    "id": 5,
+    "input": "Gửi đề tài Robotics nhưng profile nhóm chỉ có Web skills.",
+    "expected_response": "Phải trả về: phát hiện Domain Mismatch và nêu 'domain_risk': 'High' cùng lý do (không suy đoán về năng lực)."
+  },
+  {
+    "id": 6,
+    "input": "Gửi Deep Quiz answers lộn xộn (empty) và yêu cầu final evaluation.",
+    "expected_response": "Phải trả về: fallback rule-based evaluation với transparentJustification dựa trên MCDA, không được hallucinate thông tin mới."
+  },
+  {
+    "id": 7,
+    "input": "Gửi target_skill='PyTorch' cho topic không có liên quan tới ML trong What-If API.",
+    "expected_response": "Phải trả về note rõ ràng: 'Skill not relevant to topic; no score change'."
+  },
+  {
+    "id": 8,
+    "input": "Đưa vào một kỹ năng khai báo 'Docker' trong declared_skills và gọi Skill Verifier.",
+    "expected_response": "Phải trả về bộ câu hỏi trắc nghiệm cho 'Docker' (từ question bank), không tự động chấm điểm."
+  },
+  {
+    "id": 9,
+    "input": "Gửi topic với max_team=2 nhưng team gồm 4 người.",
+    "expected_response": "Phải trả về team_risk='High' và fitState='OVER_CAPACITY' hoặc tương ứng, có explanation nêu vượt giới hạn."
+  },
+  {
+    "id": 10,
+    "input": "Yêu cầu LLM trả JSON final nhưng giả lập model trả chuỗi text không JSON.",
+    "expected_response": "Hệ thống phải fallback: dùng ensure_evidence_contract để trả evaluation chuẩn, không propagate raw hallucinated text."
+  },
+  {
+    "id": 11,
+    "input": "Đưa vào đoạn giới thiệu có từ 'RAG' và 'Qdrant'.",
+    "expected_response": "Phải trích xuất latent skill 'RAG' hoặc 'qdrant' trong base_mcda/matchedTechs (evidence-driven)."
+  },
+  {
+    "id": 12,
+    "input": "Gửi profile có 'skills' serialized as 'Python:3, React:4'.",
+    "expected_response": "MCDA phải parse và ghi nhận Python và React với levels 3 và 4 (không bỏ qua)."
+  },
+  {
+    "id": 13,
+    "input": "Đưa topic có yêu cầu 'RAG với Qdrant' và team có RAG nhưng không có Qdrant.",
+    "expected_response": "Phải báo missingTechs bao gồm 'qdrant' (với criticality nếu phù hợp) và ước tính cost_hours."
+  },
+  {
+    "id": 14,
+    "input": "Gửi yêu cầu evaluate/preliminary với selected_codes empty (multi-select none).",
+    "expected_response": "API trả list toàn bộ topics với trường base_mcda cho mỗi đề tài (deterministic contract)."
+  },
+  {
+    "id": 15,
+    "input": "Gửi profile có text 'I've deployed at scale using Kubernetes' nhưng không có proficiency field.",
+    "expected_response": "extract_latent_skills phải thêm 'kubernetes' hoặc 'devops/cloud' vào latent skills (evidence), không đoán level > 3."
+  },
+  {
+    "id": 16,
+    "input": "Đưa vào câu hỏi yêu cầu LLM chứng minh bằng số giờ học cho mỗi kỹ năng thiếu.",
+    "expected_response": "LLM (hoặc fallback) phải nêu số giờ từ Learning Cost Estimator trong transparentJustification."
+  },
+  {
+    "id": 17,
+    "input": "Gửi một profile có fields_of_interest 'Giáo dục & Đào tạo' và topic category 'AI Giáo dục'.",
+    "expected_response": "Domain match được phát hiện, c2_domain_score cao (evidence in scoreBreakdown)."
+  },
+  {
+    "id": 18,
+    "input": "Yêu cầu evaluate/final với missing topic_code (empty).",
+    "expected_response": "API trả 400 với error.code='missing_topic_code'."
+  },
+  {
+    "id": 19,
+    "input": "Gửi trang thái LLM trả JSON thiếu weeklyRoadmap.",
+    "expected_response": "ensure_evidence_contract phải thêm weeklyRoadmap: [] và vẫn cung cấp requiredSkillSummary và evidenceSnapshot."
+  },
+  {
+    "id": 20,
+    "input": "Gửi team có một member with years_of_experience huge (e.g., 20) and others junior; ask for feasibility.",
+    "expected_response": "MCDA phải include maxExperienceYears in evidence and reflect higher feasibility contribution in scoreBreakdown (no overclaim)."
+  },
+  {
+    "id": 21,
+    "input": "Provide an input where topic tech_stack includes 'Next.js' spelled 'next js' (space variant).",
+    "expected_response": "Taxonomy aliasing must match 'next.js' and treat it as requiredTech, not miss it."
+  }
+]

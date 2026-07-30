@@ -2,7 +2,66 @@ import json
 import os
 import re
 
-TAXONOMY_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "skill_taxonomy.json")
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TAXONOMY_PATH = os.path.join(BASE_DIR, "skill_taxonomy.json")
+
+LEARNING_COSTS = {
+    "python": 30, "react": 40, "pytorch": 50, "docker": 15, "sql": 20, "rag": 35,
+    "fastapi": 25, "nlp": 45, "computer vision": 45, "nodejs": 30, "flutter": 45,
+    "java": 40, "spark": 50, "pandas": 20, "redis": 10, "postgresql": 20, "mongodb": 15,
+    "typescript": 25, "tailwind": 10, "vue": 30, "firebase": 15, "tensorflow": 50,
+    "keras": 20, "scikit-learn": 25, "langchain": 30, "streamlit": 15,
+    "html/css": 20, "javascript": 30, "c++": 50, "ros": 60, "matlab": 30,
+    "opencv": 35, "yolo": 25, "bert": 40, "gpt": 20, "llm": 40, "rest api": 15,
+    "aws": 40, "gcp": 40, "azure": 40, "linux": 25, "git": 10, "qdrant": 20,
+    "pgvector": 20, "langgraph": 30, "kubernetes": 45, "celery": 20, "whisper": 25,
+    "ragas": 20, "next.js": 30, "django": 30, "kafka": 35, "kotlin": 40,
+    "frontend": 25, "backend": 30, "mobile": 40, "devops/cloud": 40,
+    "data analysis": 25, "machine learning": 45, "deep learning": 50,
+    "product management": 20, "project management": 20, "ui/ux design": 25,
+    "prompt engineering": 15,
+}
+
+TRACKED_TECHS = tuple(LEARNING_COSTS)
+
+TECH_ALIASES = {
+    "nodejs": ["nodejs", "node.js", "node js"],
+    "next.js": ["next.js", "nextjs", "next js"],
+    "rest api": ["rest api", "restful api"],
+    "postgresql": ["postgresql", "postgres"],
+    "scikit-learn": ["scikit-learn", "sklearn"],
+    "computer vision": ["computer vision", "thị giác máy tính"],
+    "machine learning": ["machine learning", "học máy"],
+    "html/css": ["html/css", "html css"],
+    "c++": ["c++", "cpp"],
+}
+
+DOMAIN_SIGNALS = {
+    "education": ["giáo dục", "đào tạo", "học tập", "sinh viên", "giảng viên", "education", "learning"],
+    "health": ["y tế", "sức khỏe", "health", "medical", "clinical"],
+    "agriculture": ["nông nghiệp", "agriculture", "farm"],
+    "government": ["chính phủ", "hành chính", "public sector", "government"],
+    "finance": ["tài chính", "ngân hàng", "finance", "banking"],
+    "robotics": ["robot", "ros", "xe tự hành", "robotics"],
+}
+
+
+def normalize_skill_name(value):
+    return re.sub(r"\s+", " ", str(value).strip().lower())
+
+
+def text_contains_term(text, term):
+    aliases = TECH_ALIASES.get(term, [term])
+    return any(re.search(rf"(?<!\w){re.escape(alias)}(?!\w)", text) for alias in aliases)
+
+
+def extract_domain_tags(text):
+    normalized = normalize_skill_name(text)
+    return {
+        domain
+        for domain, signals in DOMAIN_SIGNALS.items()
+        if any(signal in normalized for signal in signals)
+    }
 
 def get_taxonomy():
     if os.path.exists(TAXONOMY_PATH):
@@ -62,7 +121,10 @@ def calculate_mcda_score(team_members, topic):
     C3: Learning Curve & Adaptability (20%)
     C4: Resource & Execution Risk (20%)
     """
-    taxonomy = get_taxonomy()
+    taxonomy = {
+        normalize_skill_name(category): {normalize_skill_name(skill) for skill in skills}
+        for category, skills in get_taxonomy().items()
+    }
 
     # Aggregate Team Skills
     team_skill_map = {}
@@ -70,84 +132,80 @@ def calculate_mcda_score(team_members, topic):
     total_hours = 0
     max_exp = 0
 
-    for m in team_members:
-        skills = extract_latent_skills(m)
-        total_hours += m.get("hours_per_week", 20)
-        max_exp = max(max_exp, m.get("years_of_experience", 1))
-        
-        for d in m.get("fields_of_interest", []):
-            team_domains.add(d.lower())
+    for member in team_members:
+        skills = extract_latent_skills(member)
+        try:
+            total_hours += max(0, int(member.get("hours_per_week", 20)))
+            max_exp = max(max_exp, max(0, int(member.get("years_of_experience", 1))))
+        except (TypeError, ValueError):
+            total_hours += 20
 
-        for sk, lvl in skills.items():
-            sk_key = sk.lower()
-            team_skill_map[sk_key] = Math_max = max(team_skill_map.get(sk_key, 0), int(lvl))
+        member_domain_text = " ".join([
+            *member.get("fields_of_interest", []),
+            str(member.get("current_industry", "")),
+            str(member.get("introduction", "")),
+        ])
+        team_domains.update(extract_domain_tags(member_domain_text))
+
+        for skill, level in skills.items():
+            skill_key = normalize_skill_name(skill)
+            try:
+                normalized_level = max(0, min(5, int(level)))
+            except (TypeError, ValueError):
+                normalized_level = 1
+            team_skill_map[skill_key] = max(team_skill_map.get(skill_key, 0), normalized_level)
 
     # Topic Requirements Text
-    req_text = f"{topic.get('tech_stack', '')} {topic.get('requirements', '')} {topic.get('description', '')}".lower()
-    topic_cat = topic.get("category", "").lower()
-
-    # Learning Cost Mapping (hours)
-    learning_costs = {
-        "python": 30, "react": 40, "pytorch": 50, "docker": 15, "sql": 20, "rag": 35, 
-        "fastapi": 25, "nlp": 45, "computer vision": 45, "node": 30, "flutter": 45, 
-        "java": 40, "spark": 50, "pandas": 20, "redis": 10, "postgresql": 20, "mongodb": 15, 
-        "typescript": 25, "tailwind": 10, "vue": 30, "firebase": 15, "tensorflow": 50, 
-        "keras": 20, "scikit-learn": 25, "langchain": 30, "streamlit": 15, 
-        "html/css": 20, "javascript": 30, "c++": 50, "ros": 60, "matlab": 30, 
-        "opencv": 35, "yolo": 25, "bert": 40, "gpt": 20, "llm": 40, "api": 15, 
-        "aws": 40, "gcp": 40, "azure": 40, "linux": 25, "git": 10
-    }
+    req_text = normalize_skill_name(
+        f"{topic.get('tech_stack', '')} {topic.get('requirements', '')} {topic.get('description', '')}"
+    )
+    topic_cat = normalize_skill_name(topic.get("category", ""))
+    topic_domains = extract_domain_tags(f"{topic_cat} {req_text}")
     
     # Criticality Heuristic based on domain
     is_ai = "ai" in topic_cat or "machine learning" in topic_cat or "data" in topic_cat
     is_web = "web" in topic_cat or "phần mềm" in topic_cat or "app" in topic_cat
     
     def get_criticality(tech):
-        tech_lower = tech.lower()
-        if is_ai and tech_lower in ["python", "pytorch", "tensorflow", "rag", "llm", "nlp", "computer vision", "pandas", "opencv", "yolo"]:
+        if is_ai and tech in ["python", "pytorch", "tensorflow", "rag", "llm", "nlp", "computer vision", "pandas", "opencv", "yolo", "qdrant", "pgvector", "langgraph"]:
             return "Critical"
-        if is_web and tech_lower in ["react", "node", "java", "sql", "postgresql", "javascript", "typescript", "fastapi"]:
+        if is_web and tech in ["react", "next.js", "nodejs", "java", "sql", "postgresql", "javascript", "typescript", "fastapi", "django"]:
             return "Critical"
-        if tech_lower in ["git", "docker", "linux", "html/css", "tailwind", "redis"]:
+        if tech in ["git", "docker", "linux", "html/css", "tailwind", "redis"]:
             return "Minor"
         return "Major"
 
     # C1: Skill Compatibility (35%)
-    common_techs = ["python", "react", "pytorch", "docker", "sql", "rag", "fastapi", "nlp", "computer vision", 
-                    "node", "flutter", "java", "spark", "pandas", "redis", "postgresql", "mongodb", "typescript", 
-                    "tailwind", "vue", "firebase", "tensorflow", "keras", "scikit-learn", "langchain", "streamlit", 
-                    "html/css", "javascript", "c++", "ros", "matlab", "opencv", "yolo", "bert", "gpt", "llm", "api", 
-                    "aws", "gcp", "azure", "linux", "git", "frontend", "backend", "mobile", "devops/cloud", 
-                    "data analysis", "machine learning", "product management", "project management", "ui/ux design"]
-
     matched_techs = []
     missing_techs = []
     skill_sum = 0
-    tech_count = 0
+    required_techs = [tech for tech in TRACKED_TECHS if text_contains_term(req_text, tech)]
 
-    for tech in common_techs:
-        if tech in req_text:
-            tech_count += 1
-            user_lvl = 0
-            # Check direct or taxonomy match
-            for t_sk, t_lvl in team_skill_map.items():
-                if t_sk == tech or (t_sk in taxonomy and tech in taxonomy[t_sk]):
-                    user_lvl = max(user_lvl, t_lvl)
-            
+    for tech in required_techs:
+        user_lvl = 0
+        evidence_skill = None
+        for team_skill, team_level in team_skill_map.items():
+            is_direct_match = team_skill == tech or text_contains_term(team_skill, tech)
+            is_taxonomy_match = team_skill in taxonomy and tech in taxonomy[team_skill]
+            if (is_direct_match or is_taxonomy_match) and team_level > user_lvl:
+                user_lvl = team_level
+                evidence_skill = team_skill
+
+        if user_lvl > 0:
             if user_lvl >= 3:
-                matched_techs.append({"tech": tech, "level": user_lvl})
+                matched_techs.append({"tech": tech, "level": user_lvl, "evidence_skill": evidence_skill})
                 skill_sum += min(user_lvl / 5.0, 1.0)
-            elif user_lvl > 0:
-                matched_techs.append({"tech": tech, "level": user_lvl})
-                skill_sum += 0.4
             else:
-                missing_techs.append({
-                    "tech": tech,
-                    "criticality": get_criticality(tech),
-                    "cost_hours": learning_costs.get(tech, 20)
-                })
+                matched_techs.append({"tech": tech, "level": user_lvl, "evidence_skill": evidence_skill})
+                skill_sum += 0.4
+        else:
+            missing_techs.append({
+                "tech": tech,
+                "criticality": get_criticality(tech),
+                "cost_hours": LEARNING_COSTS[tech],
+            })
 
-    c1_skill_score = (skill_sum / tech_count * 100) if tech_count > 0 else 65.0
+    c1_skill_score = (skill_sum / len(required_techs) * 100) if required_techs else 65.0
     c1_skill_score = min(100.0, c1_skill_score)
 
     # C2: Domain Fit (25%)
@@ -155,9 +213,9 @@ def calculate_mcda_score(team_members, topic):
     domain_mismatch = False
 
     # Mismatch Detection (e.g. Web/NLP team choosing Robotics)
-    is_robotics_topic = "robot" in req_text or "ros" in req_text or "xe tự hành" in req_text
-    is_cv_topic = "computer vision" in req_text or "opencv" in req_text or "yolo" in req_text
-    is_nlp_topic = "nlp" in req_text or "bert" in req_text or "llm" in req_text or "rag" in req_text
+    is_robotics_topic = any(text_contains_term(req_text, tech) for tech in ["ros", "c++"])
+    is_cv_topic = any(text_contains_term(req_text, tech) for tech in ["computer vision", "opencv", "yolo"])
+    is_nlp_topic = any(text_contains_term(req_text, tech) for tech in ["nlp", "bert", "llm", "rag"])
 
     has_robotics = any("ros" in k or "c++" in k for k in team_skill_map)
     has_cv = any("opencv" in k or "computer vision" in k for k in team_skill_map)
@@ -166,26 +224,22 @@ def calculate_mcda_score(team_members, topic):
     if (is_robotics_topic and not has_robotics) or (is_cv_topic and not has_cv and has_nlp) or (is_nlp_topic and not has_nlp and has_cv):
         domain_mismatch = True
         c2_domain_score = 30.0
-    else:
-        for dom in team_domains:
-            if dom in topic_cat:
-                c2_domain_score = 95.0
-                break
+    elif team_domains & topic_domains:
+        c2_domain_score = 95.0
 
     # Total Learning Hours & C3 Adaptability (20%)
     total_learning_hours = sum([m.get("cost_hours", 20) for m in missing_techs])
-    c3_adaptability = max(100.0 - (total_learning_hours * 0.5), 20.0)
+    two_week_capacity = max(total_hours * 2, 1)
+    learning_load_ratio = total_learning_hours / two_week_capacity
+    c3_adaptability = max(20.0, 100.0 - min(80.0, learning_load_ratio * 60.0))
 
     # C4: Resource & Risk Matrix (20%)
     max_team_limit = int(topic.get("max_team", 5))
-    team_size_penalty = 0
-    if len(team_members) > max_team_limit:
-        team_size_penalty = -20
 
     critical_missing = sum(1 for m in missing_techs if m.get("criticality") == "Critical")
     skill_risk = "High" if critical_missing > 0 else ("Medium" if len(missing_techs) > 0 else "Low")
-    time_risk = "High" if total_learning_hours > (total_hours * 4) else ("Medium" if total_learning_hours > (total_hours * 2) else "Low")
-    team_risk = "High" if team_size_penalty < 0 else "Low"
+    time_risk = "High" if total_learning_hours > two_week_capacity else ("Medium" if total_learning_hours > total_hours else "Low")
+    team_risk = "High" if len(team_members) > max_team_limit else "Low"
     domain_risk = "High" if domain_mismatch else "Low"
     
     risk_matrix = {
@@ -194,29 +248,36 @@ def calculate_mcda_score(team_members, topic):
         "team_risk": team_risk,
         "domain_risk": domain_risk,
         "total_learning_hours": total_learning_hours,
-        "critical_missing_count": critical_missing
+        "critical_missing_count": critical_missing,
+        "weekly_capacity_hours": total_hours,
+        "two_week_learning_capacity_hours": two_week_capacity,
+        "team_size": len(team_members),
+        "max_team_size": max_team_limit,
     }
-    
-    # Calculate synthetic c4_risk_score for legacy scoring formula
-    risk_deductions = {"High": 20, "Medium": 10, "Low": 0}
-    c4_risk_score = 100.0 - risk_deductions[skill_risk] - risk_deductions[time_risk] - risk_deductions[domain_risk]
-    c4_risk_score = max(20.0, c4_risk_score)
+
+    risk_deductions = {"High": 25, "Medium": 12, "Low": 0}
+    c4_risk_score = max(0.0, 100.0 - sum(
+        risk_deductions[level]
+        for level in [skill_risk, time_risk, team_risk, domain_risk]
+    ))
 
     # Total Score
     total_score = round(
         (c1_skill_score * 0.35) + 
         (c2_domain_score * 0.25) + 
         (c3_adaptability * 0.20) + 
-        (c4_risk_score * 0.20) + 
-        team_size_penalty
+        (c4_risk_score * 0.20)
     )
     total_score = max(10, min(98, total_score))
 
     # Fit State Classification
-    if total_score >= 75 and not domain_mismatch:
+    if team_risk == "High":
+        fit_state = "OVER_CAPACITY"
+        verdict_label = "Over Capacity / Team Constraint"
+    elif total_score >= 75 and not domain_mismatch and critical_missing == 0:
         fit_state = "PERFECT_FIT"
         verdict_label = "Perfect / High Fit"
-    elif total_score >= 50 and len(missing_techs) <= 4:
+    elif total_score >= 50 and len(missing_techs) <= 4 and time_risk != "High":
         fit_state = "ABLE_TO_LEARN"
         verdict_label = "Able to Learn (Conditionally Feasible)"
     else:
@@ -234,8 +295,15 @@ def calculate_mcda_score(team_members, topic):
             explanation.append(f"CẢNH BÁO: Thiếu {critical_missing} kỹ năng cốt lõi (Critical) ảnh hưởng trực tiếp đến khả năng thành công của dự án.")
     if domain_mismatch:
         explanation.append("Cảnh báo lệch Domain: Chuyên môn của nhóm khác với lĩnh vực cốt lõi của đề tài này.")
-    if team_size_penalty:
+    if team_risk == "High":
         explanation.append(f"Quy mô nhóm ({len(team_members)} người) vượt quá giới hạn đề tài ({max_team_limit} người).")
+
+    score_breakdown = {
+        "skill": {"label": "Skill compatibility", "score": round(c1_skill_score), "weight": 35, "contribution": round(c1_skill_score * 0.35, 1)},
+        "domain": {"label": "Domain & problem fit", "score": round(c2_domain_score), "weight": 25, "contribution": round(c2_domain_score * 0.25, 1)},
+        "adaptability": {"label": "Learning adaptability", "score": round(c3_adaptability), "weight": 20, "contribution": round(c3_adaptability * 0.20, 1)},
+        "execution": {"label": "Execution readiness", "score": round(c4_risk_score), "weight": 20, "contribution": round(c4_risk_score * 0.20, 1)},
+    }
 
     return {
         "finalScore": total_score,
@@ -243,11 +311,19 @@ def calculate_mcda_score(team_members, topic):
         "domainScore": round(c2_domain_score),
         "feasibilityScore": round(c3_adaptability),
         "riskScore": round(c4_risk_score),
+        "scoreBreakdown": score_breakdown,
         "fitState": fit_state,
         "verdictLabel": verdict_label,
         "matchedTechs": matched_techs,
         "missingTechs": missing_techs,
         "riskMatrix": risk_matrix,
         "domainMismatch": domain_mismatch,
-        "explanation": explanation
+        "explanation": explanation,
+        "evidence": {
+            "requiredTechs": required_techs,
+            "teamDomains": sorted(team_domains),
+            "topicDomains": sorted(topic_domains),
+            "maxExperienceYears": max_exp,
+            "method": "Rule-based MCDA 35/25/20/20",
+        },
     }

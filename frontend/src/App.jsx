@@ -74,6 +74,7 @@ export default function App() {
       const idx = parseInt(presetKey.replace('mock-team-', ''));
       const chunk = mockProfiles.slice(idx * 4, (idx + 1) * 4);
       setTeamMembers(chunk.map(p => ({
+        ...p,
         name: `${p.name} (${p.desired_roles?.[0] || 'Dev'})`,
         skills: p.proficiency ? Object.entries(p.proficiency).map(([k, v]) => `${k}:${v}`).join(', ') : 'Python:3'
       })));

@@ -9,6 +9,114 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOPICS_FILE = os.path.join(BASE_DIR, "topics_data.json")
 MOCK_PROFILES_FILE = os.path.join(BASE_DIR, "mork_data", "mock_profiles.json")
 
+
+class APIValidationError(ValueError):
+    def __init__(self, message, code="invalid_request"):
+        super().__init__(message)
+        self.code = code
+
+
+def api_error(message, status=400, code="invalid_request", details=None):
+    payload = {"error": {"code": code, "message": message}}
+    if details:
+        payload["error"]["details"] = details
+    return JsonResponse(payload, status=status)
+
+
+def parse_json_body(request):
+    try:
+        body = json.loads(request.body.decode("utf-8"))
+    except (json.JSONDecodeError, UnicodeDecodeError) as error:
+        raise APIValidationError("Payload phải là JSON hợp lệ.", "invalid_json") from error
+    if not isinstance(body, dict):
+        raise APIValidationError("Payload JSON phải là một object.")
+    return body
+
+
+def require_list(body, field, allow_empty=False):
+    value = body.get(field)
+    if not isinstance(value, list) or (not allow_empty and not value):
+        suffix = "" if allow_empty else " không rỗng"
+        raise APIValidationError(f"{field} phải là một array{suffix}.")
+    return value
+
+
+def require_topic(topic_code):
+    if not isinstance(topic_code, str) or not topic_code.strip():
+        raise APIValidationError("topic_code là bắt buộc.", "missing_topic_code")
+    topic_code = topic_code.strip().upper()
+    topic = next((item for item in load_json(TOPICS_FILE) if item.get("code") == topic_code), None)
+    if topic is None:
+        raise APIValidationError(f"Không tìm thấy đề tài {topic_code}.", "topic_not_found")
+    return topic
+
+
+def validate_team_members(team_members):
+    if not isinstance(team_members, list) or not team_members:
+        raise APIValidationError("team_members phải là một array không rỗng.")
+    if not all(isinstance(member, dict) for member in team_members):
+        raise APIValidationError("Mỗi team member phải là một object.")
+    return team_members
+
+
+def risk_level_from_matrix(risk_matrix):
+    levels = [risk_matrix.get(key, "Low") for key in ["skill_risk", "time_risk", "team_risk", "domain_risk"]]
+    if "High" in levels:
+        return "High"
+    if "Medium" in levels:
+        return "Medium"
+    return "Low"
+
+
+def evidence_justification(base_mcda):
+    risk = base_mcda.get("riskMatrix", {})
+    lines = list(base_mcda.get("explanation", []))
+    lines.extend([
+        (
+            "Risk Matrix ghi nhận Skill/Time/Team/Domain lần lượt là "
+            f"{risk.get('skill_risk', 'Low')}/{risk.get('time_risk', 'Low')}/"
+            f"{risk.get('team_risk', 'Low')}/{risk.get('domain_risk', 'Low')}."
+        ),
+        (
+            f"Learning Cost Estimator dự kiến {risk.get('total_learning_hours', 0)} giờ tự học; "
+            f"năng lực hai tuần của nhóm là {risk.get('two_week_learning_capacity_hours', 0)} giờ."
+        ),
+    ])
+    return lines
+
+
+def ensure_evidence_contract(evaluation, base_mcda, source):
+    evaluation = evaluation if isinstance(evaluation, dict) else {}
+    risk_matrix = base_mcda.get("riskMatrix", {})
+    evidence_lines = evidence_justification(base_mcda)
+    model_lines = evaluation.get("transparentJustification", [])
+    if not isinstance(model_lines, list):
+        model_lines = []
+    model_lines = [str(line).strip() for line in model_lines if str(line).strip()]
+
+    evaluation["fitState"] = base_mcda["fitState"]
+    evaluation.setdefault("verdictTitle", base_mcda["verdictLabel"])
+    evaluation["transparentJustification"] = evidence_lines + [
+        line for line in model_lines if line not in evidence_lines
+    ]
+    evaluation.setdefault("feasibilityIndex", round(base_mcda["finalScore"] / 20, 1))
+    evaluation["riskLevel"] = risk_level_from_matrix(risk_matrix)
+    evaluation.setdefault("weeklyRoadmap", [])
+    evaluation.setdefault("requiredSkillSummary", {
+        "covered": [item["tech"] for item in base_mcda.get("matchedTechs", [])],
+        "toLearn": [
+            f"{item['tech']} (~{item.get('cost_hours', 20)} giờ)"
+            for item in base_mcda.get("missingTechs", [])
+        ],
+    })
+    evaluation["decisionSource"] = source
+    evaluation["evidenceSnapshot"] = {
+        "finalScore": base_mcda["finalScore"],
+        "scoreBreakdown": base_mcda.get("scoreBreakdown", {}),
+        "riskMatrix": risk_matrix,
+    }
+    return evaluation
+
 def load_json(filepath):
     if os.path.exists(filepath):
         with open(filepath, "r", encoding="utf-8") as f:
@@ -85,19 +193,16 @@ def generate_deep_quiz(request):
         return JsonResponse({"error": "Only POST allowed"}, status=405)
 
     try:
-        body = json.loads(request.body.decode("utf-8"))
+        body = parse_json_body(request)
         topic_code = body.get("topic_code")
         team_members = body.get("team_members", [])
+        topic = require_topic(topic_code)
+        validate_team_members(team_members)
 
-        topics = load_json(TOPICS_FILE)
-        topic = next((t for t in topics if t.get("code") == topic_code), {})
-        
-        # Calculate MCDA gap context
         mcda_res = calculate_mcda_score(team_members, topic) if team_members else {}
         missing_skills = [m["tech"] if isinstance(m, dict) else m for m in mcda_res.get("missingTechs", [])]
         domain_mismatch = mcda_res.get("domainMismatch", False)
 
-        # Execute Registered Agent Tool
         tool_res = AgentToolRegistry.execute("generate_topic_deep_quiz", {
             "topic_code": topic_code,
             "topic_title": topic.get("title", ""),
@@ -105,36 +210,40 @@ def generate_deep_quiz(request):
             "domain_mismatch": domain_mismatch
         })
 
+        if tool_res.get("error"):
+            return api_error(tool_res.get("error"), status=500, code="tool_error")
+
         return JsonResponse({
             "topic_code": topic_code,
             "topic_title": topic.get("title", ""),
             "questions": tool_res.get("questions", [])
         })
-
+    except APIValidationError as e:
+        return api_error(str(e), status=400, code=getattr(e, "code", "invalid_request"))
     except Exception as e:
-        return JsonResponse({"error": str(e)}, status=500)
+        return api_error(str(e), status=500, code="internal_error")
 
 @csrf_exempt
 def verify_declared_skills(request):
     """Generate practical verification questions for the skills a team declared."""
     if request.method != "POST":
         return JsonResponse({"error": "Only POST allowed"}, status=405)
-
     try:
-        body = json.loads(request.body.decode("utf-8"))
+        body = parse_json_body(request)
         declared_skills = body.get("declared_skills", [])
         if not isinstance(declared_skills, list) or not all(isinstance(skill, str) for skill in declared_skills):
-            return JsonResponse({"error": "declared_skills must be an array of strings"}, status=400)
+            raise APIValidationError("declared_skills must be an array of strings")
 
         tool_res = AgentToolRegistry.execute("verify_declared_skills", {
             "declared_skills": declared_skills
         })
         if tool_res.get("error"):
-            return JsonResponse(tool_res, status=500)
+            return api_error(tool_res.get("error"), status=500, code="tool_error")
         return JsonResponse(tool_res)
-
-    except (json.JSONDecodeError, UnicodeDecodeError):
-        return JsonResponse({"error": "Invalid JSON payload"}, status=400)
+    except APIValidationError as e:
+        return api_error(str(e), status=400, code=getattr(e, "code", "invalid_request"))
+    except Exception as e:
+        return api_error(str(e), status=500, code="internal_error")
 
 @csrf_exempt
 def evaluate_final(request):
