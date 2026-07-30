@@ -5,7 +5,7 @@ import os
 from .mcda_engine import calculate_mcda_score
 from .llm_provider import LLMProvider
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOPICS_FILE = os.path.join(BASE_DIR, "topics_data.json")
 MOCK_PROFILES_FILE = os.path.join(BASE_DIR, "mork_data", "mock_profiles.json")
 
