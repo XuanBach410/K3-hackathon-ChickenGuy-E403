@@ -16,11 +16,17 @@ def load_json(filepath):
     return []
 
 def serve_index(request):
-    index_path = os.path.join(BASE_DIR, "index.html")
-    if os.path.exists(index_path):
-        with open(index_path, "r", encoding="utf-8") as f:
+    react_dist_path = os.path.join(BASE_DIR, "frontend", "dist", "index.html")
+    if os.path.exists(react_dist_path):
+        with open(react_dist_path, "r", encoding="utf-8") as f:
             return HttpResponse(f.read(), content_type="text/html")
-    return HttpResponse("index.html not found", status=404)
+    
+    legacy_path = os.path.join(BASE_DIR, "index.html")
+    if os.path.exists(legacy_path):
+        with open(legacy_path, "r", encoding="utf-8") as f:
+            return HttpResponse(f.read(), content_type="text/html")
+            
+    return HttpResponse("Frontend React build not found", status=404)
 
 @csrf_exempt
 def get_topics(request):
