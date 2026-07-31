@@ -21,11 +21,8 @@ const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8000/api';
 // Navigation items for left sidebar
 const NAV_ITEMS = [
   { id: 'chat', label: 'Chat', icon: MessageSquare, active: true },
-  { id: 'topics', label: 'Đề tài của bạn', icon: BookOpen },
   { id: 'skills', label: 'Kỹ năng của nhóm', icon: Users },
   { id: 'topic-list', label: 'Danh sách đề tài', icon: ListChecks },
-  { id: 'techstack', label: 'Tech Stack', icon: Layers },
-  { id: 'suggest', label: 'Gợi ý tiếp theo', icon: Lightbulb },
 ];
 
 // Progress steps

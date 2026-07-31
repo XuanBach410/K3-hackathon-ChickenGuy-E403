@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { BookOpen, Users, ArrowRight, Search } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { BookOpen, Users, ArrowRight, Search, Filter } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
@@ -9,6 +9,7 @@ export default function TopicListView({ onSelectTopic }) {
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
     fetch(`${API_BASE}/topics/`)
@@ -23,10 +24,20 @@ export default function TopicListView({ onSelectTopic }) {
       });
   }, []);
 
-  const filteredTopics = topics.filter(t => 
-    t.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    t.code.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const categories = useMemo(() => {
+    const cats = new Set();
+    topics.forEach(t => {
+      if (t.category) cats.add(t.category);
+    });
+    return Array.from(cats).sort();
+  }, [topics]);
+
+  const filteredTopics = topics.filter(t => {
+    const matchesSearch = t.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          t.code.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory ? t.category === selectedCategory : true;
+    return matchesSearch && matchesCategory;
+  });
 
   if (loading) {
     return (
@@ -41,22 +52,37 @@ export default function TopicListView({ onSelectTopic }) {
 
   return (
     <div className="max-w-5xl mx-auto flex flex-col gap-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
             <span className="aurora-text-gradient">Danh sách đề tài dự án</span>
           </h2>
-          <p className="text-sm text-slate-500">Tìm kiếm và khám phá các đề tài phù hợp với kỹ năng của nhóm</p>
+          <p className="text-sm text-slate-500">Tìm kiếm và lọc đề tài phù hợp ({filteredTopics.length} kết quả)</p>
         </div>
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
-          <input
-            type="text"
-            placeholder="Tìm kiếm đề tài, mã..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-9 pr-4 py-2 border border-slate-200/80 rounded-xl text-sm w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-[#0080FF]/30 focus:border-[#0080FF] bg-white/80 backdrop-blur-sm transition-all"
-          />
+        <div className="flex flex-col sm:flex-row gap-3">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+            <input
+              type="text"
+              placeholder="Tìm kiếm tên, mã..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-9 pr-4 py-2 border border-slate-200/80 rounded-xl text-sm w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-[#0080FF]/30 focus:border-[#0080FF] bg-white/80 backdrop-blur-sm transition-all"
+            />
+          </div>
+          <div className="relative">
+            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="pl-9 pr-4 py-2 border border-slate-200/80 rounded-xl text-sm w-full sm:w-48 focus:outline-none focus:ring-2 focus:ring-[#0080FF]/30 focus:border-[#0080FF] bg-white/80 backdrop-blur-sm transition-all appearance-none"
+            >
+              <option value="">Tất cả chuyên ngành</option>
+              {categories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
       
@@ -91,8 +117,8 @@ export default function TopicListView({ onSelectTopic }) {
           </Card>
         ))}
         {filteredTopics.length === 0 && (
-          <div className="col-span-1 md:col-span-2 text-center py-12 text-slate-500 text-sm">
-            Không tìm thấy đề tài nào phù hợp.
+          <div className="col-span-1 md:col-span-2 text-center py-12 text-slate-500 text-sm bg-white/50 rounded-xl border border-dashed border-slate-300">
+            Không tìm thấy đề tài nào phù hợp với bộ lọc.
           </div>
         )}
       </div>
