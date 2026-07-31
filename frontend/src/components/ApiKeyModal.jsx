@@ -30,8 +30,9 @@ export default function ApiKeyModal({ isOpen, onClose, currentKey, onSave }) {
               onChange={(e) => setProvider(e.target.value)}
               className="w-full p-2.5 rounded-md border border-slate-200 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-blue-500 outline-none"
             >
-              <option value="gemini">Google Gemini (gemini-1.5-flash / pro)</option>
-              <option value="openai">OpenAI GPT (gpt-4o / gpt-4o-mini)</option>
+              <option value="gemini">Google Gemini (gemini-3.5-flash / pro)</option>
+              <option value="qwen">Qwen Cloud (qwen3.7-plus)</option>
+              <option value="openai">OpenAI (GPT-5.6 Luna)</option>
             </select>
           </div>
 

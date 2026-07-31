@@ -86,14 +86,23 @@ def parse_member_profile_tool(profile_text, proficiency=None):
         "properties": {
             "team_members": {
                 "type": "array",
-                "description": "Danh sách thành viên nhóm",
+                "description": "Danh sách thành viên nhóm (truyền nguyên văn từ ngữ cảnh nếu có)",
             },
-            "topic": {"type": "object", "description": "Đối tượng dữ liệu đề tài"},
+            "topic_code": {"type": "string", "description": "Mã đề tài cần phân tích"},
         },
-        "required": ["team_members", "topic"],
+        "required": ["team_members", "topic_code"],
     },
 )
-def evaluate_preliminary_fit_tool(team_members, topic):
+def evaluate_preliminary_fit_tool(team_members, topic_code):
+    import json
+    import os
+    from django.conf import settings
+    topics_file = os.path.join(settings.BASE_DIR, "topics_data.json")
+    with open(topics_file, 'r', encoding='utf-8') as f:
+        topics = json.load(f)
+    topic = next((t for t in topics if t.get("code") == topic_code), None)
+    if not topic:
+        return {"error": "Không tìm thấy đề tài với mã này"}
     mcda_res = calculate_mcda_score(team_members, topic)
     return {"status": "success", "mcda_result": mcda_res}
 

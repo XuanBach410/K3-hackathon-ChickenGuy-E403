@@ -10,6 +10,7 @@ urlpatterns = [
     path("api/profiles/", views.get_mock_profiles),
     path("api/agent/tools/", views.get_registered_agent_tools),
     path("api/agent/tools/execute/", views.execute_tool),
+    path("api/advisor/execute_tool/", views.execute_tool),
     path("api/health/", views.health),
     path("api/advisor/chat/", views.advisor_chat),
     path("api/evaluate/preliminary/", views.evaluate_preliminary),

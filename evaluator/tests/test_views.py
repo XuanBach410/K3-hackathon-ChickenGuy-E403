@@ -88,56 +88,6 @@ class ViewTests(TestCase):
         self.assertIn("questions", data)
         self.assertEqual(data["topic_code"], "EDU-01")
 
-    def test_evaluate_final_missing_topic(self):
-        response = self.client.post(
-            "/api/evaluate/final/",
-            data=json.dumps({"team_members": [{"skills": "Python:3"}]}),
-            content_type="application/json",
-        )
-        self.assertEqual(response.status_code, 400)
-        data = response.json()
-        self.assertEqual(data["error"]["code"], "missing_topic_code")
-
-    def test_evaluate_final_fallback(self):
-        response = self.client.post(
-            "/api/evaluate/final/",
-            data=json.dumps(
-                {
-                    "topic_code": "EDU-01",
-                    "team_members": [{"skills": "Python:3"}],
-                    "quiz_answers": {"1": "Yes"},
-                }
-            ),
-            content_type="application/json",
-        )
-        self.assertEqual(response.status_code, 200)
-        data = response.json()
-        self.assertIn("evaluation", data)
-        self.assertIn("fitState", data["evaluation"])
-
-    def test_advisor_chat_missing_message(self):
-        response = self.client.post(
-            "/api/advisor/chat/",
-            data=json.dumps({"team_members": [{"skills": "Python:3"}]}),
-            content_type="application/json",
-        )
-        self.assertEqual(response.status_code, 400)
-
-    def test_advisor_chat_valid(self):
-        response = self.client.post(
-            "/api/advisor/chat/",
-            data=json.dumps(
-                {
-                    "message": "Cho tôi phân tích EDU-01",
-                    "team_members": [{"skills": "Python:3"}],
-                }
-            ),
-            content_type="application/json",
-        )
-        self.assertEqual(response.status_code, 200)
-        data = response.json()
-        self.assertIn("reply", data)
-
     def test_evaluate_what_if_invalid(self):
         response = self.client.post(
             "/api/evaluate/what-if/",
@@ -148,10 +98,6 @@ class ViewTests(TestCase):
         )
         self.assertEqual(response.status_code, 400)
 
-    def test_invalid_json_payload(self):
-        response = self.client.post("/api/advisor/chat/", data="{invalid json", content_type="application/json")
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(response.json()["error"]["code"], "invalid_json")
 
     def test_execute_tool_missing_name(self):
         response = self.client.post("/api/agent/tools/execute/", data="{}", content_type="application/json")

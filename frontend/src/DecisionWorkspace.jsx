@@ -286,7 +286,11 @@ export default function DecisionWorkspace() {
           </div>
           {activeNav === 'chat' && (
             <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" onClick={clearChat} className="text-xs gap-1.5 rounded-lg cursor-pointer">
+              <Button variant="outline" size="sm" onClick={() => setIsApiKeyOpen(true)} className="text-xs gap-1.5 rounded-lg cursor-pointer bg-slate-50">
+                <Settings size={14} className={apiKey ? "text-green-600" : "text-amber-500"} />
+                LLM: {provider === 'qwen' ? 'Qwen' : (provider === 'gemini' ? 'Gemini' : 'OpenAI')} {apiKey ? '(Sẵn sàng)' : '(Chưa cấu hình)'}
+              </Button>
+              <Button variant="outline" size="sm" onClick={clearChat} className="text-xs gap-1.5 rounded-lg cursor-pointer text-red-600 hover:text-red-700 hover:bg-red-50">
                 <Trash2 size={14} /> Xóa hội thoại
               </Button>
             </div>
