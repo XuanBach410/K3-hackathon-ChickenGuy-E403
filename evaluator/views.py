@@ -338,7 +338,7 @@ def advisor_chat(request):
 
         team_members = body.get("team_members", [])
         provider = str(body.get("provider", "gemini"))
-        api_key = str(body.get("api_key", "")).strip()
+        api_key = str(body.get("api_key", "")).strip() or os.getenv("GEMINI_API_KEY") or os.getenv("OPENAI_API_KEY") or os.getenv("LLM_API_KEY") or ""
 
         # Step 1 & 2: Input Verification & Moderation Gate
         moderation = ContentModerationGate.review(
@@ -758,7 +758,7 @@ def evaluate_final(request):
         team_members = body.get("team_members", [])
         quiz_answers = body.get("quiz_answers", {})
         provider = body.get("provider", "gemini")
-        api_key = body.get("api_key", "").strip()
+        api_key = str(body.get("api_key", "")).strip() or os.getenv("GEMINI_API_KEY") or os.getenv("OPENAI_API_KEY") or os.getenv("LLM_API_KEY") or ""
 
         topic = require_topic(topic_code)
         team_members = validate_team_members(team_members)
