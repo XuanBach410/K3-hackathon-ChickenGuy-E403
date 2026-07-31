@@ -43,7 +43,9 @@ export default function TopicListView({ onSelectTopic }) {
     <div className="max-w-5xl mx-auto flex flex-col gap-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold text-slate-900">Danh sách đề tài dự án</h2>
+          <h2 className="text-xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
+            <span className="aurora-text-gradient">Danh sách đề tài dự án</span>
+          </h2>
           <p className="text-sm text-slate-500">Tìm kiếm và khám phá các đề tài phù hợp với kỹ năng của nhóm</p>
         </div>
         <div className="relative">
@@ -53,35 +55,35 @@ export default function TopicListView({ onSelectTopic }) {
             placeholder="Tìm kiếm đề tài, mã..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-400 transition-all"
+            className="pl-9 pr-4 py-2 border border-slate-200/80 rounded-xl text-sm w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-[#0080FF]/30 focus:border-[#0080FF] bg-white/80 backdrop-blur-sm transition-all"
           />
         </div>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filteredTopics.map((topic, idx) => (
-          <Card key={idx} className="p-5 flex flex-col border-slate-200 bg-white hover:border-violet-300 hover:shadow-md transition-all">
+          <Card key={idx} className="p-5 flex flex-col border-slate-200/80 bg-white/90 backdrop-blur-sm aurora-card-hover rounded-xl shadow-sm hover:border-[#0080FF]/40 transition-all">
             <div className="flex justify-between items-start mb-2">
-              <Badge variant="outline" className="bg-violet-50 text-violet-700 border-violet-200 text-xs">
+              <Badge variant="outline" className="bg-[#0080FF]/10 text-[#0080FF] border-[#0080FF]/30 text-xs font-semibold">
                 {topic.code}
               </Badge>
-              <Badge variant="secondary" className="text-[10px] flex items-center gap-1 bg-slate-100 text-slate-600">
+              <Badge variant="secondary" className="text-[10px] flex items-center gap-1 bg-slate-100/80 text-slate-600 font-medium">
                 <Users size={12} /> Tối đa {topic.max_team || 2} người
               </Badge>
             </div>
             <h3 className="font-bold text-slate-800 text-base mb-2 line-clamp-2" title={topic.title}>{topic.title}</h3>
             
-            <p className="text-slate-500 text-xs line-clamp-3 mb-4 flex-1 whitespace-pre-wrap">
+            <p className="text-slate-500 text-xs line-clamp-3 mb-4 flex-1 whitespace-pre-wrap leading-relaxed">
               {topic.description}
             </p>
             
             <div className="mt-auto border-t border-slate-100 pt-3 flex items-center justify-between">
-              <span className="text-[11px] text-slate-400 font-medium flex items-center gap-1 truncate max-w-[70%]">
-                <BookOpen size={12} className="shrink-0" /> {topic.category}
+              <span className="text-[11px] text-slate-400 font-medium flex items-center gap-1 truncate max-w-[65%]">
+                <BookOpen size={12} className="shrink-0 text-[#0080FF]" /> {topic.category}
               </span>
               <button 
                 onClick={() => onSelectTopic && onSelectTopic(topic)}
-                className="text-[11px] font-semibold text-violet-600 hover:text-violet-700 flex items-center gap-1 transition-colors px-2 py-1 rounded-md hover:bg-violet-50 cursor-pointer"
+                className="text-[11px] font-semibold text-white bg-gradient-to-r from-[#0080FF] to-[#7C3AED] hover:from-[#0060DF] hover:to-[#6D28D9] shadow-sm flex items-center gap-1.5 transition-all px-3 py-1.5 rounded-lg cursor-pointer active:scale-95"
               >
                 Phân tích <ArrowRight size={12} />
               </button>
