@@ -319,18 +319,18 @@ export default function DecisionWorkspace() {
         ) : (
           <>
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto px-6 py-6" ref={scrollRef}>
+            <div className="flex-1 overflow-y-auto overflow-x-hidden px-6 py-6" ref={scrollRef}>
           <div className="max-w-3xl mx-auto flex flex-col gap-5">
             {displayMessages.filter(m => m.role !== 'system').map((msg, i) => (
               <div key={i} className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
                 {/* Avatar */}
                 {msg.role !== 'user' && (
-                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white shadow-sm shrink-0">
+                  <div className="w-9 h-9 rounded-xl aurora-mesh flex items-center justify-center text-white shadow-sm shrink-0">
                     <Bot size={18} />
                   </div>
                 )}
                 {msg.role === 'user' && (
-                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center text-white shadow-sm shrink-0">
+                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#0080FF] to-[#FF1493] flex items-center justify-center text-white shadow-sm shrink-0">
                     <User size={16} />
                   </div>
                 )}
@@ -339,10 +339,10 @@ export default function DecisionWorkspace() {
                 <div className={`max-w-[85%] ${msg.role === 'user' ? '' : ''}`}>
                   <div className={`rounded-2xl px-4 py-3 ${
                     msg.role === 'user'
-                      ? 'bg-violet-600 text-white rounded-tr-md'
-                      : 'bg-slate-50 border border-slate-200 text-slate-700 rounded-tl-md'
-                  } ${msg.isToolLoading ? 'animate-pulse bg-violet-50 border-violet-200' : ''}`}>
-                    <div className="whitespace-pre-wrap leading-relaxed text-[14px]">{msg.content}</div>
+                      ? 'bg-gradient-to-r from-[#0080FF] to-[#7C3AED] text-white shadow-md shadow-blue-500/20 rounded-tr-md font-medium'
+                      : 'bg-white/90 border border-slate-200/80 text-slate-800 shadow-sm backdrop-blur-sm rounded-tl-md'
+                  } ${msg.isToolLoading ? 'animate-pulse bg-blue-50/80 border-blue-200' : ''}`}>
+                    <div className="whitespace-pre-wrap leading-relaxed text-[14px] break-words [overflow-wrap:anywhere]">{msg.content}</div>
                   </div>
 
                   {/* Quick Actions */}
@@ -436,12 +436,12 @@ export default function DecisionWorkspace() {
         </div>
 
         {/* Input Bar */}
-        <div className="px-6 py-4 bg-white border-t">
+        <div className="px-6 py-4 bg-white/80 backdrop-blur-md border-t border-slate-200/60">
           <form
             onSubmit={e => { e.preventDefault(); handleSend(); }}
-            className="max-w-3xl mx-auto flex items-center gap-3 bg-slate-50 rounded-2xl border border-slate-200 p-1.5 focus-within:ring-2 focus-within:ring-violet-500/20 focus-within:border-violet-300 transition-all"
+            className="max-w-3xl mx-auto flex items-center gap-3 bg-white/90 rounded-2xl border border-slate-200 p-1.5 focus-within:ring-2 focus-within:ring-[#0080FF]/30 focus-within:border-[#0080FF] shadow-sm transition-all"
           >
-            <button type="button" className="p-2 text-slate-400 hover:text-violet-600 transition-colors cursor-pointer">
+            <button type="button" className="p-2 text-slate-400 hover:text-[#0080FF] transition-colors cursor-pointer">
               <Mic size={18} />
             </button>
             <Input
@@ -454,7 +454,7 @@ export default function DecisionWorkspace() {
             <Button
               type="submit"
               disabled={!input.trim() || loading}
-              className="rounded-xl w-10 h-10 p-0 bg-violet-600 hover:bg-violet-700 disabled:opacity-40 shadow-md shadow-violet-200 transition-all cursor-pointer"
+              className="rounded-xl w-10 h-10 p-0 bg-gradient-to-r from-[#0080FF] to-[#7C3AED] hover:from-[#0060DF] hover:to-[#6D28D9] disabled:opacity-40 shadow-md shadow-blue-500/20 transition-all cursor-pointer"
             >
               <Send size={16} />
             </Button>
@@ -465,7 +465,7 @@ export default function DecisionWorkspace() {
       </main>
 
       {/* ═══════════════ RIGHT CONTEXT PANEL ═══════════════ */}
-      <aside className="w-80 bg-slate-50 border-l border-slate-200 flex-col hidden lg:flex overflow-y-auto pt-2">
+      <aside className="w-80 shrink-0 bg-white/70 backdrop-blur-md border-l border-slate-200/60 flex-col hidden lg:flex overflow-y-auto overflow-x-hidden pt-2 z-20">
         {/* Selected Topic Card */}
         <div className="p-5">
           <h3 className="font-bold text-sm text-slate-500 uppercase tracking-wider mb-4 flex items-center gap-2">
