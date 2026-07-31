@@ -189,18 +189,18 @@ export default function DecisionWorkspace() {
   const displayMessages = messages.length === 0 ? [greeting] : messages;
 
   return (
-    <div className="flex h-screen bg-white font-sans">
+    <div className="flex h-screen bg-slate-50/90 font-sans aurora-mesh-subtle">
       {/* ═══════════════ LEFT SIDEBAR ═══════════════ */}
-      <aside className="w-64 bg-gradient-to-b from-violet-50 to-white border-r border-violet-100 flex flex-col">
+      <aside className="w-64 bg-white/80 backdrop-blur-xl border-r border-slate-200/60 flex flex-col z-20">
         {/* Logo */}
-        <div className="p-5 border-b border-violet-100">
+        <div className="p-5 border-b border-slate-100">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-violet-200">
+            <div className="w-10 h-10 rounded-xl aurora-mesh flex items-center justify-center text-white shadow-lg aurora-glow-primary">
               <Bot size={22} />
             </div>
             <div>
-              <h1 className="font-bold text-base text-violet-900">TopicAI</h1>
-              <p className="text-[11px] text-violet-500">AI Topic Advisor</p>
+              <h1 className="font-bold text-base aurora-text-gradient tracking-tight">TopicAI</h1>
+              <p className="text-[11px] text-slate-400 font-medium">Aurora UI • AI Advisor</p>
             </div>
           </div>
         </div>
@@ -213,8 +213,8 @@ export default function DecisionWorkspace() {
               onClick={() => setActiveNav(item.id)}
               className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer ${
                 activeNav === item.id
-                  ? 'bg-violet-600 text-white shadow-md shadow-violet-200'
-                  : 'text-violet-700 hover:bg-violet-100'
+                  ? 'bg-gradient-to-r from-[#0080FF] via-[#7C3AED] to-[#FF1493] text-white shadow-md shadow-blue-500/25 font-semibold'
+                  : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900'
               }`}
             >
               <item.icon size={18} />

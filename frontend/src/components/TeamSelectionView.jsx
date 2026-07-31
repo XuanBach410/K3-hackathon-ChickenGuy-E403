@@ -56,14 +56,16 @@ export default function TeamSelectionView({ onSaveTeam, currentTeam }) {
     <div className="max-w-5xl mx-auto flex flex-col gap-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold text-slate-900">Kỹ năng của nhóm</h2>
+          <h2 className="text-xl font-bold text-slate-900 tracking-tight">
+            <span className="aurora-text-gradient">Thiết lập & Kỹ năng nhóm</span>
+          </h2>
           <p className="text-sm text-slate-500">Chọn thành viên từ mock data để mô phỏng nhóm của bạn</p>
         </div>
         <div className="flex items-center gap-3">
           <span className="text-sm font-medium text-slate-600">
-            Đã chọn: <strong className="text-violet-700">{selectedProfiles.length}</strong> thành viên
+            Đã chọn: <strong className="text-[#0080FF]">{selectedProfiles.length}</strong> thành viên
           </span>
-          <Button onClick={handleSave} className="bg-violet-600 hover:bg-violet-700 cursor-pointer">
+          <Button onClick={handleSave} className="bg-gradient-to-r from-[#0080FF] via-[#7C3AED] to-[#FF1493] hover:opacity-95 text-white shadow-md shadow-blue-500/20 cursor-pointer font-semibold rounded-xl">
             <Save size={16} className="mr-2" /> Lưu & Quay lại
           </Button>
         </div>
@@ -77,16 +79,16 @@ export default function TeamSelectionView({ onSaveTeam, currentTeam }) {
             <Card 
               key={idx} 
               onClick={() => toggleProfile(profile)}
-              className={`p-5 flex flex-col cursor-pointer transition-all ${
+              className={`p-5 flex flex-col cursor-pointer aurora-card-hover rounded-xl transition-all ${
                 isSelected 
-                  ? 'border-violet-500 bg-violet-50/50 shadow-md ring-1 ring-violet-200' 
-                  : 'border-slate-200 bg-white hover:border-violet-300 hover:shadow-sm'
+                  ? 'border-[#0080FF] bg-gradient-to-br from-[#0080FF]/10 via-[#FF1493]/5 to-transparent shadow-md ring-2 ring-[#0080FF]/40' 
+                  : 'border-slate-200/80 bg-white/90 backdrop-blur-sm hover:border-[#0080FF]/40 hover:shadow-sm'
               }`}
             >
               <div className="flex justify-between items-start mb-3">
                 <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 ${
-                    isSelected ? 'bg-violet-600' : 'bg-slate-300'
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm ${
+                    isSelected ? 'aurora-mesh aurora-glow-primary' : 'bg-slate-300'
                   }`}>
                     {profile.name.charAt(0)}
                   </div>
@@ -96,7 +98,7 @@ export default function TeamSelectionView({ onSaveTeam, currentTeam }) {
                   </div>
                 </div>
                 {isSelected ? (
-                  <CheckCircle2 size={20} className="text-violet-600 shrink-0" />
+                  <CheckCircle2 size={20} className="text-[#0080FF] shrink-0" />
                 ) : (
                   <UserPlus size={20} className="text-slate-300 shrink-0" />
                 )}
@@ -104,10 +106,10 @@ export default function TeamSelectionView({ onSaveTeam, currentTeam }) {
               
               <div className="flex-1 space-y-3">
                 <div>
-                  <div className="text-[10px] font-semibold text-slate-500 uppercase mb-1.5">Vai trò mong muốn</div>
+                  <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Vai trò mong muốn</div>
                   <div className="flex flex-wrap gap-1">
                     {profile.desired_roles?.map((role, rIdx) => (
-                      <Badge key={rIdx} variant="secondary" className="text-[9px] bg-slate-100 text-slate-600">
+                      <Badge key={rIdx} variant="secondary" className="text-[9px] bg-slate-100/90 text-slate-600 font-medium">
                         {role}
                       </Badge>
                     ))}
@@ -115,12 +117,12 @@ export default function TeamSelectionView({ onSaveTeam, currentTeam }) {
                 </div>
                 
                 <div>
-                  <div className="text-[10px] font-semibold text-slate-500 uppercase mb-1.5">Kỹ năng nổi bật (Score &gt; 3)</div>
+                  <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Kỹ năng nổi bật (Score &gt; 3)</div>
                   <div className="flex flex-wrap gap-1">
                     {Object.entries(profile.proficiency || {})
                       .filter(([_, score]) => score > 3)
                       .map(([skill, score], sIdx) => (
-                        <Badge key={sIdx} variant="outline" className="text-[9px] border-emerald-200 text-emerald-700 bg-emerald-50">
+                        <Badge key={sIdx} variant="outline" className="text-[9px] border-[#0080FF]/30 text-[#0080FF] bg-[#0080FF]/10 font-semibold">
                           {skill}: {score}
                         </Badge>
                       ))}
