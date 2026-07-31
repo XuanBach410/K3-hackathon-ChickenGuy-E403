@@ -13,6 +13,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
 import ApiKeyModal from './components/ApiKeyModal';
+import TopicListView from './components/TopicListView';
 
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8000/api';
 
@@ -276,18 +277,34 @@ export default function DecisionWorkspace() {
         {/* Header */}
         <header className="h-16 flex items-center justify-between px-6 border-b bg-white/90 backdrop-blur-md sticky top-0 z-10">
           <div>
-            <h2 className="text-lg font-bold text-slate-900">Chatbot hỗ trợ chọn đề tài</h2>
-            <p className="text-xs text-slate-500">Dựa trên kỹ năng nhóm, danh sách đề tài và định hướng phát triển</p>
+            <h2 className="text-lg font-bold text-slate-900">
+              {activeNav === 'topic-list' ? 'Danh sách đề tài' : 'Chatbot hỗ trợ chọn đề tài'}
+            </h2>
+            <p className="text-xs text-slate-500">
+              {activeNav === 'topic-list' ? 'Khám phá tất cả các đề tài dự án' : 'Dựa trên kỹ năng nhóm, danh sách đề tài và định hướng phát triển'}
+            </p>
           </div>
-          <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm" onClick={clearChat} className="text-xs gap-1.5 rounded-lg">
-              <Trash2 size={14} /> Xóa hội thoại
-            </Button>
-          </div>
+          {activeNav === 'chat' && (
+            <div className="flex items-center gap-2">
+              <Button variant="outline" size="sm" onClick={clearChat} className="text-xs gap-1.5 rounded-lg cursor-pointer">
+                <Trash2 size={14} /> Xóa hội thoại
+              </Button>
+            </div>
+          )}
         </header>
 
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto px-6 py-6" ref={scrollRef}>
+        {activeNav === 'topic-list' ? (
+          <div className="flex-1 overflow-y-auto px-6 py-6 bg-slate-50">
+            <TopicListView onSelectTopic={(topic) => {
+              setSelectedTopic(topic);
+              setActiveNav('chat');
+              handleSend(`Xem chi tiết đề tài: ${topic.title}`);
+            }} />
+          </div>
+        ) : (
+          <>
+            {/* Messages */}
+            <div className="flex-1 overflow-y-auto px-6 py-6" ref={scrollRef}>
           <div className="max-w-3xl mx-auto flex flex-col gap-5">
             {displayMessages.filter(m => m.role !== 'system').map((msg, i) => (
               <div key={i} className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
@@ -428,6 +445,8 @@ export default function DecisionWorkspace() {
             </Button>
           </form>
         </div>
+          </>
+        )}
       </main>
 
       {/* ═══════════════ RIGHT CONTEXT PANEL ═══════════════ */}
