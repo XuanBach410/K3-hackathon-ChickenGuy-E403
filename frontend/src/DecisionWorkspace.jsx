@@ -14,6 +14,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
 import ApiKeyModal from './components/ApiKeyModal';
 import TopicListView from './components/TopicListView';
+import TeamSelectionView from './components/TeamSelectionView';
 
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8000/api';
 
@@ -278,10 +279,12 @@ export default function DecisionWorkspace() {
         <header className="h-16 flex items-center justify-between px-6 border-b bg-white/90 backdrop-blur-md sticky top-0 z-10">
           <div>
             <h2 className="text-lg font-bold text-slate-900">
-              {activeNav === 'topic-list' ? 'Danh sách đề tài' : 'Chatbot hỗ trợ chọn đề tài'}
+              {activeNav === 'topic-list' ? 'Danh sách đề tài' :
+               activeNav === 'skills' ? 'Thiết lập nhóm' : 'Chatbot hỗ trợ chọn đề tài'}
             </h2>
             <p className="text-xs text-slate-500">
-              {activeNav === 'topic-list' ? 'Khám phá tất cả các đề tài dự án' : 'Dựa trên kỹ năng nhóm, danh sách đề tài và định hướng phát triển'}
+              {activeNav === 'topic-list' ? 'Khám phá tất cả các đề tài dự án' : 
+               activeNav === 'skills' ? 'Thêm thành viên vào nhóm của bạn từ dữ liệu mô phỏng' : 'Dựa trên kỹ năng nhóm, danh sách đề tài và định hướng phát triển'}
             </p>
           </div>
           {activeNav === 'chat' && (
@@ -300,6 +303,18 @@ export default function DecisionWorkspace() {
               setActiveNav('chat');
               handleSend(`Xem chi tiết đề tài: ${topic.title}`);
             }} />
+          </div>
+        ) : activeNav === 'skills' ? (
+          <div className="flex-1 overflow-y-auto px-6 py-6 bg-slate-50">
+            <TeamSelectionView 
+              currentTeam={teamMembers}
+              onSaveTeam={(newTeam) => {
+                setTeamMembers(newTeam);
+                setActiveNav('chat');
+                const names = newTeam.map(t => t.name).join(', ');
+                handleSend(`Tôi đã cập nhật kỹ năng nhóm với ${newTeam.length} thành viên (${names}). Hãy đánh giá và tư vấn đề tài phù hợp cho chúng tôi.`);
+              }} 
+            />
           </div>
         ) : (
           <>
