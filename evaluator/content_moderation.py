@@ -1,5 +1,6 @@
 import json
 from dataclasses import dataclass
+from typing import Optional
 
 from .llm_provider import LLMProvider
 
@@ -8,7 +9,7 @@ from .llm_provider import LLMProvider
 class ModerationDecision:
     action: str
     reason: str
-    safe_reply: str | None = None
+    safe_reply: Optional[str] = None
     source: str = "policy-fallback"
 
 
